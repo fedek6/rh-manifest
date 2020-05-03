@@ -2,4 +2,4 @@
 
 # Introduction
 
-Guidelines for Realhe.ro websites.
+Guidelines for Realhe.ro websites. Here you can find instructions and snippets used in my projects.

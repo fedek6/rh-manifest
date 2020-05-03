@@ -8,6 +8,7 @@
 * October CMS
     * [Tips & tricks](october-cms/README.md)
     * [Internalization](october-cms/l18n.md)
+    * [Snippets](october-cms/snippets.md)
 * [PHP](php/README.md)
 * SEO
     * [Structured data](seo/structured-data.md)
