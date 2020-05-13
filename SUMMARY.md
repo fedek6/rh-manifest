@@ -14,3 +14,6 @@
     * [Structured data](seo/structured-data.md)
 * IDE
     * [Visual Studio Code](tools/visual-studio-tips.md)
+* Design rules
+    * [UX](design-rules/ux.md)
+    * [Typography](design-rules/typography.md)
