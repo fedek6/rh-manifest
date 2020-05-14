@@ -15,5 +15,5 @@
 * IDE
     * [Visual Studio Code](tools/visual-studio-tips.md)
 * Design rules
-    * [UX](design-rules/ux.md)
+    * [UX basics](design-rules/ux.md)
     * [Typography](design-rules/typography.md)

@@ -1,4 +1,4 @@
-# UX rules
+# UX basics
 
 ## Basics
 
