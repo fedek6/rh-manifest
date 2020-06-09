@@ -10,6 +10,9 @@
     * [Internalization](october-cms/l18n.md)
     * [Snippets](october-cms/snippets.md)
 * [PHP](php/README.md)
+    * [PSR](php/PSR.md)
+    * [PHPDoc](php/PHPDoc.md)
+    * [Strict types](php/strict-types.md)
 * [JS](js/README.md)
 * SEO
     * [Structured data](seo/structured-data.md)
