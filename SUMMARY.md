@@ -11,6 +11,8 @@
     * [Snippets](october-cms/snippets.md)
 * [PHP](php/README.md)
 * [JS](js/README.md)
+* GIT
+    * [How to add an existing directory to a repository?](git/existing-directory.md)
 * SEO
     * [Structured data](seo/structured-data.md)
 * IDE
