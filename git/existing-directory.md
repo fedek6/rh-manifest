@@ -1,5 +1,7 @@
 # How to add an existing directory to a repository?
 
+__Warning!__ Remember that repository must be empty before pushing.
+
 ```bash
 cd project-diretory
 git init
