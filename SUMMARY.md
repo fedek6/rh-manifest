@@ -13,6 +13,8 @@
     * [PSR](php/PSR.md)
     * [PHPDoc](php/PHPDoc.md)
     * [Strict types](php/strict-types.md)
+    * Laravel
+        * [Cheat sheet](php/laravel/README.md)
 * [JS](js/README.md)
 * GIT
     * [How to add an existing directory to a repository?](git/existing-directory.md)
