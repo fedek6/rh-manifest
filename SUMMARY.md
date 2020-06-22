@@ -10,6 +10,9 @@
     * [Internalization](october-cms/l18n.md)
     * [Snippets](october-cms/snippets.md)
 * [PHP](php/README.md)
+    * [PSR](php/PSR.md)
+    * [PHPDoc](php/PHPDoc.md)
+    * [Strict types](php/strict-types.md)
 * [JS](js/README.md)
 * GIT
     * [How to add an existing directory to a repository?](git/existing-directory.md)
