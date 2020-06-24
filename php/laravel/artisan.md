@@ -1,5 +1,19 @@
 # Artisan cheatsheet
 
+# Run local server
+
+```bash
+artisan serve
+```
+
+# Create a model
+
+This will create _app/Models/SimpleScore.php_ with proper namespace:
+
+```bash
+/artisan make:model Models/SimpleScore
+```
+
 ## Migrations
 
 ### Create
