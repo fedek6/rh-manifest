@@ -45,3 +45,22 @@ These are basic concepts of typography:
 * 30 to 50 ems can be seen as ideal line length;
 * Always try to maintain a vertical rhythm. You can use this formula to calculate a heading line-height: basic line-height/heading font-size = heading line-height;
 
+## A word about vertical rhythm
+
+Vertical rhythm is not always possible, especially when dealing with multiple images of various sizes, however, it's still and admirable goal.
+
+
+## Hierarchy and Scale
+
+A size of the text elements should be based on a typographic scale (and importance). It might be a traditional scale:
+
+6, 7, 8, 9, 10, 11, 12, 14, 16, 18, 21, 24, 36, 48, 60, 72
+
+Or the Fibonacci:
+
+16, 24, 40, 64, 104
+
+Also, you can use a [generator](https://www.modularscale.com/). 
+
+__Interesting fact__: Some people set a font size to 0.625 em (62,5%) for easier calculations based on a 10px size.
+
