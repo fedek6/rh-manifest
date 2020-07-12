@@ -1,6 +1,6 @@
 # Artisan cheatsheet
 
-# Run local server
+# Run a local server
 
 ```bash
 artisan serve
