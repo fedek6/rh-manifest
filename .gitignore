@@ -15,3 +15,6 @@ assets
 *.epub
 *.mobi
 *.pdf
+
+# No history files
+.history
