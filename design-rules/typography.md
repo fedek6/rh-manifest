@@ -118,7 +118,7 @@ Workhorse typefaces have sturdy features: conventional and easy recognizable let
 
 Their character isn't overbearing or evocative so they capable of setting many different kinds of content.
 
-### Display typefacs
+### Display typefaces
 
 A display typeface is intended for use at large sizes for headings, rather than for longer passages of body text.
 
