@@ -64,3 +64,88 @@ Also, you can use a [generator](https://www.modularscale.com/).
 
 __Interesting fact__: Some people set a font size to 0.625 em (62,5%) for easier calculations based on a 10px size.
 
+## Paragraphs
+
+Paragraphs are punctuation of ideas. The single-line boundary is the most common paragraph delimiter. 
+
+If you use the indent, convention suggests that paragraphs that follow a heading or sub-heading should not be indented. Also you should not indent lines of text after lists and block quotes. 
+
+A simple trick to accomplish that is use of an adjacent selector:
+
+```css
+p { 
+    text-indent: 2.5em; 
+}
+
+h1 + p, 
+h2 + p, 
+h3 + p {
+    text-indent: 0;
+}
+```
+
+### Drop cap (versal)
+
+A drop cap is a large first letter in the first paragraph. 
+
+### Outdent cap
+
+An outdent cap is the first letter outside of a text.
+
+### Make the first line small caps
+
+There is a trick to turn the first line of a text to small caps (or do whatever you want with it).
+
+```css
+p::first-line {
+    font-variant: small-caps;
+}
+```
+
+Check [this article](https://www.smashingmagazine.com/2012/04/drop-caps-historical-use-and-current-best-practices/), here you can learn more about first lines in typography.
+
+## Right type
+
+__Important__: The most important criterion is the context in which the typeface will be used and the purpose it will serve.
+
+For enacted narratives, we can read the text beforehand, understand its meaning, tone and nuances. But what do wee do for emergent narratives? 
+
+Look at the brand and environment. Imagine the context in which text will be read. Choose a type that enriches the meaning of the text but faes into the background rather than clamors for attention.
+
+### Workhorse fonts
+
+Workhorse typefaces have sturdy features: conventional and easy recognizable letterforms, generous letter spacing, solid serifs, clear open counters, a tall x-height and ink traps. 
+
+Their character isn't overbearing or evocative so they capable of setting many different kinds of content.
+
+### Display typefacs
+
+A display typeface is intended for use at large sizes for headings, rather than for longer passages of body text.
+
+[Display category on Google Fonts](https://fonts.google.com/?category=Display)
+
+Workhorse typefaces are more flexible than display typefaces. To some extent, one can wear hiking shoes to a posh reception. If you combine them with casual jeans and stylish shirt and jacket, you might get away with it, just as workhorse typefaces might look acceptable in headlines if you adapt their spacing and use them with in combination with the right design elements. But you wouldn't climb a mountain in dancing shoes. Never use display typefaces for body text.
+
+
+### Font quality checks
+
+* Check them at 100 to 150 points,
+* Check italics readability,
+* Check small claps clarity,
+* Check word rococo;
+* Check word lol0;
+* Check words floria and Eigenschaft for proper ligatures.
+
+### Sans or serif? ... Or monospace or cursive?
+
+Familiar letterforms. Choose a face with customary shapes. Avoid quirky typefaces. Never set body copy in all capitals or all small-caps. Be careful with italics and obliques (and other variations). Choose a font whose ascenders for letters such as "b" and "d" rise above x-height, and vice-versa for "p" and "q". 
+
+True fonts, not synthetics! Use only these fonts that have designed other variants such as bold and italics.
+
+Generous x-height. Fonts designed for the screen have a generous x-height (you can check this on x letter).
+
+Comfortable letter spacing. Should be good without CSS fixing.
+
+Comfortable word spacing. Same as above.
+
+
