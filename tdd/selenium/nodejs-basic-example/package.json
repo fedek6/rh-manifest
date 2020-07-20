@@ -1,0 +1,15 @@
+{
+  "name": "selenium-mocha-chai-testing",
+  "scripts": {
+    "test": "node Tests/DefaultTest.js",
+    "test-form": "node TestForm.js",
+    "mocha-test": "node_modules/.bin/mocha Tests/DefaultTest.js --timeout 10000"
+  },
+  "private": true,
+  "devDependencies": {
+    "chromedriver": "^83.0.1",
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "mocha": "^5.2.0",
+    "chai": "^4.1.2"
+  }
+}
