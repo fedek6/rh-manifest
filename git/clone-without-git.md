@@ -1,6 +1,6 @@
 # Clone with git linking
 
-There is special node package for [that](https://www.npmjs.com/package/degit).
+There is a special node package for [that](https://www.npmjs.com/package/degit).
 
 ```
 # download from GitLab 
