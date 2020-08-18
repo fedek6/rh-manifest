@@ -7,6 +7,7 @@ Only good quality plugins and frameworks (vanilla js, PHP > 7.2).
 * [Flickity carousel](https://flickity.metafizzy.co/)
 * [Lazy load](https://github.com/verlok/lazyload)
 * [The Vanilla JS Toolkit](https://vanillajstoolkit.com/)
+* [Design patterns](https://refactoring.guru/design-patterns/)
 
 ## PHP
 
