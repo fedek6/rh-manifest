@@ -5,6 +5,7 @@
 * Coding practices
     * [CSS](coding-practices/css.md)
     * [PHP](coding-practices/php.md)
+    * [Google Style Guide](coding-practices/google-style-guide.md)
 * October CMS
     * [Tips & tricks](october-cms/README.md)
     * [Internalization](october-cms/l18n.md)
