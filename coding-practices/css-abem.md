@@ -144,6 +144,18 @@ Example folder structure:
 style.scss
 ```
 
+Detailed example:
+
+```
+styles/<category>/<component-name>/<component-name>.scss
+styles/<category>/<component-name>/<component-name>.twig
+styles/<category>/<component-name>/README.md
+styles/<category>/<component-name>/<component-name>[–<variant-name>].twig
+styles/<category>/<component-name>/<component-name>.js
+styles/<category>/<component-name>/<component-name>.config.json
+Explanation
+```
+
 A simpler approach would be:
 
 ![ABEM](atomic-folder-structure.png "ABEM architercture")
