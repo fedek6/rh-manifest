@@ -1,12 +1,12 @@
 # Artisan cheatsheet
 
-# Run a local server
+## Run a local server
 
 ```bash
 artisan serve
 ```
 
-# Create a model
+## Create a model
 
 This will create _app/Models/SimpleScore.php_ with proper namespace:
 
