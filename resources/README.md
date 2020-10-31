@@ -19,3 +19,7 @@ Only good quality plugins and frameworks (vanilla js, PHP > 7.2).
 ## CSS
 
 * [CSS Grid cheat sheet](https://grid.malven.co/)
+
+## Misc
+
+* [Google Fonts to offline converter](https://google-webfonts-helper.herokuapp.com/fonts/)
