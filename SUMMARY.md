@@ -18,6 +18,8 @@
         * [Cheat sheet](php/laravel/README.md)
         * [Eloquent examples](php/laravel/eloquent.md)
 * [JS](js/README.md)
+* CSS
+    * [Notes on CSS grids](css/notes-on-grids.md)
 * GIT
     * [How to add an existing directory to a repository?](git/existing-directory.md)
 * SEO
