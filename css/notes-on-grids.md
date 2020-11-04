@@ -38,3 +38,15 @@ grid-row:    2 / 5;
     } 
 }
 ```
+
+## Automatic column count
+
+__Atention!__ Be careful because column count can be calculated automatically. If you add such row:
+
+```scss
+&__menu {
+    grid-column: span 12;
+} 
+```
+
+In a less than 12 column grid, it will be automatically extended to 12!
