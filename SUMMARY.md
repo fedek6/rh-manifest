@@ -20,6 +20,8 @@
 * [JS](js/README.md)
 * CSS
     * [Notes on CSS grids](css/notes-on-grids.md)
+* HTML
+    * [Responsive images](html/responsive-images.md)
 * GIT
     * [How to add an existing directory to a repository?](git/existing-directory.md)
 * SEO
