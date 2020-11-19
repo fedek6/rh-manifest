@@ -6,6 +6,7 @@
     * [CSS](coding-practices/css.md)
     * [PHP](coding-practices/php.md)
     * [Google Style Guide](coding-practices/google-style-guide.md)
+    * [React Styleguidist](coding-practices/react-styleguidist.md)
 * October CMS
     * [Tips & tricks](october-cms/README.md)
     * [Internalization](october-cms/l18n.md)
