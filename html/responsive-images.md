@@ -52,3 +52,47 @@ An explanation for a first and last size:
 
 
 Examples came from: [bitsofco.de article](https://bitsofco.de/the-srcset-and-sizes-attributes/)
+
+
+## Using verlok/vanilla-lazyload
+
+```bash
+npm install vanilla-lazyload --save
+```
+
+```js
+import LazyLoad from "vanilla-lazyload";
+
+window.addEventListener('load', event => {
+    console.log("Window loaded");
+
+    let lazyLoadInstance = new LazyLoad({
+     //   use_native: true // <-- there you go
+    });
+});
+```
+
+### Example using picture tag
+
+__Attention!__ Please remember about the statement order because the first matching source tag will be used!
+
+```html
+     <picture class="m-post-cover__bg">
+          <source
+               media="(min-width: 2000px)"
+               data-srcset="https://via.placeholder.com/960 1x, 
+               https://via.placeholder.com/1920 2x"
+          >
+          <source
+               media="(min-width: 1200px)"
+               data-srcset="https://via.placeholder.com/480 1x, 
+               https://via.placeholder.com/960 2x"
+          >
+          <img
+               alt="A lazy image"
+               class="lazy"
+               src="images/img_placeholder.png"
+               data-src="https://via.placeholder.com/500"
+          >
+     </picture>
+```
