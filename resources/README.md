@@ -9,6 +9,7 @@ Only good quality plugins and frameworks (vanilla js, PHP > 7.2).
 * [The Vanilla JS Toolkit](https://vanillajstoolkit.com/)
 * [Design patterns](https://refactoring.guru/design-patterns/)
 * [The Vanilla JavaScript Repository](https://vanillalist.top/)
+* [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)
 
 ## PHP
 
