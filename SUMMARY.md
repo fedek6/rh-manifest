@@ -19,6 +19,8 @@
         * [Cheat sheet](php/laravel/README.md)
         * [Eloquent examples](php/laravel/eloquent.md)
 * [JS](js/README.md)
+    * [Next.js](js/Next.js/README.md)
+        * [Eslint & Prettier in Next.js](js/Next.js/eslint-and-prettier.md)
 * CSS
     * [Notes on CSS grids](css/notes-on-grids.md)
 * HTML
