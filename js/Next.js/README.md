@@ -61,7 +61,65 @@ You need to use a Github example to achieve this, you can find it [here](https:/
 
 ## Creating components
 
+To create a component simply create a top-level directory `components` and place there needed files.
 
+For example `components/header.js` with the following contents:
+
+```js
+import Link from 'next/link';
+
+export default function Header() {
+  return (
+    <header>
+      <Link href="/">
+        <a>
+          <img src="/logo_black.svg" alt="Retrolove Games Logo" className="logo" />
+        </a>
+      </Link>
+    </header>
+  );
+}
+```
+
+## Importing CSS
+
+To import CSS rules you need to create a file.
+
+For example `components/layout.module.css` with the following contents:
+
+```css
+.container {
+  max-width: 36rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+}
+```
+
+And in the js file you need to import it as such:
+
+```js
+import styles from './layout.module.css'
+
+export default function Layout({ children }) {
+  return <div className={styles.container}>{children}</div>
+}
+```
+
+__Notice:__ If you want to use sass you need to install it first `npm install sass`.
+
+## Changing root component of an application
+
+You can use this for state configuration and importing global assets. 
+
+To do it you need to create `pages/_app.js`:
+
+```js
+import '../styles/global.css';
+
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+```
 
 ## Convert to Typescript
 
