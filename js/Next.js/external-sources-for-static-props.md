@@ -85,4 +85,4 @@ export async function getSortedPostsData() {
 }
 ```
 
-__Notice:__ You can use static props only in page files. That's because it works sever-side.
+__Notice:__ You can use static props only in page files. That's because they works sever-side.

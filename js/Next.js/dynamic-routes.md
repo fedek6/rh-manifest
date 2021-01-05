@@ -14,7 +14,9 @@ export async function getStaticPaths() {
 }
 ```
 
-__Notice:__ If the id of the page won't be provided in paths var Next.js will show nice 404 error.
+__Notice:__ If you won't declare a fallback option to false Next will load the first page it can find (which is pretty stupid).
+
+__Notice:__ If the id of the page won't be provided in paths var Next.js will just show a nice 404 error.
 
 Then we can use a modified method to set static props:
 
@@ -29,7 +31,7 @@ export async function getStaticProps({ params }) {
 }
 ```
 
-We take this id from url construction (`[id]`).
+We take this id from URL construction (`[id]`).
 
 ## How to provide ids for dynamic routes?
 
@@ -46,5 +48,31 @@ export function getStaticPageIds() {
       }
     }
   });
+}
+```
+## Catch all routes
+
+You can route URLs like `/posts/a/b`. You simply need to create a page file using three dots `pages/posts/[...id].js`.
+
+If you want to utilize this using static paths you need to create a list of ids using an array:
+
+```js
+export function getStaticPageIds() {
+  return [
+    {
+      params: {
+        // Statically Generates /posts/a/b/c
+        id: ['a', 'b', 'c']
+      }
+    }
+  ];
+}
+```
+
+And you can access them in `getStaticProps`:
+
+```js
+export async function getStaticProps({ params }) {
+  // params.id will be like ['a', 'b', 'c']
 }
 ```
