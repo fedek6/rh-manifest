@@ -1,6 +1,6 @@
 # Custom 404 page
 
-Simply create a file `pages/404.js` and build component for error display:
+Simply create a file `pages/404.js` and build a component for error display:
 
 ```js
 import Layout from '../components/layout';
