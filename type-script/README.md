@@ -25,3 +25,5 @@ tsc main --watch
 ```
 
 __Notice:__ Adding an empty export declaration on top of the `ts` file will prevent VSV from displaying variable redeclaration errors. A file with such a declaration is treated as a module instead of a plain script.
+
+https://www.youtube.com/watch?v=BwuLxPH8IDs
