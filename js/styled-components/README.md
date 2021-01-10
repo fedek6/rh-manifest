@@ -400,3 +400,19 @@ const styles = css`
 `
 ```
 
+Potential usage example:
+
+```jsx
+import styled, { css } from 'styled-components'
+
+const complexMixin = css`
+  color: ${props => (props.whiteColor ? 'white' : 'black')};
+`
+
+const StyledComp = styled.div`
+  /* This is an example of a nested interpolation */
+  ${props => (props.complex ? complexMixin : 'color: blue;')};
+`
+```
+
+__Notice:__ If you're interpolating a string you do not need to use this, only if you're interpolating a function.
