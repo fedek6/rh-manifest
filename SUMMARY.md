@@ -21,6 +21,13 @@
 * [JS](js/README.md)
     * [Next.js](js/Next.js/README.md)
         * [Eslint & Prettier in Next.js](js/Next.js/eslint-and-prettier.md)
+    * [TypeScript](type-script/README.md) 
+        * [Classes](type-script/classes.md)
+        * [Functions](type-script/functions.md)
+        * [Interfaces](type-script/interfaces.md)
+        * [Variable declaration](type-script/variable-declaration.md)
+        * [Variable types](/type-script/variable-types.md)
+* [Directory structures for projects](directory-structures/README.md)
 * CSS
     * [Notes on CSS grids](css/notes-on-grids.md)
 * HTML
