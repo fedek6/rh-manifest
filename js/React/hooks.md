@@ -198,4 +198,4 @@ You can write custom Hooks that cover a wide range of use cases like form handli
 ## Other common hooks
 
 * `useContext` - lets you subscribe to React context without introducing nesting,
-* `useReducer` - lets you manage local state of complex components with a reducer.
+* `useReducer` - lets you manage a local state of complex components with a reducer.

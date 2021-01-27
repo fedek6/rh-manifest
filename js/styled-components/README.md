@@ -355,7 +355,7 @@ render(
 
 ## Animations
 
-CSS animations with @keyframes aren't scoped to a single component but you still don't want them to be global to avoid name collisions. This is why we export a keyframes helper which will generate a unique instance that you can use throughout your app:
+CSS animations with @keyframes aren't scoped to a single component but you still don't want them to be global to avoid name collisions. This is why we export a keyframes helper that will generate a unique instance that you can use throughout your app:
 
 ```jsx
 // Create the keyframes
@@ -415,4 +415,4 @@ const StyledComp = styled.div`
 `
 ```
 
-__Notice:__ If you're interpolating a string you do not need to use this, only if you're interpolating a function.
+__Notice:__ If you're interpolating a string, you do not need to use this, only if you're interpolating a function.
