@@ -191,7 +191,7 @@ function FriendListItem(props) {
 
 The state of each component is completely independent. Hooks are a way to reuse stateful logic, not state itself. In fact, each call to a Hook has a completely isolated state — so you can even use the same custom Hook twice in one component.
 
-Custom Hooks are more of a convention than a feature. If a function’s name starts with ”use” and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
+Custom Hooks are more of a convention than a feature. If a functions name starts with ”use” and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
 
 You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven’t considered. We are excited to see what custom Hooks the React community will come up with.
 
@@ -199,3 +199,45 @@ You can write custom Hooks that cover a wide range of use cases like form handli
 
 * `useContext` - lets you subscribe to React context without introducing nesting,
 * `useReducer` - lets you manage a local state of complex components with a reducer.
+
+## Multiple values in a state
+
+To avoid additional renders of a component, you can store more values in one state. You can do it jut  like this:
+
+```jsx
+const [state, setCounters] => useState({ counterA: 0, counterB: 0 });
+
+return (
+  <>
+    <button onClick={() => setCounters({ ...state, counterA: counerA + 1 }); }>A</button>
+    <button onClick={() => setCounters({ ...state, counterB: counerB + 1 }); }>B</button>
+    {state.CounterA}<br />
+    {state.CounterB}
+  </>
+);
+```
+
+You can also create two state values:
+
+```jsx
+const [counterA, setCounterA] => useState(0);
+const [counterB, setCounterB] => useState(0);
+
+return (
+  <>
+    <button onClick={() => setCounterA(prevCount => prevCount + 1); }>A</button>
+    <button onClick={() => setCounterB(prevCount => prevCount + 1); }>B</button>
+    {counterA}<br />
+    {counterB}
+  </>
+);
+```
+
+You can also emulate class components behaviour:
+
+```jsx
+setState(prevState => {
+  // Object.assign would also work
+  return {...prevState, ...updatedValues};
+});
+```
