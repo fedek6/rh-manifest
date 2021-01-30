@@ -62,7 +62,7 @@ useEffect(() => {
 
 ## useContext
 
-Contex will help you with sharing data between components.
+Context will help you with sharing data between components.
 
 ```jsx
 const moods = {
