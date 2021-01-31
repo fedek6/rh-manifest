@@ -26,4 +26,4 @@ icon-chat-black.svg
 bg-man-playing-computer.svg
 ```
 
-__Warning!__ Name your files so you'll know what's inside even without a preview!
+__Warning!__ Name your files in such a way you'll know what's inside even without a preview!
