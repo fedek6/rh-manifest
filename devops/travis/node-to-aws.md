@@ -1,0 +1,1 @@
+https://medium.com/@scotchjdmacdonald/deploying-a-node-typescript-app-to-elasticbeanstalk-with-travisci-34b39a1b91ab

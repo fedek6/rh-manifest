@@ -46,3 +46,5 @@ volumes:
 3. If you change anything simply run `docker-compose up --build`.
 
 4. Run non-interactrive `docker-compose up -d`.
+
+_Notice_: You can run only one service, if you want for eg. `/usr/bin/docker-compose up -d mysqldb`.
