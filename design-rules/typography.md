@@ -131,7 +131,7 @@ Workhorse typefaces are more flexible than display typefaces. To some extent, on
 
 * Check them at 100 to 150 points,
 * Check italics readability,
-* Check small claps clarity,
+* Check small caps clarity,
 * Check word rococo;
 * Check word lol0;
 * Check words floria and Eigenschaft for proper ligatures.
@@ -148,4 +148,80 @@ Comfortable letter spacing. Should be good without CSS fixing.
 
 Comfortable word spacing. Same as above.
 
+### Details
 
+Combining serif and sans-serif is a popular trick. But you must remember that both fonts must have the same x-height.
+
+#### Widows & orphans
+
+* A widow is a paragraph ending line that falls at the beginning of the following page/column.
+
+* An orphan is a word, part of a word, or very short line that appears by itself at the end of a paragraph.
+
+![Widow & orphan](typedesignquote2-e1447789973739.png "Widow & orphan")
+
+In simple words: be careful with a single words in the end of a paragraph and a short sentences in new columns.
+
+#### Emphasis
+
+Use only one type of emphasis. Select from bold, small caps, italics, type size, color and other typeface. 
+
+![Emphasis](46e77360170cc7d9b2036b5d50229c7f.webp "Emphasis")
+
+#### Hanging punctuation
+
+Always pull your punctuation outside the text.
+
+![Punctuation](hung-not-hung.png)
+
+__Notice:__ For hanging punctuation, you can use negative `text-indent` value.
+
+![Bullets](hanging-bullets.png)
+
+#### Ampersand with style
+
+It's a good idea to use special font for ampersands to make them more decorative.
+
+#### Do not use hyphen for em dash
+
+You should always use `&#8212` for text an interruption. 
+
+![Dashes](dashes.jpg)
+
+#### Always use proper quotes
+
+Quote chars depend on a language that you use. 
+
+You can style quotes using this CSS:
+
+```css
+:lang(en-us) > q {
+    quotes: "\2018" "\2019" "\201c" "\201d";
+}
+```
+
+__Notice:__ These: `"` are called dumb quotes.
+
+#### Treat text as a user interface
+
+If you want your content to convey a function as well as a meaning and to help your users understand how they are supposed to achieve they goal with your text, you'll have to include subtle visual cues. 
+
+#### Quotes
+
+* Block quote is used for long quotations that are apart from the main body. This refers external source or other article. 
+
+* `<q>` is used for inline quotations. It might be used  instead of quotation marks (add them using CSS).
+
+* `<cite>` is used when you reference externally sourced quotes.
+
+#### Hyphens and special chars
+
+* `-` hyphen is not a minus char `−` or dash `—`. It's used to wrap words. There is soft hyphen `&#173;` and hard hyphen that is always visible.
+
+* `– —` en and em dash are used to indicate range for example: (2.00 – 3.00 p.m.) or group (Meyer–Stevenson Lexicon).
+
+* `—` em dash has 1em of width, and it's used to interrupt a sentence `I was debugging the style sheet — wait a second what was he saying?`. Some dashes benefit from having spaces around them; for instance, the em dash can be surrounded by a thin (`&#8201;`) or hair (`&#8202;`) space.  
+
+* A single prime (′) should be used to represent feet and minutes, and double prime (″) for inches and seconds. 
+
+* Use ellipsis (`&#8230`) instead of triple periods. 
