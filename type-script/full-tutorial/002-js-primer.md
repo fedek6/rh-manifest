@@ -124,4 +124,61 @@ let sumPrices = (...numbers) => numbers.reduce((total, val) =>
 
 ## Working with arrays
 
-p. 54
+JavaScript arrays follow the approach taken by most programming languages, except they are dynamically resized and can contain any combination of values and, therefore, any combination of types. 
+
+### Useful array methods
+
+* concat(otherArray) — This method returns a new array that concatenates the array on which it has been called with the array specified as the argument. Multiple arrays can be specified
+
+* join(separator) — This method joins all the elements in the array to form a string. The argument specifies the character used to delimit the items.
+
+* pop() — This method removes and returns the last item in the array.
+
+* shift() — This method removes and returns the first element in the array.
+
+* push(item) — This method appends the specified item to the end of the array.
+
+* unshift(item) — This method inserts a new item at the start of the array.
+
+* reverse() — This method returns a new array that contains the items in reverse order.
+
+* slice(start,end) — This method returns a section of the array.
+
+* sort() — This method sorts the array. An optional comparison function can be used to perform custom comparisons.
+ 
+* splice(index, count) — This method removes count items from the array, starting at the specified index. The removed items are returned as the result of the method.
+
+* every(test) — This method calls the test function for each item in the array and returnstrue if the function returns true for all of them and false otherwise.
+
+* some(test) — This method returns true if calling the test function for each item in the array returns true at least once.
+
+* filter(test) — This method returns a new array containing the items for which the test function returns true.
+
+* find(test) — This method returns the first item in the array for which the test function returns true.
+
+* findIndex(test) — This method returns the index of the first item in the array for which the test function returns true.
+
+* forEach(callback) — This method invokes the callback function for each item in the array, as described in the previous section.
+
+* includes(value) — This method returns true if the array contains the specified value.
+
+* map(callback) — This method returns a new array containing the result of invoking the callback function for every item in the array.
+
+* reduce(callback) — This method returns the accumulated value produced by invoking the callback function for every item in the array.
+
+## Spread operator
+
+The spread operator can be used to expand the contents of an array so that its elements can be used as
+arguments to a function.
+
+```js
+let totalPrice = sumPrices(...prices);
+```
+
+The operator is used before the array name. The spread operator can also be used to expand the contents of an array for easy concatenation.
+
+```js
+let combinedArray = [...names, ...prices];
+combinedArray.forEach(element => console.log(`Combined Array Element: ${element}`));
+```
+
