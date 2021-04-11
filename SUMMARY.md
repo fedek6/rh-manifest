@@ -21,12 +21,20 @@
 * [JS](js/README.md)
     * [Next.js](js/Next.js/README.md)
         * [Eslint & Prettier in Next.js](js/Next.js/eslint-and-prettier.md)
-    * [TypeScript](type-script/README.md) 
+* [TypeScript](type-script/README.md) 
         * [Classes](type-script/classes.md)
         * [Functions](type-script/functions.md)
         * [Interfaces](type-script/interfaces.md)
         * [Variable declaration](type-script/variable-declaration.md)
         * [Variable types](/type-script/variable-types.md)
+        * Full tutorial 
+            * [Bookmarks](type-script/full-tutorial/BOOKMARKS.md)
+            * [First class](type-script/full-tutorial/001-first-class.md)
+            * [JS Primer](type-script/full-tutorial/002-js-primer.md)
+* Gamedev
+    * [Aseprite](gamedev/graphics/aseprite.md)
+    * [Pixel art resolution](pixel-art-resolution.md)
+    * [Itch.io](gamedev/itch.io/README.md)
 * [Directory structures for projects](directory-structures/README.md)
 * CSS
     * [Notes on CSS grids](css/notes-on-grids.md)
