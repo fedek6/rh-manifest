@@ -181,4 +181,107 @@ The operator is used before the array name. The spread operator can also be used
 let combinedArray = [...names, ...prices];
 combinedArray.forEach(element => console.log(`Combined Array Element: ${element}`));
 ```
+## Working with Objects
 
+JavaScript's objects are collections of properties, each of which has a name and a value.
+
+Literal syntax:
+
+```js
+let hat = {
+ name: "Hat",
+ price: 100
+};
+```
+
+Manipulating dynamic objects:
+
+```js
+gloves.name = gloves.productName;
+delete gloves.productName;
+gloves.price = 20;
+```
+
+### Guarding Against Undefined Objects and Properties
+
+```js
+let propertyCheck = hat.price || 0;
+let objectAndPropertyCheck = (hat || {}).price || 0;
+```
+
+### Using the Spread and Rest Operators on Objects
+
+The spread operator can be used to expand the properties and values defined by an object.
+
+```js
+let hat = {
+ name: "Hat",
+ price: 100
+};
+
+let otherHat = { ...hat };
+let additionalProperties = { ...hat, discounted: true};
+```
+
+__Notice__: If a property name is used twice in the object literal syntax, then the second value is the one that will be
+used.
+
+### Decomposition
+
+```js
+let { price , ...someProperties } = hat;
+```
+
+### Defining Getters and Setters
+
+Getters and setters are functions that are invoked when a property value is read or assigned.
+
+```js
+let hat = {
+ name: "Hat",
+ _price: 100,
+ priceIncTax: 100 * 1.2,
+ 
+ set price(newPrice) {
+   this._price = newPrice;
+   this.priceIncTax = this._price * 1.2;
+ },
+
+ get price() {
+   return this._price;
+ }
+};
+
+hat.price = 120;
+console.log(`Hat: ${hat.price}, ${hat.priceIncTax}`);
+```
+
+__Notice__: There are no private properties in the JavaScript. You can emulate this, but it's complicated. The best practice for pure JS code is to prefix variables with underscore `_`. 
+
+## Defining methods
+
+A method is a property whose value is a function, which means that all the features and behaviors that
+functions provide, such as default and rest parameters, can be used for methods. 
+
+```js
+let hat = {
+ name: "Hat",
+ _price: 100,
+ priceIncTax: 100 * 1.2,
+ writeDetails: function() {
+ console.log(`${this.name}: ${this.price}, ${this.priceIncTax}`);
+ }
+}
+```
+
+You can also use a concise method's syntax:
+
+```js
+writeDetails() {
+ console.log(`${this.name}: ${this.price}, ${this.priceIncTax}`);
+}
+```
+
+## Understanding the this Keyword
+
+p. 64
