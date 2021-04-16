@@ -389,4 +389,20 @@ This looks bad, but it works!
 
 To add to the complexity of this, arrow functions don’t work in the same way as regular functions. Arrow functions don’t have their own this value and inherit the closest value of this they can find when they are executed.
 
-p. 87
+```js
+let myObject = {
+ greeting: "Hi, there",
+ getWriter() {
+  return (message) => console.log(`${this.greeting}, ${message}`);
+ }
+}
+
+greeting = "Hello";
+let writer = myObject.getWriter();
+writer("It is raining today"); // Hi, there, It is raining today
+let standAlone = myObject.getWriter; 
+let standAloneWriter = standAlone();
+standAloneWriter("It is sunny today"); // Hello, It is sunny today
+```
+
+__Notice:__ If you want to protect your code from this behavior use regular functions with `bind` protection.
