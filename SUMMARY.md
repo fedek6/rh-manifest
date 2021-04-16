@@ -51,6 +51,7 @@
             * [Bookmarks](type-script/full-tutorial/BOOKMARKS.md)
             * [First class](type-script/full-tutorial/001-first-class.md)
             * [JS Primer](type-script/full-tutorial/002-js-primer.md)
+            * [JS Primer part 2](ype-script/full-tutorial/003-js-primer-2.md)
 * Gamedev
     * [Aseprite](gamedev/graphics/aseprite.md)
     * [Pixel art resolution](pixel-art-resolution.md)
