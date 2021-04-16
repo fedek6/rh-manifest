@@ -9,5 +9,8 @@
 * Spread & Rest operator on objects — page 59.
 * Getters & setters — page 61.
 * This keyword — page 64.
+* Object prototypes and inheritance — page 74.
+* Custom prototypes — page 78.
+* Constructor functions — page 78.
 
 __Notice__: I use books page numbers, not PDF ones. 
