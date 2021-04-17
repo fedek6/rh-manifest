@@ -1,7 +1,8 @@
 ![logo](https://realhe.ro/img/logo.svg "Realhe.ro")
 
 # Konrad' dev notes 
-<img src="https://realhe.ro/img/konrad-fedorczyk.jpg " alt="Portrait of Konrad Fedorczyk" width="200"/>
+![Portrait of Konrad Fedorczyk](https://realhe.ro/img/konrad-fedorczyk.jpg | width=250)
+
 
 Hi,
 
