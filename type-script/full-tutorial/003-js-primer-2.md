@@ -69,6 +69,10 @@ A constructor function is used to create a new object, configure its properties,
 
 __Notice__: constructor functions are simplified object definitions.
 
+```
+Constructor functions are templates for creating objects. We can use it to create different objects using the same constructor, which has the same instance methods and properties with different values for the nonmethod properties
+```
+
 ```js
 let Product = function(name, price) {
  this.name = name;
