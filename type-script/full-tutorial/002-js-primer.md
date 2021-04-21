@@ -284,4 +284,125 @@ writeDetails() {
 
 ## Understanding the this Keyword
 
-p. 64
+The this keyword can be confusing to even experienced JavaScript programmers. In other programming languages, this is used to refer to the current instance of an object created from a class. In JavaScript, the this keyword can often to appear to work the same way—right up until the moment a change breaks the application and undefined values start to appear.
+
+```js
+let hat = {
+ name: "Hat",
+ _price: 100,
+ priceIncTax: 100 * 1.2,
+
+ set price(newPrice) {
+   this._price = newPrice;
+   this.priceIncTax = this._price * 1.2;
+ },
+
+ get price() {
+   return this._price;
+ },
+
+ writeDetails: () =>
+   console.log(`${this.name}: ${this.price}, ${this.priceIncTax}`)
+};
+
+hat.writeDetails(); // undefined: undefined, undefined
+```
+
+## Understating this in stand-alone functions
+
+```js
+function writeMessage(message) {
+ console.log(`${this.greeting}, ${message}`);
+}
+greeting = "Hello";
+writeMessage("It is sunny today"); // Hello, It is sunny today
+```
+
+JavaScript defines a global object, which can be assigned values that are available throughout an application. The global object is used to provide access to the essential features in the execution environment, such as the document object in browsers that allows interaction with the Document Object Model API.
+
+In fact statement above is translated to:
+
+```js
+writeMessage.call(window, "It is sunny today");
+```
+
+As explained earlier, functions are objects, which means they define methods, including the call method. It is this method that is used to invoke a function behind the scenes. The first argument to the call method is the value for this, which is set to the global object. This is the reason that this can be used in any function and why it returns the global object by default.
+
+__Notice__: The name of the global object changes based on the execution environment. In code executed by Node.js, global is used, but window or self will be required in browsers. At the time of writing, there is a proposal to standardize on the name global, but it has yet to be adopted as part of the JavaScript specification.
+
+__Important__: JavaScript supports “strict mode,” which disables or restricts features that have historically caused poor-quality software or that prevent the runtime from executing code efficiently. When strict mode is enabled, the default value for this is undefined in order to prevent accidental use of the global object, and values with global scope must be explicitly defined as properties on the global object.
+
+In fact, below code won't work:
+
+```js
+'use strict';
+function writeMessage(message) {
+ console.log(`${this.greeting}, ${message}`);
+}
+greeting = "Hello";
+writeMessage("It is sunny today");
+writeMessage.call(window, "It is sunny today");
+```
+
+## This in methods
+
+```js
+let myObject = {
+ greeting: "Hi, there",
+ writeMessage(message) {
+ console.log(`${this.greeting}, ${message}`);
+ }
+}
+greeting = "Hello";
+myObject.writeMessage("It is sunny today");
+```
+
+This, is in fact this:
+
+```js
+myObject.writeMessage.call(myObject, "It is sunny today");
+```
+
+Beware methods in variables:
+
+```js
+greeting = "Hello";
+let myFunction = myObject.writeMessage;
+myFunction("It is sunny today");
+```
+
+Local object context will be replaced by global aka window!
+
+In fact there's a way to fix this:
+
+```js
+myObject.writeMessage = myObject.writeMessage.bind(myObject);
+greeting = "Hello";
+myObject.writeMessage("It is sunny today");
+let myFunction = myObject.writeMessage;
+myFunction("It is sunny today");
+```
+
+This looks bad, but it works!
+
+## Understanding this in Arrow Functions
+
+To add to the complexity of this, arrow functions don’t work in the same way as regular functions. Arrow functions don’t have their own this value and inherit the closest value of this they can find when they are executed.
+
+```js
+let myObject = {
+ greeting: "Hi, there",
+ getWriter() {
+  return (message) => console.log(`${this.greeting}, ${message}`);
+ }
+}
+
+greeting = "Hello";
+let writer = myObject.getWriter();
+writer("It is raining today"); // Hi, there, It is raining today
+let standAlone = myObject.getWriter; 
+let standAloneWriter = standAlone();
+standAloneWriter("It is sunny today"); // Hello, It is sunny today
+```
+
+__Notice:__ If you want to protect your code from this behavior use regular functions with `bind` protection.

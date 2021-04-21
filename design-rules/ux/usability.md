@@ -88,9 +88,66 @@ Should have levels:
 
 ## Important usability rules and principles
 
-p. 143
+### 7±2 Principle
 
+Human brain is limited in its capacity. It deals with complexity by dividing information into chunks and units. Humans can retain only about five to nine things in their short-term memory. This is an argument for limiting navigation items to seven (to 9). 
 
+### 2-Second rules
 
+User should not wait more than two seconds for response. The less users have to wait, the better will be the experience.
 
+### 3-Click rule
 
+Users stop searching if they aren't able to find it in three clicks. More clicks are OK if users always know where they are and where they can go.
+
+### 80/20 Rule (Pareto)
+
+80% of effects comes from 20% of causes. You can maximize your income if you identify the 20% of your most important users.
+
+### Eight golden rules of interface design
+
+1. Strive for consistency.
+2. Allow frequent users to use shortcuts.
+3. Offer informative feedback.
+4. Design dialogs to yield closure. 
+5. Offer simple error handling.
+6. Permit easy reversal of actions.
+7. Impart a sense of control. Support an internal locus of control.
+8. Reduce short-term memory load.
+
+### Fitts' Law
+
+Time required to rapidly move to a target area is a function of the distance to the target and the size of the target. The law claims that there is a speed-accuracy trade off associated with pointing, whereby target that are smaller/or further away require more time to acquire. The principle encourages content to be positioned in areas that maximize their accessibility and improve click rates.
+
+### Inverted Pyramid
+
+It puts summary at the very top of the article. It is essentially “waterfall effect”, well-known in journalism, whereby writers give their readers an instant picture of the topic they're reporting about. The article begins with the conclusion, followed by the key points and minor details, such as background information. Because Web users want instant gratification, it improves the user experience.
+
+## Give Users a high view of your application
+
+Let's look at some ways you can convey your website's goals.
+
+### Mental models and metaphor
+
+Mental model is a person’s thought of how something works.
+Before they use a product, they imagine how to operate it according to their experience. And they use it based on that expectation. If the behavior of the product doesn’t meet the users’ mental model, it will confuse them. Therefore, we should design products to fit our user’s mental models.
+
+There are two ways to have them match:
+
+* Show the concept and features by metaphor. Metaphor in GUI is to use objects in the real world on software. For example, a screen looking like a bookshelf.
+
+* Show the usage by idioms. Idioms in GUI are idiomatic expressions as visual language or patterns of interaction. For example, a list screen and its behavior. Clicking an item in the list takes users to the item’s detail screen. Many people can use this type of list screen because they have already learned this pattern.
+
+__Notice__: Shopping cart is a metaphor — it's obvious that there's no real shopping cart behind the web app.
+
+### Organize your website's content
+
+A good place to start is with categorization, separating your content into semantically coherent groups. The ideal solution requires the least amount of overhead and is most useful to your users. To create a sensible categorization schema, develop a taxonomy based words and phrases that your audience would expect.
+
+Another way to organize your content (and improve website's search results) is to make use of metadata.
+
+### Offer a site map
+
+For large websites, a map is a good way to orient users.
+
+p. 148
