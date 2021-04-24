@@ -12,5 +12,13 @@
 * Object prototypes and inheritance — page 74.
 * Custom prototypes — page 78.
 * Constructor functions — page 78.
+* Defining Static Properties and Methods — page 82.
+* Using JS classes — page 83.
+* Class inheritance — page 84.
+* Static methods — page 85.
+* Iterators and generators — page 86.
+
+This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
 __Notice__: I use books page numbers, not PDF ones. 
+
