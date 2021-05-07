@@ -65,8 +65,11 @@
     * [How to add an existing directory to a repository?](git/existing-directory.md)
 * SEO
     * [Structured data](seo/structured-data.md)
-* IDE
+* Tools
     * [Visual Studio Code](tools/visual-studio-tips.md)
+    * [Adobe XD](tools/adobe-xd-tips.md)
+    * [Sassdoc](tools/sassdoc.md)
+    * [Figma](tools/figma.md)
 * Design rules
     * [UX basics](design-rules/ux.md)
     * [Typography](design-rules/typography.md)
