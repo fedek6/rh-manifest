@@ -297,4 +297,98 @@ while (!result.done) {
 }
 ```
 
-p. 88
+Generator functions are created like that:
+
+```js
+function* createProductIterator() {
+```
+
+Generators are consumed in the same way as iterators. The JavaScript runtime creates the next function and executes the generator function until it reaches the yield keyword, which provides a value in the sequence.
+
+Generators can be used with the spread operator, allowing the sequence to be used as a set of function
+parameters or to populate an array.
+
+```js
+function* createDumbIterator() {
+  yield "I am";
+  yield "dumb";
+  yield "generator!";
+}
+
+function appender(txt) {
+  let el = document.createElement("span");
+  el.text = txt + " ";
+  document.body.appendChild(el);
+}
+
+let iterator = createDumbIterator();
+let result = iterator.next();
+
+while (!result.done) {
+  result = iterator.next();
+  appender(result);
+}
+```
+
+You can also use spread operator:
+
+```js
+[...createProductIterator()].forEach((p) => console.log(p.toString()));
+```
+
+**Notice**: `yield` is not available in ES6.
+
+## Iterable objects
+
+```js
+class GiftPack {
+  constructor(name, prod1, prod2, prod3) {
+    this.name = name;
+    this.prod1 = prod1;
+    this.prod2 = prod2;
+    this.prod3 = prod3;
+  }
+  getTotalPrice() {
+    return [this.prod1, this.prod2, this.prod3].reduce(
+      (total, p) => total + p.price,
+      0
+    );
+  }
+  90;
+  *getGenerator() {
+    yield this.prod1;
+    yield this.prod2;
+    yield this.prod3;
+  }
+}
+
+let winter = new GiftPack(
+  "winter",
+  new Product("Hat", 100),
+  new Product("Boots", 80),
+  new Product("Gloves", 23)
+);
+console.log(`Total price: ${winter.getTotalPrice()}`);
+[...winter.getGenerator()].forEach((p) => console.log(`Product: ${p}`));
+```
+
+**Notice**: Using spread operator this way is little awkward.
+
+This more elegant solution:
+
+```js
+  *[Symbol.iterator]() {
+    yield this.prod1;
+    yield this.prod2;
+    yield this.prod3;
+  }
+}
+
+[...winter].forEach(p => console.log(`Product: ${ p }`));
+```
+
+I no longer have to invoke a method to get a generator, which produces clearer and more elegant code!
+
+## JavaScript collections
+
+p. 91

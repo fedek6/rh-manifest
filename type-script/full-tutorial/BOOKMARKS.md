@@ -18,7 +18,9 @@
 * Static methods — page 85.
 * Iterators — page 86.
 * Generators — page 88.
-
+* Iterable objects — page 89. 
+* JS Collections — page 91.
+ 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
 __Notice__: I use books page numbers, not PDF ones. 
