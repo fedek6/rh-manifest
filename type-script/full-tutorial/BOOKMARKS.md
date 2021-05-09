@@ -16,7 +16,8 @@
 * Using JS classes — page 83.
 * Class inheritance — page 84.
 * Static methods — page 85.
-* Iterators and generators — page 86.
+* Iterators — page 86.
+* Generators — page 88.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
