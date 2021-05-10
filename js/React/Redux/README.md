@@ -26,9 +26,6 @@ Or by using create app:
 npx create-react-app my-app --template redux
 ```
 
-https://redux.js.org/introduction/getting-started
-
-
 ## Redux Core
 
 ```bash
