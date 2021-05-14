@@ -16,6 +16,7 @@
         * [Dockerize node app](devops/docker/dockerize-node-app.md)
         * Example configs
             * [WordPress](devops/docker/compose-examples/wordpress.md)
+            * [Node TSC App](devops/docker/compose-examples/node-tsc-app.md)
     * Travis
         * [Node to Travis](devops/travis/node-to-aws.md)
 * October CMS
