@@ -14,6 +14,8 @@
         * [Docker Compose](devops/docker/docker-compose.md)
         * [Docker on Elementary OS](devops/docker/docker-on-elementary.md)
         * [Dockerize node app](devops/docker/dockerize-node-app.md)
+        * Example configs
+            * [WordPress](devops/docker/compose-examples/wordpress.md)
     * Travis
         * [Node to Travis](devops/travis/node-to-aws.md)
 * October CMS
