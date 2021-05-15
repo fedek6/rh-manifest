@@ -2,3 +2,5 @@ booleans
 ESlint
 async
 setTimeout
+vibrance
+Aseprite
