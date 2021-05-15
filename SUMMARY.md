@@ -31,6 +31,7 @@
         * [Cheat sheet](php/laravel/README.md)
         * [Eloquent examples](php/laravel/eloquent.md)
 * [JS](js/README.md)
+    * [Asynchronous JS](js/asynchonous-js.md)
     * [Next.js](js/Next.js/README.md)
         * [Eslint & Prettier in Next.js](js/Next.js/eslint-and-prettier.md)
     * [Node.js](js/Node.js/README.md)
