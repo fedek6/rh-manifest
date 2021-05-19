@@ -65,3 +65,34 @@ volumes:
   wordpress:
   db: 
 ```
+
+## Upload limit
+
+Create `upload.ini`:
+
+```ini
+file_uploads = On
+memory_limit = 64M
+upload_max_filesize = 64M
+post_max_size = 64M
+max_execution_time = 600
+```
+
+And add it to `docker-compose.yml`:
+
+```yaml
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - ./data/wordpress:/var/www/html
+      - ./upload.ini:/usr/local/etc/php/conf.d/uploads.ini
+```
+
+Restart & update:
+
+```bash
+docker-compose up -d
+```
