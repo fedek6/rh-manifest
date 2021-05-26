@@ -24,6 +24,12 @@ docker run -it -p 80:80 nginx
 docker ps
 ```
 
+To get all (even not running):
+
+```
+docker container ls --all
+```
+
 ## List images
 
 ```
