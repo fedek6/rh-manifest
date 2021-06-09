@@ -94,3 +94,24 @@ You should always do your lists. But you need to do it correctly! Divide your pr
 Almost every bug you do is fixable. You should not stress so much about quality of your work, this generates a lot of fears.
 
 It's good to have multiple projects in different fields of life — be careful too much won't make you any better!
+
+## Day structure — too much time
+
+Most people overestimate what they can do in one day and underestimate what day can do in one month.
+
+* I'll do this tomorrow. 
+* I'll have more time tomorrow.
+
+You don't have whole day! Remember that you can work about 6 hours every day.
+
+## Fight for free time
+
+You do stupid things during working day, and you're feeling that you didn't finish your work — so you work after hours. 
+
+Your brain wants immediate reward. That's why you use social media during working hours. 
+
+What can you do? You should plan time for your entertainment before planning work. This is called reverse planning. 
+
+You should not rely on your motivation! You should always work when work need to be done.
+
+Motivation will show itself when you'll start working.
