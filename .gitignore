@@ -15,5 +15,7 @@ _book
 *.mobi
 *.pdf
 
+!lifestyle/procrastination/Antyprokrastynacja-Projekty/*.pdf
+
 # No history files
 .history
