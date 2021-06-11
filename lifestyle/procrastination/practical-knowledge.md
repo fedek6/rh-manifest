@@ -67,11 +67,13 @@ __Important!__ Change category after each task.
 
 __Important!__ If you finish any task do not overthink what's next! Simply do next task in line.
 
-__Important!__ Do your break after time, do not think about finishing task. Time is your imperative!
+__Important!__ Do your break after work time, do not think about finishing task. Time is your imperative!
 
 __Important!__ If you're feeling tired, simply reset set to 1.
 
 __Important!__ If you're trained enough, you can switch short sets to standard _Pomodoro_ model. It's important to train your brain to start tasks.
+
+__Important!__ If you've finished task during one stage, go to next from the same category.
 
 ---
 
