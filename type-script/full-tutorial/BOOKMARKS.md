@@ -20,6 +20,10 @@
 * Generators — page 88.
 * Iterable objects — page 89. 
 * JS Collections — page 91.
+* Object based collection — page 91.
+* Map based collection — page 92.
+* Collection based on unique symbols — page 94.
+* Storing data by index (Sets) — page 95.
  
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 

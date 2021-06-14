@@ -391,4 +391,111 @@ I no longer have to invoke a method to get a generator, which produces clearer a
 
 ## JavaScript collections
 
-p. 91
+Traditionally, collections of data in JavaScript have been managed using objects and arrays, where objects are used to store data by key and arrays are used to store data by index.
+
+JavaScript also provides dedicated collection objects that provide more structure.
+
+### Storing Data by Key Using an Object
+
+```js
+class Foo {
+  constructor(bar) {
+    this.bar = bar;
+  }
+
+  toString() {
+    return `${bar}`;
+  }
+}
+
+let data = {
+  foo: new Foo("bar")
+}
+
+data.bar = new Foo("foo");
+
+Object.keys(data).forEach(key => console.log(data[key].toString()));
+```
+
+You can use:
+
+* `Object.keys(object)` to get keys.
+* `Object.values(object)` to get array of object` properties.
+
+### Storing data by key using a map
+
+JavaScript also provides Map, which is purpose-built for storing data using keys of any type.
+
+
+```js
+let data = new Map();
+data.set("foo", new Foo("foo"));
+data.set("bar", new Foo("bar"));
+
+[...data.keys()].forEach(key => console.log(data.get(key).toString()));
+```
+
+Common Map methods:
+
+* `set(key, value)` Store value with a key.
+* `get(gey)` Get value.
+* `keys()` Return iterator with the keys.
+* `values()` Return iterator for the values.
+* `entries()` Return iterator for the key and value (default one).
+
+### Use symbols for map keys
+
+__Warning!__ Symbol values can be useful, but they can be difficult to work with because they are not human readable and have to be created and handled carefully.
+
+```js
+class FooSymbol {
+  constructor(name) {
+  this.id = Symbol();
+  this.name = name;
+ }
+}
+
+let setOne = [new FooSymbol("test"), new FooSymbol("test2")];
+let setTwo = [new FooSymbol("test"), new FooSymbol("test2")];
+
+let setMerged = new Map();
+
+[...setOne, ...setTwo].forEach(p => setMerged.set(p.id, p));
+```
+
+The benefit of using Symbol values as keys is that there is no possibility of two keys colliding. Using a Symbol allows me to store objects that have identical name and price properties and retrieve them without difficulty.
+
+### Storing data by index
+
+JavaScript also provides Set, which stores data by index but has performance optimizations and—most usefully—stores only unique values.
+
+__Notice__: so Set is object like an array, but it has only unique values.
+
+```js
+class FooSymbol {
+  constructor(name) {
+  this.id = Symbol();
+  this.name = name;
+ }
+}
+
+const bar = new FooSymbol("Test");
+let fooSet = new Set();
+
+for (let i =  0; i < 5; i++) {
+  fooSet.add(bar);
+}
+
+console.log(`Set size: ${fooSet.size}`); // Outputs 1!
+```
+
+Common Set methods:
+
+* `add(value)` Add value to the set.
+* `entries()` Returns iterator for the items.
+* `has(value)` Returns true if set has an element.
+* `forEach(callback)` Function for each value in the Set.
+
+## Using modules
+
+p. 96
