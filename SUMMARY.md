@@ -82,3 +82,6 @@
     * [UX basics](design-rules/ux.md)
     * [Typography](design-rules/typography.md)
     * [Usability](design-rules/ux/usability.md)
+* Lifestyle
+    * [Anti-procrastionation](lifestyle/procrastination/README.md)
+        * [Practical knowledge](lifestyle/procrastination/practical-knowledge.md)
