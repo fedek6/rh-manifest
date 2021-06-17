@@ -498,4 +498,62 @@ Common Set methods:
 
 ## Using modules
 
-p. 96
+There is native JS support for modules. Node.js provides it only experimentally so remember to install ESM package.
+
+Nodemon with ESM:
+
+```bash
+npx nodemon --require esm index.js
+```
+
+
+### Creating modules
+
+```js
+export default function(price) {
+  return Number(price) * 1.2;
+}
+```
+
+By default, the contents of the JavaScript file are private and must be explicitly shared using the export keyword before they can be used elsewhere.
+
+The default keyword is used when the module contains a single feature, such as the function. 
+
+```js
+import calcTax from "./tax";
+calcTax(100);
+```
+
+### Locations
+
+```js
+import calcTax from "./tax";
+```
+
+Will search relative to module in which you're trying to import this module. But what if you omit period or periods in imported module` path?
+
+Well it will search by default in `node_modules` directory.
+
+```js
+import React, { Component } from "react";
+```
+
+### Named features
+
+```js
+export function calculateTax(price) {
+  return Number(price) * 1.2;
+}
+```
+
+And of course:
+
+```js
+import { calculateTax } from "./tax";
+
+// Or mixed default + named
+import calcTaxAndSum, { calculateTax } from "./tax";
+```
+
+__Notice__: This is a common pattern with web application frameworks such as React, where the core features are provided by the default export of a module and optional features are available as named exports.
+
