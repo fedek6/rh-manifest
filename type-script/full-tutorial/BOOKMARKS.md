@@ -25,6 +25,7 @@
 * Collection based on unique symbols — page 94.
 * Storing data by index (Sets) — page 95.
 * JS modules — page 96.
+* Understanding TS config files — page 108.
  
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
