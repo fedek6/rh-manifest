@@ -30,6 +30,10 @@
 * Table of lib settings for compiler — page 118.
 * Selecting a module format — page 120.
 * Useful compiler settings — page 124.
+* Testing and debugging — page 128.
+* Unit testing — page 137.
+* Jest in Node with TS — page 138.
+
  
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
