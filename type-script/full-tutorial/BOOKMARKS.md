@@ -26,6 +26,10 @@
 * Storing data by index (Sets) — page 95.
 * JS modules — page 96.
 * Understanding TS config files — page 108.
+* Version targeting / versions — page 116.
+* Table of lib settings for compiler — page 118.
+* Selecting a module format — page 120.
+* Useful compiler settings — page 124.
  
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
