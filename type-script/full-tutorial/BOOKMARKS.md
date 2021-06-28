@@ -33,6 +33,9 @@
 * Testing and debugging — page 128.
 * Unit testing — page 137.
 * Jest in Node with TS — page 138.
+* Using any — page 155.
+* Type unions — page 157.
+* Type assertions — page 159.
 
  
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
