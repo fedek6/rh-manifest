@@ -36,6 +36,11 @@
 * Using any — page 155.
 * Type unions — page 157.
 * Type assertions — page 159.
+* Type guard — page 162.
+* Unknown type — page 164.
+* Nullable types — page 166.
+* Not null assertion (!) — page 169.
+* Removing null from a Union with a Type Guard — page 170.
 
  
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
