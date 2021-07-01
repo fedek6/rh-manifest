@@ -9,3 +9,5 @@ Ovsiankina
 Driessen
 Nodemon
 transpile
+Strapi
+evaled
