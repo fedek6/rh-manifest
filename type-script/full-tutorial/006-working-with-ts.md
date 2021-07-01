@@ -136,7 +136,7 @@ Something has gone wrong if execution reaches the default clause of the switch s
 
 ## Using unknown type
 
-`unknown` is a safer alternative to `any`. Only `any` and `unknow` can be assigned to such variable (unless type guard is used).
+`unknown` is a safer alternative to `any`. Only `any` and `unknown` can be assigned to such variable (unless type guard is used).
 
 ```
 src/index.ts(18,5): error TS2322: Type 'unknown' is not assignable to type 'number'.
@@ -257,3 +257,24 @@ if (taxValue !== null) {
   console.log("Value is not a string or a number");
 }
 ```
+
+## Using definite assignment assertion
+
+Sometimes variable can be assigned the way it is invisible to a compiler. 
+
+For example:
+
+```ts
+let taxValue: string | number | null;
+eval("taxValue = calculateTax(100, false)");
+```
+
+Compiler will not know that evaled variable was assigned!
+
+The definitive assignment assertion tells TypeScript that a value will be assigned before the variable is used (no matter what).
+
+```ts
+let taxValue!: string | number | null;
+```
+
+__Attention!__ It's your role to keep this kind of assertion safe.
