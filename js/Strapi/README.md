@@ -20,6 +20,53 @@ yarn strapi install graphql
 
 Playground will be automatically added: http://localhost:1337/graphql
 
+### Strapi vanilla (back) 
+
+Use `docker-compose`:
+
+```yaml
+version: '3'
+
+services:
+  strapi:
+    container_name: strapi
+    image: strapi/strapi
+    environment:
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=strapi
+      - DATABASE_PASSWORD=strapi
+    ports:
+      - 1337:1337
+    volumes:
+      - ./app:/srv/app
+    depends_on:
+      - db
+
+  db:
+    container_name: postgres
+    image: postgres
+    restart: always
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+      POSTGRES_DB: strapi
+```
+
+Add GraphQL:
+
+```bash
+docker -ps
+docker exec -it [id] bash
+yarn strapi install graphql
+```
+
+And you got playground: http://localhost:1337/graphql
+
 ### Next.js (front)
 
 ```bash
