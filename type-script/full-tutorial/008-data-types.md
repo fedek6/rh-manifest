@@ -99,3 +99,85 @@ hat.forEach((h: string | number) => {
 });
 ```
 
+### Using tuple types
+
+Tuples have a distinct type that can be used just like any type, which means that you can create arrays of tuples, use tuples in type unions, and use type guards to narrow values to specific tuple types.
+
+```ts
+let products: [string, number][] = [
+  ["Hat", 100],
+  ["Gloves", 75],
+];
+let tupleUnion: ([string, number] | boolean)[] = [
+  true,
+  false,
+  hat,
+  ...products,
+];
+
+tupleUnion.forEach((elem: [string, number] | boolean) => {
+  if (elem instanceof Array) {
+    elem.forEach((tupleElem: string | number) => {
+      if (typeof tupleElem === "string") {
+        console.log(`String Value: ${tupleElem}`);
+      } else {
+        console.log(`Number Value: ${tupleElem}`);
+      }
+    });
+  } else if (typeof elem === "boolean") {
+    console.log(`Boolean Value: ${elem}`);
+  }
+});
+```
+
+## Enums
+
+Enum is a collection of elements that for readability can be used by names.
+
+```ts
+enum Product {
+  Hat,
+  Gloves,
+  Umbrella,
+}
+let products: [Product, number][] = [
+  [Product.Hat, 100],
+  [Product.Gloves, 75],
+];
+
+products.forEach((prod: [Product, number]) => {
+  switch (prod[0]) {
+    case Product.Hat:
+      writePrice("Hat", calculateTax(prod[1]));
+      break;
+    case Product.Gloves:
+      writePrice("Gloves", calculateTax(prod[1]));
+      break;
+    case Product.Umbrella:
+      writePrice("Umbrella", calculateTax(prod[1]));
+      break;
+  }
+});
+```
+
+## How Enums work?
+
+Each Enum element simply has numeric value.
+
+```ts
+[Product.Hat, Product.Gloves, Product.Umbrella].forEach(val => {
+  console.log(`Number value: ${val}`);
+});
+```
+
+```
+Number value: 0
+Number value: 1
+Number value: 2
+```
+
+```ts
+enum Product { Hat, Gloves, Umbrella }
+let productValue: Product = 0;
+let productName: string = Product[productValue];
+```

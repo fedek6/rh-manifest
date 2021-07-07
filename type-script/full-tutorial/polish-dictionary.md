@@ -11,3 +11,5 @@
 `Type annotations` — `adnotacje typów`.
 
 `Tuple` — `krotka [skończona sekwencja obiektów]`.
+
+`enum` — `wyliczenie`.
