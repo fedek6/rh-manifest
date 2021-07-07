@@ -154,4 +154,36 @@ function writeValue(label: string, value: number): void {
 }
 ```
 
-__Attention!__ The never type can be used as the result type for functions that will never complete, such as functions that will always throw an exception, for example.
+**Attention!** The never type can be used as the result type for functions that will never complete, such as functions that will always throw an exception or infinite loop.
+
+## Overloading function types
+
+Type unions make it possible to define a range of types for function parameters and results, but they don’t allow the relationship between them to be expressed accurately:
+
+```ts
+function calculateTax(amount: number | null): number | null {
+  if (amount != null) {
+    return amount * 1.2;
+  }
+  return null;
+}
+```
+
+This function will always return number if parameters is a number and null if a parameter is a null. There is no relation between parameter type and returned value.
+
+But there is a way:
+
+```ts
+function calculateTax(amount: number): number;
+function calculateTax(amount: null): null;
+function calculateTax(amount: number | null): number | null {
+  if (amount != null) {
+    return amount * 1.2;
+  }
+  return null;
+}
+```
+
+__Attention!__ This is not real type overloading, it's used only for type checking during compilation.
+
+There is no need for type guard if you're using type overloading.
