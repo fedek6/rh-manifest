@@ -11,3 +11,5 @@ Nodemon
 transpile
 Strapi
 evaled
+Enum
+Enums
