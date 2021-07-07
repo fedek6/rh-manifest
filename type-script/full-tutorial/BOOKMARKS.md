@@ -62,6 +62,9 @@
 
 ## Data types
 
+- Arrays — page 191.
+- Tuples — page 196.
+
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
