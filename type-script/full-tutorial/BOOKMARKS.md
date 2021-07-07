@@ -1,5 +1,8 @@
 # Essential TypeScript bookmarks
 
+
+## JS
+
 - Basic architecture of to-do app — from page 7.
 - Building interactive console tools — from page 20.
 - Basic types & coercion — from page 43.
@@ -26,6 +29,9 @@
 - Collection based on unique symbols — page 94.
 - Storing data by index (Sets) — page 95.
 - JS modules — page 96.
+
+## TS compiler
+
 - Understanding TS config files — page 108.
 - Version targeting / versions — page 116.
 - Table of lib settings for compiler — page 118.
@@ -34,6 +40,9 @@
 - Testing and debugging — page 128.
 - Unit testing — page 137.
 - Jest in Node with TS — page 138.
+
+## Type annotations
+
 - Using any — page 155.
 - Type unions — page 157.
 - Type assertions — page 159.
@@ -42,10 +51,17 @@
 - Nullable types — page 166.
 - Not null assertion (!) — page 169.
 - Removing null from a Union with a Type Guard — page 170.
+
+## Functions
+
 - Using functions “quick reference” — page 173.
 - Optional parameters — page 178.
 - Rest parameter — page 180.
 - Type annotations in function results — page 185.
+- Overloading function types — page 187.
+
+## Data types
+
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
