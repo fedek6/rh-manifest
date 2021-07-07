@@ -67,6 +67,31 @@ yarn strapi install graphql
 
 And you got playground: http://localhost:1337/graphql
 
+#### Slug system
+
+Simply add a text field (slug) and set it up to be non-editable.
+
+Add Strapi function `config/functions/slugify.js`.
+
+Also edit model code:
+
+```js
+module.exports = {
+  lifecycles: {
+    beforeCreate: async (data) => {
+      if (data.title) {
+        data.slug = strapi.config.functions['slugify'].slugifyInternational(data.title);
+      }
+    },
+    beforeUpdate: async (params, data) => {
+      if (data.title) {
+        data.slug = strapi.config.functions['slugify'].slugifyInternational(data.title);
+      }
+    },
+  },
+};
+```
+
 ### Next.js (front)
 
 ```bash
