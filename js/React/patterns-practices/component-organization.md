@@ -2,7 +2,7 @@
 
 ## 10 tips by Chris Achard
 
-Source: https://dev.to/chrisachard/tips-for-organizing-react-projects-191.
+Source: [here](https://dev.to/chrisachard/tips-for-organizing-react-projects-191).
 
 1. You need to determine your own (your` team) way.
 2. All components in `src` directory (imported images also should be there).
@@ -111,3 +111,17 @@ In general, the state should be as lean as possible. Only add data to your state
 Never ever modify state directly!
 
 State updates might be asynchronous!
+
+## How to organize large scale apps
+
+Source: [here](https://javascript.plainenglish.io/how-to-organize-large-scale-react-applications-aff84fba07cf).
+
+Organize components thematically. For example, we have a folder named Profile that contains all the components related to the Profile page in an application, a folder named Cart that contains all the components related to the cart in the application.
+
+Use one naming convention. Author of this article likes small letters with dashes (`user-profile.jsx` for e.g.).
+
+Avoid large render methods. For example: let’s say we have a Profile component that renders user’s Profile, and if we add all the small components in our render method with several props then the render requires too much energy from the device and most probably it will perform slowly on several devices.
+
+While building large-scale React applications, you will find yourself writing a lot of code that has nothing to do with React, so at the time you find yourself in a situation like that you can simply move that logic out of your components. And you can create a folder as lib or services full of non-React components.
+
+Introduced by Facebook, the Jest framework has been one of the best options for testing React applications. It’s really quick and good at handling lots of tests, runs in watch mode, and gives fast feedback with some handy functions for testing React applications out of the box.
