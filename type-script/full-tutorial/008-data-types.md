@@ -278,3 +278,9 @@ const enum Product { Hat, Gloves, Umbrella}
 let productValue = Product.Hat;
 let productName = Product[0];
 ```
+
+Will give: 
+
+```
+A const enum member can only be accessed using a string literal.
+```
