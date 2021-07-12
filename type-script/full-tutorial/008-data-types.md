@@ -160,12 +160,12 @@ products.forEach((prod: [Product, number]) => {
 });
 ```
 
-## How Enums work?
+### How Enums work?
 
 Each Enum element simply has numeric value.
 
 ```ts
-[Product.Hat, Product.Gloves, Product.Umbrella].forEach(val => {
+[Product.Hat, Product.Gloves, Product.Umbrella].forEach((val) => {
   console.log(`Number value: ${val}`);
 });
 ```
@@ -177,7 +177,104 @@ Number value: 2
 ```
 
 ```ts
-enum Product { Hat, Gloves, Umbrella }
+enum Product {
+  Hat,
+  Gloves,
+  Umbrella,
+}
 let productValue: Product = 0;
 let productName: string = Product[productValue];
+```
+
+### Using specific Enums
+
+By default, TypeScript uses numeric zero-based values. You can tweak that:
+
+```ts
+enum Product {
+  Hat,
+  Gloves = 20,
+  Umbrella,
+}
+```
+
+Means:
+
+```ts
+declare enum Product {
+  Hat = 0,
+  Gloves = 20,
+  Umbrella = 21,
+}
+```
+
+**Warning!** Compile can duplicate values and overwrite them this way.
+
+You can also evaluate Enum values:
+
+```ts
+enum OtherEnum {
+  First = 10,
+  Two = 20,
+}
+enum Product {
+  Hat = OtherEnum.First + 1,
+  Gloves = 20,
+  Umbrella = Hat + Gloves,
+}
+```
+
+**Attention!** These features can be useful, but close attention is required to avoid accidentally creating duplicate values or unexpected results. Keep Enums simple and leave the compiler to generate numbers wherever possible.
+
+### Using string Enums
+
+An Enum can contain both string and number values, although this is not a feature that is widely used.
+
+```ts
+enum City {
+  London = "London",
+  Paris = "Paris",
+  NY = "New York",
+}
+console.log(`City: ${City.London}`);
+```
+
+### Be careful with Enums
+
+```ts
+let productValue: Product = 0;
+```
+
+This won't be an error, event if there is no `Product` with `0` key.
+
+Also, you won't be able to type guard an Enum:
+
+```ts
+let productValue: Product = Product.Hat;
+if (typeof productValue === "number") {
+  console.log("Value is a number");
+}
+let unionValue: number | Product = Product.Hat;
+if (typeof unionValue === "number") {
+  console.log("Value is a number");
+}
+```
+
+### Constant Enums
+
+**Attention!** This is an advanced feature that is rarely required in most projects. Performance is faster in constant Enums.
+
+Simply add `const` keyword:
+
+```ts
+const enum Product { Hat, Gloves, Umbrella }
+let productValue = Product.Hat;
+```
+
+You won't be able to use this code:
+
+```ts
+const enum Product { Hat, Gloves, Umbrella}
+let productValue = Product.Hat;
+let productName = Product[0];
 ```
