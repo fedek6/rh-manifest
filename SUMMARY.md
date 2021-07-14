@@ -7,6 +7,7 @@
     * [PHP](coding-practices/php.md)
     * [Google Style Guide](coding-practices/google-style-guide.md)
     * [React Styleguidist](coding-practices/react-styleguidist.md)
+    * [Colors naming conventions](coding-practices/colors-naming-conventions.mdd)
 * DevOps
     * [Claudia](devops/claudia/README.md)
     * [Docker](devops/docker/README.md)
