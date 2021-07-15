@@ -267,20 +267,131 @@ if (typeof unionValue === "number") {
 Simply add `const` keyword:
 
 ```ts
-const enum Product { Hat, Gloves, Umbrella }
+const enum Product {
+  Hat,
+  Gloves,
+  Umbrella,
+}
 let productValue = Product.Hat;
 ```
 
 You won't be able to use this code:
 
 ```ts
-const enum Product { Hat, Gloves, Umbrella}
+const enum Product {
+  Hat,
+  Gloves,
+  Umbrella,
+}
 let productValue = Product.Hat;
 let productName = Product[0];
 ```
 
-Will give: 
+Will give:
 
 ```
 A const enum member can only be accessed using a string literal.
+```
+
+## Using literal value types
+
+A literal value type specifies a specific set of values and allows only those values. The effect is to treat a set of values as a distinct type, which is a useful feature but can be difficult to understand because it blurs the separation between types and values.
+
+```ts
+let restrictedValue: 1 | 2 | 3 = 3;
+console.log(`Value: ${restrictedValue}`);
+```
+
+Literal values can overlap, but they need to include same value:
+
+```ts
+let restrictedValue: 1 | 2 | 3 = 1;
+let secondValue: 1 | 10 | 100 = 1;
+
+restrictedValue = secondValue; // OK!
+secondValue = 100;
+restrictedValue = secondValue; // Not OK!
+```
+
+### Using literals in functions
+
+Well, they are most useful here:
+
+```ts
+function calculatePrice(quantity: 1 | 2, price: number): number {
+  return quantity * price;
+}
+```
+
+### Mixing types in literals
+
+You can mix anything using this notation:
+
+```ts
+function getRandomValue(): 1 | 2 | 3 | 4 {
+  return (Math.floor(Math.random() * 4) + 1) as 1 | 2 | 3 | 4;
+}
+enum City {
+  London = "LON",
+  Paris = "PAR",
+  Chicago = "CHI",
+}
+function getMixedValue(): 1 | "Hello" | true | City.London {
+  switch (getRandomValue()) {
+    case 1:
+      return 1;
+    case 2:
+      return "Hello";
+    case 3:
+      return true;
+    case 4:
+      return City.London;
+  }
+}
+```
+
+You can mix types with specific values in literals!
+
+Check this out:
+
+```ts
+let foo: string | true | 3 = 3;
+```
+
+### Overrides with literals
+
+Type overrides can also be applied to literal value types, which are essentially unions for individual values.
+
+```ts
+function getMixedValue(input: 1): 1;
+function getMixedValue(input: 2 | 3): "Hello" | true;
+function getMixedValue(input: 4): City.London;
+function getMixedValue(input: number): 1 | "Hello" | true | City.London {
+  switch (input) {
+    case 1:
+      return 1;
+    case 2:
+      return "Hello";
+    case 3:
+      return true;
+    case 4:
+    default:
+      return City.London;
+  }
+}
+```
+
+## Using type aliases
+
+You can name a type combined of multiple ones:
+
+```ts
+type comboType = [string, number | true, 1 | 2 | 3 | City.London][];
+function getValue(input: comboType): comboType {
+  return [
+    ["Apples", 100, 2],
+    ["Oranges", true, 3],
+  ];
+}
+let result: comboType = getValue([["Bananas", true, 1]]);
 ```
