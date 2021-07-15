@@ -66,7 +66,12 @@
 - Tuples — page 196.
 - Enums — page 199.
 - Constant Enums (faster ones) — page 205.
+- Using literal value types — page 207.
+- Mixing types in literals — page 209.
+- Overrides with literals — page 210.
+- Using type aliases — page 213.
 
+## Objects
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
