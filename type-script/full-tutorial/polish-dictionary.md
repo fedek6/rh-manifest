@@ -13,3 +13,5 @@
 `Tuple` — `krotka [skończona sekwencja obiektów]`.
 
 `enum` — `wyliczenie`.
+
+`override` — `nadpisanie`.
