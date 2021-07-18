@@ -15,3 +15,7 @@
 `enum` — `wyliczenie`.
 
 `override` — `nadpisanie`.
+
+`literal` — `dosłowny`.
+
+`excess` — `nadmiar`.

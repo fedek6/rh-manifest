@@ -73,6 +73,10 @@
 
 ## Objects
 
+- Object shape type annotations — page 216.
+- Methods in shape types (including optional methods) — page 218.
+- Dealing with excess properties (`suppressExcessPropertyErrors` option) — page 221.
+
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
 **Notice**: I use book` page numbers, not PDF ones.
