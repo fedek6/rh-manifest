@@ -190,8 +190,108 @@ src/index.ts(16,60): error TS2322: Type '{ name: string; price: number; finish: 
 Object literal may only specify known properties, and 'finish' does not exist in type 'Product'.
 ```
 
-Compiler treats `mirrorShades` and `darkShades` differently because second one is using `Product` type. 
+Compiler treats `mirrorShades` and `darkShades` differently because second one is using `Product` type.
 
 You can disable this behavior by using `suppressExcessPropertyErrors` option in the `tsconfig` file.
 
 ## Using shape type unions
+
+Type unions are types in their own right and contain the properties that are defined by all of their constituent types. This isn’t a useful feature when dealing with unions of primitive data types because there are few common properties.
+
+```ts
+type Product = {
+  id: number;
+  name: string;
+  price?: number;
+};
+
+type Person = {
+  id: string;
+  name: string;
+  city: string;
+};
+
+let hat = { id: 1, name: "Hat", price: 100 };
+let gloves = { id: 2, name: "Gloves", price: 75 };
+let umbrella = { id: 3, name: "Umbrella", price: 30 };
+let bob = { id: "bsmith", name: "Bob", city: "London" };
+let dataItems: (Product | Person)[] = [hat, gloves, umbrella, bob];
+```
+
+**Attention**: type union is a cross between two types. Only properties shared by them can be used. In fact type union is a new type with shared properties only.
+
+## Union property types
+
+This shows effect of a union of two types:
+
+```ts
+type Product = {
+  id: number;
+  name: string;
+  price?: number;
+};
+
+type Person = {
+  id: string;
+  name: string;
+  city: string;
+};
+
+type UnionType = {
+  id: number | string;
+  name: string;
+};
+
+let dataItems: UnionType[] = [hat, gloves, umbrella, bob];
+```
+
+The conclusion is that union types must be compatible.
+
+## Using type guards for objects
+
+Type guards are still required to get to a specific type to access all the features it defines.
+
+`typeof` will return `object` for all objects, so we need to check if specific properties exist.
+
+```ts
+dataItems.forEach((item) => {
+  if ("city" in item) {
+    console.log(`Person: ${item.name}: ${item.city}`);
+  } else {
+    console.log(`Product: ${item.name}: ${item.price}`);
+  }
+});
+```
+
+**Attention**: the `in` operator returns true if the specified property is in the specified object or its prototype chain. It is a part of standard JS language.
+
+### Avoiding common type guard problems
+
+It is important to create accurate type guard tests. There two common problems ahead:
+
+1. Inaccurate tests:
+
+```ts
+// Both types have id and name
+if ("id" in item && "name" in item) {
+  console.log(`Person: ${item.name}: ${item.city}`);
+} else {
+  console.log(`Product: ${item.name}: ${item.price}`);
+}
+```
+
+2. Testing for optional property:
+
+```ts
+if ("price" in item) {
+  console.log(`Product: ${item.name}: ${item.price}`);
+} else {
+  console.log(`Person: ${item.name}: ${item.city}`);
+}
+```
+
+`price` is optional, so type might be mistaken.
+
+
+## Type guarding with a type predicate function
+

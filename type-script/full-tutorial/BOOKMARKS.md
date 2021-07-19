@@ -76,6 +76,9 @@
 - Object shape type annotations — page 216.
 - Methods in shape types (including optional methods) — page 218.
 - Dealing with excess properties (`suppressExcessPropertyErrors` option) — page 221.
+- Shape type unions — page 223.
+- Using type guards for objects (using properties and `in` operator) — page 225.
+- Type predicated functions — page 228.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
