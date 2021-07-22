@@ -1,6 +1,5 @@
 # Essential TypeScript bookmarks
 
-
 ## JS
 
 - Basic architecture of to-do app — from page 7.
@@ -79,6 +78,9 @@
 - Shape type unions — page 223.
 - Using type guards for objects (using properties and `in` operator) — page 225.
 - Type predicated functions — page 228.
+- Type guarding with a type predicate function (object prediction helpers) — page 228.
+- Type intersections — page 229.
+- Intersections for data correlation — page 231.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 

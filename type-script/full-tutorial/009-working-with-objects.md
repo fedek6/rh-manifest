@@ -292,6 +292,60 @@ if ("price" in item) {
 
 `price` is optional, so type might be mistaken.
 
-
 ## Type guarding with a type predicate function
 
+The in keyword is a useful way to identify whether an object conforms to a shape, but it requires the same checks to be written each time types need to be identified. TypeScript also supports guarding object types using a function.
+
+```ts
+function isPerson(testObj: any): testObj is Person {
+  return testObj.city !== undefined;
+}
+dataItems.forEach((item) => {
+  if (isPerson(item)) {
+    console.log(`Person: ${item.name}: ${item.city}`);
+  } else {
+    console.log(`Product: ${item.name}: ${item.price}`);
+  }
+});
+```
+
+As you for this purpose `is` keyword was used.
+
+> If the result of the function is true, then the TypeScript compiler will treat the object as the specified type.
+
+Using a function for type guarding can be more flexible because the parameter type is any, allowing properties to be tested for without having to use string literals and the in keyword.
+
+**Important!** You should prefix your type checking functions using `is`.
+
+This way you can create helper methods for advanced type checking.
+
+## Type intersections
+
+**Warning!** Type intersections combine features of multiple types, not like in unions case, where you can use only common things.
+
+```ts
+type Person = {
+  id: string;
+  name: string;
+  city: string;
+};
+
+type Employee = {
+  company: string;
+  dept: string;
+};
+
+let bob = {
+  id: "bsmith",
+  name: "Bob",
+  city: "London",
+  company: "Acme Co",
+  dept: "Sales",
+};
+
+let dataItems: (Person & Employee)[] = [bob];
+```
+
+In simple words intersection is a combination of two types.
+
+### Using intersections for data correlation

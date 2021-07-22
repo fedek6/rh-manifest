@@ -19,3 +19,5 @@
 `literal` — `dosłowny`.
 
 `excess` — `nadmiar`.
+
+`intersection` — `skrzyżowanie`.
