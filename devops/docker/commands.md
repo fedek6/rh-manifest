@@ -79,3 +79,8 @@ docker volume ls
 docker inspect {volume name}
 ```
 
+## Disable autostart
+
+```bash
+docker update --restart=no [CONTAINER_ID]
+```
