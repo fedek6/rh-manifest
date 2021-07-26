@@ -2,6 +2,8 @@
 
 There is a special node package for [that](https://www.npmjs.com/package/degit).
 
+**Warning!** `Degit` copies repository without its root directory.
+
 ```
 # download from GitLab 
 degit gitlab:user/repo
