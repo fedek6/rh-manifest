@@ -80,7 +80,8 @@
 - Type predicated functions — page 228.
 - Type guarding with a type predicate function (object prediction helpers) — page 228.
 - Type intersections — page 229.
-- Intersections for data correlation — page 231.
+- Intersections for data correlation (merging two objects using `id` etc.) — page 231.
+- Merging properties with the same type (intersection merging) — page 234.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 

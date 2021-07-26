@@ -349,3 +349,57 @@ let dataItems: (Person & Employee)[] = [bob];
 In simple words intersection is a combination of two types.
 
 ### Using intersections for data correlation
+
+Intersections are useful when you receive objects from one source and need to introduce new functionality, so they can be used elsewhere in the application or when objects from two data sources need to be correlated and combined.
+
+```ts
+type Person = {
+  id: string;
+  name: string;
+  city: string;
+};
+type Employee = {
+  id: string;
+  company: string;
+  dept: string;
+};
+type EmployedPerson = Person & Employee;
+
+function correlateData(
+  peopleData: Person[],
+  staff: Employee[]
+): EmployedPerson[] {
+  const defaults = { company: "None", dept: "None" };
+  return peopleData.map((p) => ({
+    ...p,
+    ...(staff.find((e) => e.id === p.id) || { ...defaults, id: p.id }),
+  }));
+}
+
+let dataItems: EmployedPerson[] = correlateData(people, employees);
+```
+
+As you can see you can merge both types ant corresponding objects into one.
+
+### Understanding intersection merging
+
+TypeScript` types fit objects when they have all needed properties. Excess properties will be ignored.
+
+```ts
+function writePerson(per: Person): void {
+  console.log(`Person: ${per.id}, ${per.name}, ${per.city}`);
+}
+function writeEmployee(emp: Employee): void {
+  console.log(`Employee: ${emp.id}, ${emp.company}, ${emp.dept}`);
+}
+dataItems.forEach((item) => {
+  writePerson(item);
+  writeEmployee(item);
+});
+```
+
+So types can be interchanged. 
+
+> **Important!** It may seem obvious that an intersection type is compatible with each of its constituents, but it has an important effect when the types in the intersection define properties with the same name: the type of the property in the intersection is an intersection of the individual property types.
+
+### Merging properties with the same type
