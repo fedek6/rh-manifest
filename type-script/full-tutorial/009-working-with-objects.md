@@ -398,8 +398,110 @@ dataItems.forEach((item) => {
 });
 ```
 
-So types can be interchanged. 
+So types can be interchanged.
 
 > **Important!** It may seem obvious that an intersection type is compatible with each of its constituents, but it has an important effect when the types in the intersection define properties with the same name: the type of the property in the intersection is an intersection of the individual property types.
 
 ### Merging properties with the same type
+
+The simplest example is when two types have the same property, with the same type.
+
+```ts
+type Person = {
+  id: string;
+};
+
+type Employee = {
+  id: string;
+};
+
+type Merged = Person & Employee;
+```
+
+Type `Merged` will simply have `id` property with type `string`.
+
+### Merging properties with different types
+
+If there are properties with the same name and different types, compile will intersect them.
+
+```ts
+type Person = {
+  id: number;
+};
+
+type Employee = {
+  id: string;
+};
+
+type Merged = Person & Employee;
+```
+
+> If you have enabled `declarations` option in `tsconfig`, you can use this cool trick to check type of property:
+
+```ts
+let typeTest = ({} as EmployedPerson).contact;
+// declare let typeTest: number & string;
+```
+
+**Warning!** Type `number & string` is impossible type. There's no such var to pass into this type. In this case you'll need to adjust your objects shapes.
+
+#### Solution!
+
+Use shape types:
+
+```ts
+type Person = {
+  contact: { phone: number };
+};
+
+type Employee = {
+  contact: { name: string };
+};
+
+type Merged = Person & Employee;
+
+let typeTest = ({} as EmployedPerson).contact;
+// contact: { phone: number } & { name: string }
+
+let person1: EmployedPerson = {
+  id: "bsmith",
+  name: "Bob Smith",
+  city: "London",
+  company: "Acme Co",
+  dept: "Sales",
+  contact: { name: "Alice", phone: 6512346543 },
+};
+```
+
+### Merging methods
+
+```ts
+type Person = {
+  getContact(field: string): string;
+};
+type Employee = {
+  getContact(field: number): number;
+};
+
+// getContact: (field: string) => string & (field: number) => number
+```
+
+This will create impossible type of two function signatures.
+
+**Warning!** Typescript compiler does not care about impossible types. You mas take these precautions.
+
+Once again you can use `declarations` option to debug this:
+
+```ts
+let typeTest = person.getContact;
+let stringParamTypeTest = person.getContact("Alice");
+let numberParamTypeTest = person.getContact(123);
+```
+
+**Attention!** You should not use `any` but sometimes is unavoidable. You should write this method following way:
+
+```ts
+getContact(field: string | number): any {
+  return typeof field === "string" ? "Alice" : 6512346543;
+}
+```
