@@ -33,7 +33,7 @@ Provide your access token, user and e-mail!
 1. For Yarn, create `.yarnrc`:
 
 ```
-"@fedek6:registry" "https://npm.pkg.github.com
+"@fedek6:registry" "https://npm.pkg.github.com"
 ```
 
 2. For NPM, create `.npmrrc`:
