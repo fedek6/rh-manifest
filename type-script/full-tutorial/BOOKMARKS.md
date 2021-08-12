@@ -90,7 +90,8 @@
 
 - Using classes — page 245.
 - Using access control keywords — page 247.
-
+- Uninitialized properties protection — page 249.
+- Read-only properties — page 250.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
