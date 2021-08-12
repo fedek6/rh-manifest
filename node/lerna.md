@@ -97,6 +97,16 @@ Dev dependency:
 yarn add husky --dev -W
 ```
 
+**Attention!** Lerna cannot add multiple packages add once. For example, this is how you can add linaria:
+
+```bash
+lerna add @linaria/core && \
+lerna add @linaria/react && \
+lerna add @linaria/react && \
+lerna add @linaria/babel-preset && \
+lerna add @linaria/shaker
+```
+
 ## Add targeted dependency
 
 ```bash
