@@ -105,3 +105,26 @@ salesEmployee.id = "fidel"; // src/index.ts(27,15): error TS2540: Cannot assign 
 **Attention!** This feature is also synthetic and also enforced only by TypeScript.
 
 ## Simplifying class constructors
+
+TypeScript can populate class properties automatically:
+
+```ts
+class Employee {
+  constructor(
+    public readonly id: string,
+    public name: string,
+    private dept: string,
+    public city: string
+  ) {
+    // no statements required
+  }
+  writeDept() {
+    console.log(`${this.name} works in ${this.dept}`);
+  }
+}
+```
+
+The compiler automatically creates an instance property for each of the constructor arguments to which an access control keyword has been applied and assigns the parameter value. The use of the access control keywords doesn’t change the way the constructor is invoked and is required only to tell the compiler that corresponding instance variables are required.
+
+## Class inheritance
+
