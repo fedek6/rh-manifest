@@ -93,6 +93,7 @@
 - Uninitialized properties protection — page 249.
 - Read-only properties — page 250.
 - Simplified constructors — page 251.
+- Inheritance — page 252.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 

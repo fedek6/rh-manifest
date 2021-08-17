@@ -128,3 +128,40 @@ The compiler automatically creates an instance property for each of the construc
 
 ## Class inheritance
 
+TypeScript builds on the standard class inheritance features to make them more consistent and familiar,
+with some useful additions for commonly required tasks and for restricting some JavaScript characteristics that can cause problems.
+
+```ts
+class Person {
+  constructor(public id: string, public name: string, public city: string) {}
+}
+
+class Employee extends Person {
+  constructor(
+    public readonly id: string,
+    public name: string,
+    private dept: string,
+    public city: string
+  ) {
+    super(id, name, city);
+  }
+
+  writeDept() {
+    console.log(`${this.name} works in ${this.dept}`);
+  }
+}
+let data = [
+  new Person("bsmith", "Bob Smith", "London"),
+  new Employee("fvega", "Fidel Vega", "Sales", "Paris"),
+];
+data.forEach((item) => {
+  console.log(`Person: ${item.name}, ${item.city}`);
+  if (item instanceof Employee) {
+    item.writeDept();
+  }
+});
+```
+
+**Notice:** When using `extends` keyword you must pass properties to higher order class using `super` keyword.
+
+## Understanding type inference for subclasses
