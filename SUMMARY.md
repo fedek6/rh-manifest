@@ -82,6 +82,7 @@
 * Design rules
     * [UX basics](design-rules/ux.md)
     * [Typography](design-rules/typography.md)
+        * [Font weight number to name](design-rules/typography/font-weight-number-name.md)
     * [Usability](design-rules/ux/usability.md)
 * Lifestyle
     * [Anti-procrastionation](lifestyle/procrastination/README.md)
