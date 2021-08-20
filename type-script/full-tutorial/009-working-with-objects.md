@@ -31,7 +31,7 @@ The compiler will report error `Property 'price' is missing in type '{name: stri
 
 ## Understanding how shape types fit
 
-To match type, an objhet must define all the properties in the shape. The compiler will still match an object if it has additional properties by the shape type:
+To match type, an object must define all the properties in the shape. The compiler will still match an object if it has additional properties by the shape type:
 
 ```ts
 let hat = { name: "Hat", price: 100 };
