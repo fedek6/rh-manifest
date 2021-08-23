@@ -165,3 +165,65 @@ data.forEach((item) => {
 **Notice:** When using `extends` keyword you must pass properties to higher order class using `super` keyword.
 
 ## Understanding type inference for subclasses
+
+Caution is required when letting the compiler infer types from classes because it is easy to produce unexpected results by assuming the compiler has insight into the hierarchy of classes.
+
+To avoid this kind of error you should annotate type of your data:
+
+```ts
+class Customer extends Person {}
+class Supplier extends Person {}
+
+let data: Person[] = [
+  new Employee("fvega", "Fidel Vega", "Sales", "Paris"),
+  new Customer("ajones", "Alice Jones", "London", 500),
+];
+
+data.push(new Supplier("dpeters", "Dora Peters", "New York", "Acme"));
+```
+
+## Abstract classes
+
+Abstract classes cannot be instantiated directly. They can be used as skeletons for other classes.
+
+```ts
+abstract class Person {
+  constructor(public id: string, public name: string, public city: string) {}
+  getDetails(): string {
+    return `${this.name}, ${this.getSpecificDetails()}`;
+  }
+  abstract getSpecificDetails(): string;
+}
+
+class Employee extends Person {
+  constructor(
+    public readonly id: string,
+    public name: string,
+    private dept: string,
+    public city: string
+  ) {
+    super(id, name, city);
+  }
+  getSpecificDetails() {
+    return `works in ${this.dept}`;
+  }
+}
+```
+
+**Attention!** The abstract keyword is also applied to individual methods, which are defined without a body, as shown in Figure.
+
+## Type guarding abstract classes
+
+Abstract classes are purely TypeScript construct. They can be instantiated in JS by mistake.
+
+```ts
+data.forEach((item) => {
+  if (item instanceof Person) {
+    console.log(item.getDetails());
+  } else {
+    console.log(`Customer: ${item.name}`);
+  }
+});
+```
+
+## Using interfaces

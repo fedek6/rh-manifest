@@ -94,6 +94,10 @@
 - Read-only properties — page 250.
 - Simplified constructors — page 251.
 - Inheritance — page 252.
+- Understanding type inference for subclasses (avoiding type errors) — page 254.
+- Abstract classes — page 255.
+- Type guarding abstract classes — page 257.
+- Interfaces — page 258.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
