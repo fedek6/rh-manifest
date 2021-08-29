@@ -98,6 +98,8 @@
 - Abstract classes — page 255.
 - Type guarding abstract classes — page 257.
 - Interfaces — page 258.
+- Implementing multiple interfaces — page 260.
+- Extending interfaces — page 262.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 

@@ -227,3 +227,79 @@ data.forEach((item) => {
 ```
 
 ## Using interfaces
+
+Interfaces are used to shape an object. Class of such object must conform to used interface.
+
+> Note: Interfaces are similar to shape types. There are no big differences between them. However, they provide experience that is similar to other programming languages. So you should use them to define class shapes.
+
+```ts
+interface Person {
+  name: string;
+  getDetails(): string;
+}
+
+class Employee implements Person {
+  constructor(
+    public readonly id: string,
+    public name: string,
+    private dept: string,
+    public city: string
+  ) {
+    // no statements required
+  }
+  getDetails() {
+    return `${this.name} works in ${this.dept}`;
+  }
+}
+
+let data: Person[] = [
+  new Employee("fvega", "Fidel Vega", "Sales", "Paris"),
+  new Customer("ajones", "Alice Jones", "London", 500),
+];
+```
+
+Unlike abstract classes, interfaces don’t implement methods or define a constructor and just define a
+shape. Interfaces are implemented by classes through the `implements` keyword.
+
+The data array can contain any object created from a class that implements the Product array, although
+the function passed to the `forEach` method is able to access only the features defined by the interface unless objects are narrowed to a more specific type.
+
+**Notice** Interfaces can be merged together. The declarations must be made in the same code file, and they must all be exported (defined with the
+export keyword) or defined locally (defined without the export keyword).
+
+## Implementing multiple interfaces
+
+A class can implement more than one interface, meaning it must define the methods and properties defined by all of them.
+
+```ts
+interface Person {
+  name: string;
+  getDetails(): string;
+}
+interface DogOwner {
+  dogName: string;
+  getDogDetails(): string;
+}
+class Customer implements Person, DogOwner {
+  constructor(
+    public readonly id: string,
+    public name: string,
+    public city: string,
+    public creditLimit: number,
+    public dogName
+  ) {
+    // no statements required
+  }
+  getDetails() {
+    return `${this.name} has ${this.creditLimit} limit`;
+  }
+  getDogDetails() {
+    return `${this.name} has a dog named ${this.dogName}`;
+  }
+}
+```
+
+> Note: class can implement multiple interfaces only if there are no overlapping properties with conflicting
+types.
+
+## Extending interfaces
