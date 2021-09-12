@@ -19,4 +19,4 @@ This law is backed up by case study evidence from large software development pro
 This suggests that there is a relation between the quality of requirements and the project outcome.
 
 
-**Weiberg's law**: A developer is unsuited to test his own code.
+**Weinberg's law**: A developer is unsuited to test his own code.
