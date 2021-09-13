@@ -300,6 +300,67 @@ class Customer implements Person, DogOwner {
 ```
 
 > Note: class can implement multiple interfaces only if there are no overlapping properties with conflicting
-types.
+> types.
 
 ## Extending interfaces
+
+Interfaces can be extended similar to classes.
+
+```ts
+interface Person {
+  name: string;
+  getDetails(): string;
+}
+interface DogOwner extends Person {
+  dogName: string;
+  getDogDetails(): string;
+}
+class Customer implements DogOwner {
+  // Both interfaces methods & properties
+}
+```
+
+> Objects created from the Customer class can be treated as both DogOwner and
+> Person objects, since they always define the shapes required by each interface.
+
+The `extend` keyword is used to extend an interface. In the listing, the `DogOwner` interface extends the Person interface, which means that classes that implement `DogOwner` must define the properties and methods from both interfaces.
+
+## Shapes and interfaces
+
+As noted at the start of this section, shape types and interfaces can often be used interchangeably. Classes can, for example, use the implements keyword with a shape type to indicate they implement the properties in the shape, like this:
+
+```ts
+type Person = {
+  name: string;
+  getDetails(): string;
+};
+
+class Employee implements Person {
+  constructor(
+    public readonly id: string,
+    public name: string,
+    private dept: string,
+    public city: string
+  ) {
+    // no statements required
+  }
+  getDetails() {
+    return `${this.name} works in ${this.dept}`;
+  }
+}
+```
+
+Also interface can extend type:
+
+```ts
+type NamedObject = {
+  name: string;
+};
+interface Person extends NamedObject {
+  getDetails(): string;
+}
+```
+
+**Conclusion**: type shapes and interfaces can be mixed together in various ways.
+
+## Optional interface properties and methods

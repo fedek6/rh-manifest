@@ -100,6 +100,8 @@
 - Interfaces — page 258.
 - Implementing multiple interfaces — page 260.
 - Extending interfaces — page 262.
+- Shapes and interfaces — page 263.
+- Optional interface properties and methods — page 264.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
