@@ -102,6 +102,12 @@
 - Extending interfaces — page 262.
 - Shapes and interfaces — page 263.
 - Optional interface properties and methods — page 264.
+- Abstract interface implementation — page 266.
+- Type guarding an interface — page 267.
+- Dynamically creating properties (index signature) — page 269.
+
+## Generic types
+- Understating the problem — page 274.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
