@@ -104,10 +104,14 @@
 - Optional interface properties and methods — page 264.
 - Abstract interface implementation — page 266.
 - Type guarding an interface — page 267.
-- Dynamically creating properties (index signature) — page 269.
+- Dynamically creating properties (index signature) — page 279.
 
 ## Generic types
 - Understating the problem — page 274.
+- Constraining generic types (allow typed properties usage, narrow possible generic types) — page 279.
+- Constraining generic types using shapes — page 280.
+- Multiple type parameters — page 282.
+
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
