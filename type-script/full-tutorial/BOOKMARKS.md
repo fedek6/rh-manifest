@@ -111,6 +111,15 @@
 - Constraining generic types (allow typed properties usage, narrow possible generic types) — page 279.
 - Constraining generic types using shapes — page 280.
 - Multiple type parameters — page 282.
+- Applying a type parameter to a method — page 283.
+- Extending features of the existing type parameters — page 286.
+- Fixing generic type parameter — page 288.
+- Restricting the Generic Type Parameter — page 288.
+- Type guarding generic types (type predicate functions) — page 291.
+- Static methods in a generic classes — page 292.
+- Generic interfaces — page 294.
+- Extending generic type interfaces — page 295.
+- Implementing a Generic Interface — page 296.
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
