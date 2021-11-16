@@ -107,6 +107,7 @@
 - Dynamically creating properties (index signature) — page 279.
 
 ## Generic types
+
 - Understating the problem — page 274.
 - Constraining generic types (allow typed properties usage, narrow possible generic types) — page 279.
 - Constraining generic types using shapes — page 280.
@@ -120,6 +121,10 @@
 - Generic interfaces — page 294.
 - Extending generic type interfaces — page 295.
 - Implementing a Generic Interface — page 296.
+- Restricting / fixing generic type parameter — page 297.
+- Creating abstract interface implementations (this is cool) — page 297.
+
+## Advanced generic types
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).

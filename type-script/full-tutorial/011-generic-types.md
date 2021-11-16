@@ -406,6 +406,93 @@ interface PeopleCollection<T extends Product | Employee> extends Collection<T> {
 
 # Implementing a Generic Interface
 
-When a class implements interface, it must implement all of its properties and methods. It has some choices over how to deal with type parameters. 
+When a class implements interface, it must implement all of its properties and methods. It has some choices over how to deal with type parameters.
 
 ## Passing on the generic type parameter
+
+```ts
+type shapeType = { name: string };
+interface Collection<T extends shapeType> {
+  add(...newItems: T[]): void;
+  get(name: string): T;
+  count: number;
+}
+
+class ArrayCollection<DataType extends shapeType>
+  implements Collection<DataType>
+{
+  private items: DataType[] = [];
+  add(...newItems): void {
+    this.items.push(...newItems);
+  }
+  get(name: string): DataType {
+    return this.items.find((item) => item.name === name);
+  }
+  get count(): number {
+    return this.items.length;
+  }
+}
+let peopleCollection: Collection<Person> = new ArrayCollection<Person>();
+
+peopleCollection.add(
+  new Person("Bob Smith", "London"),
+  new Person("Dora Peters", "New York")
+);
+```
+
+Class `ArrayCollection` conforms `Collection` interface.
+
+You need to type such collection:
+
+```ts
+let peopleCollection: Collection<Person> = new ArrayCollection<Person>();
+```
+
+## Restricting / fixing generic type parameter
+
+```ts
+class PersonCollection implements Collection<Person> {
+  private items: Person[] = [];
+  add(...newItems: Person[]): void {
+    this.items.push(...newItems);
+  }
+  get(name: string): Person {
+    return this.items.find((item) => item.name === name);
+  }
+  get count(): number {
+    return this.items.length;
+  }
+}
+let peopleCollection: Collection<Person> = new PersonCollection();
+```
+
+## Creating abstract interface implementations
+
+The abstract class has the same set of options for dealing with type parameters as regular classes: pass it on to subclasses unchanged, apply further restrictions, or fix for specific types.
+
+```ts
+abstract class ArrayCollection<T extends shapeType> implements Collection<T> {
+  protected items: T[] = [];
+  add(...newItems: T[]): void {
+    this.items.push(...newItems);
+  }
+  abstract get(searchTerm: string): T;
+  get count(): number {
+    return this.items.length;
+  }
+}
+class ProductCollection extends ArrayCollection<Product> {
+  get(searchTerm: string): Product {
+    return this.items.find((item) => item.name === name);
+  }
+}
+class PersonCollection extends ArrayCollection<Person> {
+  get(searchTerm: string): Person {
+    return this.items.find((item) => item.name === name || item.city === name);
+  }
+}
+
+let peopleCollection: Collection<Person> = new PersonCollection();
+```
+
+The `ArrayCollection<T>` class is abstract and provides a partial implementation of the `Collection<T>` interface, leaving subclasses to provide the get method. The `ProductCollection` and `PersonCollection` classes extend `ArrayCollection<T>`, narrowing the generic type parameter to specific types and implementing the get method to use the properties of the type they operate on.
