@@ -125,6 +125,12 @@
 - Creating abstract interface implementations (this is cool) — page 297.
 
 ## Advanced generic types
+- Generic collections (map & set) — page 303.
+- Using generic iterators — page 305.
+- Combination of iterable and iterator — page 307.
+- Creating an iterable class — page 308.
+- Using index type query (this is important) — page 309.
+- Using the indexed access operator (creating a union of all type` types aka lookup types) also dynamic typing of returned function value — page 311.
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
