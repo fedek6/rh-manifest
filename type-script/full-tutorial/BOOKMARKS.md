@@ -131,6 +131,10 @@
 - Creating an iterable class — page 308.
 - Using index type query (this is important) — page 309.
 - Using the indexed access operator (creating a union of all type` types aka lookup types) also dynamic typing of returned function value — page 311.
+- Using an index type of collection class — page 313.
+- Type mapping (it's like looping through types) — page 315.
+- Using generics in type mapping — page 316.
+- Changing properties and mutability — page 317.
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).

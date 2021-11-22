@@ -246,3 +246,101 @@ console.log(getValue(p, "price"));
 
 This way you can dynamically tell what type will be returned from the function!
 
+### Using an index type of collection class
+
+Using an index type allows me to change the `Collection<T>` class so that it can store any type of objects and not just those that define a name property.
+
+```ts
+class Collection<T, K extends keyof T> implements Iterable<T> {
+  private items: Map<T[K], T>;
+  constructor(initialItems: T[] = [], private propertyName: K) {
+    this.items = new Map<T[K], T>();
+    this.add(...initialItems);
+  }
+  add(...newItems: T[]): void {
+    newItems.forEach((newItem) =>
+      this.items.set(newItem[this.propertyName], newItem)
+    );
+  }
+  get(key: T[K]): T {
+    return this.items.get(key);
+  }
+  get count(): number {
+    return this.items.size;
+  }
+  [Symbol.iterator](): Iterator<T> {
+    return this.items.values();
+  }
+}
+let productCollection: Collection<Product, "name"> = new Collection(
+  products,
+  "name"
+);
+console.log(`There are ${productCollection.count} products`);
+let itemByKey = productCollection.get("Hat");
+console.log(`Item: ${itemByKey.name}, ${itemByKey.price}`);
+```
+
+The class has been rewritten with an additional generic type parameter, K, that is restricted to `keyof T`, which is the data type of the objects stored by the collection.
+
+#### Cheat sheet for above code
+
+| Name           | Description                                 |
+| -------------- | ------------------------------------------- |
+| T              | Type of objects stored in the collection    |
+| K              | Key property name (restricted by `keyof T`) |
+| T[K]           | Type of the key property                    |
+| `propertyName` | Key property name in JS` realm              |
+
+### Type Mapping
+
+Mapped types are created by applying a transformation to the properties of an existing type.
+
+```ts
+type MappedProduct = {
+  [P in keyof Product]: Product[P];
+};
+let p: MappedProduct = { name: "Kayak", price: 275 };
+console.log(`Mapped type: ${p.name}, ${p.price}`);
+```
+
+> Type mapping works like a for in loop. It selects property names to be included in the mapped types and the type for each of them. In the example above it simply duplicates `Product` type.
+
+### Using generics in type mapping
+
+```ts
+type Mapped<T> = {
+  [P in keyof T]: T[P];
+};
+let p: Mapped<Product> = { name: "Kayak", price: 275 };
+console.log(`Mapped type: ${p.name}, ${p.price}`);
+let c: Mapped<City> = { name: "London", population: 8136000 };
+console.log(`Mapped type: ${c.name}, ${c.population}`);
+```
+
+> Attention: Mapping operates only on properties. When applied to a class, a type mapping produces a shape type
+> that contains properties but omits the constructor and the implementation of methods.
+
+```ts
+class MyClass {
+  constructor(public name: string) {}
+  getName(): string {
+    return this.name;
+  }
+}
+
+const MappedClass: Mapped<Myclass> = new MyClass("gitarra");
+```
+
+Would generate following type:
+
+```ts
+{
+  name: string;
+  getName: () => string;
+}
+```
+
+Type mapping produces shapes that can be used for object literals, implemented by classes, or extended by interfaces. Type mapping does not produce a class, however.
+
+### Changing properties and mutability
