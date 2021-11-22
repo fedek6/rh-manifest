@@ -51,6 +51,27 @@ It's like OR, but for TS types.
 
 ---
 
+### Index Type
+
+#### Example
+
+```ts
+type priceType = Product["price"];
+type allTypes = Product[keyof Product]; // Union of all types for eg. string|number
+
+type test = Product[name]; // For example it can be a string
+
+function getValue<T, K extends keyof T>(item: T, keyname: K): T[K] {
+  return item[keyname];
+}
+```
+
+#### Meaning
+
+This way you can access type of interface element. In generic functions this can be used to determine returned value.
+
+---
+
 ## Types
 
 ---
@@ -110,3 +131,33 @@ function calculateTax(amount: number | null): number | null {
 It creates a clear connection between parameter types and returned values.
 
 ---
+
+## Keywords
+
+### keyof
+
+#### Example
+
+```ts
+type Point = { x: number; y: number };
+type P = keyof Point; //  “x” | “y”
+```
+
+#### Meaning
+
+`Keyof` returns a union of interface / type internal types.
+
+---
+
+### typeof
+
+#### Example
+
+```ts
+let s = "hello";
+let n: typeof s; // string
+```
+
+#### Meaning
+
+It returns a type of variable.
