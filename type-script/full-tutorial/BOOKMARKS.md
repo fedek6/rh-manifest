@@ -125,6 +125,7 @@
 - Creating abstract interface implementations (this is cool) — page 297.
 
 ## Advanced generic types
+
 - Generic collections (map & set) — page 303.
 - Using generic iterators — page 305.
 - Combination of iterable and iterator — page 307.
@@ -135,6 +136,16 @@
 - Type mapping (it's like looping through types) — page 315.
 - Using generics in type mapping — page 316.
 - Changing properties and mutability — page 317.
+- Built-in type mappings — page 318.
+- Mapping Specific Properties — page 319.
+- Combining Transformations in a Single Mapping (chaining) — page 320.
+- Creating types with a type mapping — page 320.
+- Conditional types (ternary operator in types) — page 321.
+- Nested conditional types (or how not to do it) — page 323.
+- Conditional types in generic classes — page 323.
+- Using Conditional Types with Type Unions (filtering out array of objects using `instanceof`) — page 325.
+- Using the Built-in Distributive Conditional Types — page 326.
+
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).

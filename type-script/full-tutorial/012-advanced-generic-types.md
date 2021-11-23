@@ -344,3 +344,200 @@ Would generate following type:
 Type mapping produces shapes that can be used for object literals, implemented by classes, or extended by interfaces. Type mapping does not produce a class, however.
 
 ### Changing properties and mutability
+
+Mapped types can change properties.
+
+```ts
+type MakeOptional<T> = {
+  [P in keyof T]?: T[P];
+};
+type MakeRequired<T> = {
+  [P in keyof T]-?: T[P];
+};
+type MakeReadOnly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+type MakeReadWrite<T> = {
+  -readonly [P in keyof T]: T[P];
+};
+
+type optionalType = MakeOptional<Product>;
+type requiredType = MakeRequired<optionalType>;
+type readOnlyType = MakeReadOnly<requiredType>;
+type readWriteType = MakeReadWrite<readOnlyType>;
+```
+
+So they can be treated as helpers for creating new types.
+
+There are built-in type mappings:
+
+| Name           | Description                                                      |
+| -------------- | ---------------------------------------------------------------- |
+| `Partial<T>`   | This mapping makes properties optional.                          |
+| `Required<T>`  | This mapping makes properties required.                          |
+| `Readonly<T>`  | This mapping adds the read only keyword to properties.           |
+| `Pick<T, K>`   | This mapping selects specific properties to create a new type    |
+| `Record<T, K>` | This mapping creates a type without transforming an existing one |
+
+### Mapping Specific Properties
+
+```ts
+type SelectProperties<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+let p1: SelectProperties<Product, "name"> = { name: "Kayak" };
+let p2: Pick<Product, "name" | "price"> = { name: "Lifejacket", price: 48.95 };
+```
+
+> Attention! In generic parameters' word `extends` means "constrain" not extend as it might be thought.
+
+> Note: Type `K` can be expressed as a union.
+
+## Combining Transformations in a Single Mapping
+
+Mappings can apply multiple changes to properties.
+
+```ts
+type CustomMapped<T, K extends keyof T> = {
+  readonly [P in K]?: T[P];
+};
+type BuiltInMapped<T, K extends keyof T> = Readonly<Partial<Pick<T, K>>>;
+let p1: CustomMapped<Product, "name"> = { name: "Kayak" };
+let p2: BuiltInMapped<Product, "name" | "price"> = {
+  name: "Lifejacket",
+  price: 48.95,
+};
+```
+
+Mappings can also be chained together, as shown by the combination of the `Pick`, `Partial`, and `Readonly` mappings.
+
+### Creating types with a type mapping
+
+You can create a new type.
+
+```ts
+type CustomMapped<K extends keyof any, T> = {
+  [P in K]: T;
+};
+let p1: CustomMapped<"name" | "city", string> = { name: "Bob", city: "London" };
+let p2: Record<"name" | "city", string> = { name: "Alice", city: "Paris" };
+```
+
+Both method are serving the same purpose.
+
+## Conditional types
+
+Conditional types are expressions containing generic type parameters that are evaluated to select new types.
+
+```ts
+type resultType<T extends boolean> = T extends true ? string : number;
+let firstVal: resultType<true> = "String Value";
+let secondVal: resultType<false> = 100;
+let mismatchCheck: resultType<false> = "String Value";
+```
+
+> Attention! You should avoid complicated conditional types. If conditional type becomes more complex and encompasses more combinations, you should take a moment to consider if there is a simpler way to achieve the same result.
+
+### Nested conditional types
+
+```ts
+type references = "London" | "Bob" | "Kayak";
+type nestedType<T extends references> = T extends "London"
+  ? City
+  : T extends "Bob"
+  ? Person
+  : Product;
+let firstVal: nestedType<"London"> = new City("London", 8136000);
+let secondVal: nestedType<"Bob"> = new Person("Bob", "London");
+let thirdVal: nestedType<"Kayak"> = new Product("Kayak", 275);
+```
+
+Note: Wow! This is pretty f\*\*\*d up.
+
+The type `nestedType<T>` is a nested conditional type to select between three result types, based on the value of the generic type parameter. As noted in the sidebar, complex conditional types can be difficult to understand, and this is especially true when they are nested.
+
+### Conditional types in generic classes
+
+Conditional types can be used to express the relationship between a method or function’s parameter types and the results it produces. This is a more concise alternative to the function type overloading.
+
+```ts
+type resultType<T extends boolean> = T extends true ? string : number;
+
+class Collection<T> {
+  private items: T[];
+  constructor(...initialItems: T[]) {
+    this.items = initialItems || [];
+  }
+
+  total<P extends keyof T, U extends boolean>(
+    propName: P,
+    format: U
+  ): resultType<U> {
+    let totalValue = this.items.reduce(
+      (t, item) => (t += Number(item[propName])),
+      0
+    );
+    return format ? `$${totalValue.toFixed()}` : (totalValue as any);
+  }
+}
+
+let data = new Collection<Product>(
+  new Product("Kayak", 275),
+  new Product("Lifejacket", 48.95)
+);
+
+let firstVal: string = data.total("price", true);
+
+console.log(`Formatted value: ${firstVal}`);
+
+let secondVal: number = data.total("price", false);
+console.log(`Unformatted value: ${secondVal}`);
+```
+
+Look at the `total` method. It has type check in `return` statement. That's because TypeScript cannot determine what type it will return.
+
+### Using Conditional Types with Type Unions
+
+Conditional types can be used to filter type unions, allowing types to be easily selected or excluded from the set that the union contains.
+
+```ts
+type Filter<T, U> = T extends U ? never : T;
+
+function FilterArray<T, U>(
+  data: T[],
+  predicate: (item) => item is U
+): Filter<T, U>[] {
+  return data.filter((item) => !predicate(item)) as any;
+}
+
+let dataArray = [
+  new Product("Kayak", 275),
+  new Person("Bob", "London"),
+  new Product("Lifejacket", 27.5),
+];
+
+function isProduct(item: any): item is Product {
+  return item instanceof Product;
+}
+
+let filteredData: Person[] = FilterArray(dataArray, isProduct);
+
+// Person: Bob
+filteredData.forEach((item) => console.log(`Person: ${item.name}`));
+```
+
+When a conditional type is provided with a type union, the TypeScript compiler distributes the condition over each type in the union, creating what is known as a distributive conditional type. This effect is applied when a conditional type is used like a type union, like this, for example:
+
+```ts
+type filteredUnion = Filter<Product | Person, Product>
+```
+
+The `Filter<T, U>` conditional type evaluates to never when the first type parameter is the same as the second, producing this result:
+
+```ts
+type filteredUnion = never | Person
+```
+
+The conditional type filters out any type that cannot be assigned to Person and returns the remaining types in the union. The `FilterArray<T, U>` method does the work of filtering an array using a predicate function and returns the `Filter<T, U>` type.
+
+### Using the Built-in Distributive Conditional Types
