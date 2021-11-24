@@ -303,6 +303,51 @@ type targetKeys<T> = T extends (infer U)[] ? keyof U : keyof T;
 
 ---
 
+### new
+
+#### Example
+
+```ts
+function create<Type>(c: { new (): Type }): Type {
+  return new c();
+}
+
+// More advanced
+
+class BeeKeeper {
+  hasMask: boolean = true;
+}
+ 
+class ZooKeeper {
+  nametag: string = "Mikle";
+}
+
+class Animal {
+  numLegs: number = 4;
+}
+
+class Lion extends Animal {
+  keeper: ZooKeeper = new ZooKeeper();
+}
+
+class Bee extends Animal {
+  keeper: BeeKeeper = new BeeKeeper();
+}
+
+function createInstance<A extends Animal>(c: new () => A): A {
+  return new c();
+}
+
+createInstance(Lion).keeper.nametag;
+createInstance(Bee).keeper.hasMask;
+```
+
+#### Meaning
+
+It's used to type a constructor.
+
+---
+
 ## Utility Types
 
 ---
@@ -355,3 +400,42 @@ type T0 = NonNullable<string | number | undefined>;
 #### Meaning
 
 Constructs a type by excluding null and undefined from Type.
+
+---
+
+### ConstructorParameters
+
+`ConstructorParameters<T>`
+
+#### Example
+
+```ts
+type T0 = ConstructorParameters<ErrorConstructor>;
+// type T0 = [message?: string]
+```
+
+#### Meaning
+
+Constructs a tuple or array type from the types of a constructor function type. It produces a tuple type with all the parameter types (or the type never if Type is not a function).
+
+---
+
+### InstanceType
+
+`InstanceType<T>`
+
+#### Example
+
+```ts
+function makeObject<T extends new (...args: any) => any>(
+  constructor: T,
+  ...args: ConstructorParameters<T>
+): InstanceType<T> {
+  return new constructor(...(args as any[]));
+}
+let prod: Product = makeObject(Product, "Kayak", 275);
+```
+
+#### Meaning
+
+Constructs a type consisting of the instance type of a constructor function in Type.

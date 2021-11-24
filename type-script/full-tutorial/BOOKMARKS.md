@@ -148,8 +148,8 @@
 - Using Conditional Types in Type Mappings (or how to type a JS type converter) — page 326.
 - Identifying Properties of a Specific Type (or how to filter out specific type from an array of objects) — page 327.
 - Inferring Additional Types in Conditions (`infer` word, it might be used to flatten arrays of objects etc.) — page 329.
-
-
+- Inferring types of functions — page 331.
+- There are built-in conditional types (with inference) [building functional object factories] — page 331.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
