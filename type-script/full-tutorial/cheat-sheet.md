@@ -172,12 +172,12 @@ function calculateTax(amount: number | null): number | null {
 }
 
 // From official documentation
-function add(a:string, b:string):string;
+function add(a: string, b: string): string;
 
-function add(a:number, b:number): number;
+function add(a: number, b: number): number;
 
-function add(a: any, b:any): any {
-    return a + b;
+function add(a: any, b: any): any {
+  return a + b;
 }
 ```
 
@@ -258,8 +258,8 @@ It's like `===` operator in JS.
 #### Example
 
 ```ts
-function isString(test: any): test is string{
-    return typeof test === "string";
+function isString(test: any): test is string {
+  return typeof test === "string";
 }
 
 // OR
@@ -272,3 +272,86 @@ function isProduct(item: any): item is Product {
 #### Meaning
 
 `is` is used in predicate function to mark what function parameter should be.
+
+---
+
+### infer
+
+#### Example
+
+```ts
+type FlattenIfArray<T> = T extends (infer R)[] ? R : T;
+
+// OR
+
+type Unpromisify<T> = T extends Promise<infer R> ? R : T;
+
+// OR
+
+type targetKeys<T> = T extends (infer U)[] ? keyof U : keyof T;
+```
+
+#### Meaning
+
+- We check if our generic Type is the array
+- If it is an array extract the real type from it
+- If it does not leave it as is
+
+> The `infer` keyword is always used within the extends clause of a conditional type.
+
+> Note, that `infer` shadows type references of an equally-named type declarations.
+
+---
+
+## Utility Types
+
+---
+
+### Exclude
+
+`Exclude<Type, ExcludedUnion>`
+
+#### Example
+
+```ts
+type T0 = Exclude<"a" | "b" | "c", "a">;
+// type T0 = "b" | "c"
+```
+
+#### Meaning
+
+Constructs a type by excluding from Type all union members that are assignable to ExcludedUnion.
+
+---
+
+### Extract
+
+`Extract<Type, Union>`
+
+#### Example
+
+```ts
+type T0 = Extract<"a" | "b" | "c", "a" | "f">;
+// type T0 = "a"
+```
+
+#### Meaning
+
+Constructs a type by extracting from Type all union members that are assignable to Union.
+
+---
+
+### NonNullable
+
+`NonNullable<Type>`
+
+#### Example
+
+```ts
+type T0 = NonNullable<string | number | undefined>;
+// type T0 = string | number
+```
+
+#### Meaning
+
+Constructs a type by excluding null and undefined from Type.

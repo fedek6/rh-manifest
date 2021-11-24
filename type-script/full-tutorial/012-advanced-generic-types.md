@@ -529,15 +529,116 @@ filteredData.forEach((item) => console.log(`Person: ${item.name}`));
 When a conditional type is provided with a type union, the TypeScript compiler distributes the condition over each type in the union, creating what is known as a distributive conditional type. This effect is applied when a conditional type is used like a type union, like this, for example:
 
 ```ts
-type filteredUnion = Filter<Product | Person, Product>
+type filteredUnion = Filter<Product | Person, Product>;
 ```
 
 The `Filter<T, U>` conditional type evaluates to never when the first type parameter is the same as the second, producing this result:
 
 ```ts
-type filteredUnion = never | Person
+type filteredUnion = never | Person;
 ```
 
 The conditional type filters out any type that cannot be assigned to Person and returns the remaining types in the union. The `FilterArray<T, U>` method does the work of filtering an array using a predicate function and returns the `Filter<T, U>` type.
 
 ### Using the Built-in Distributive Conditional Types
+
+| Name             | Description                                                   |
+| ---------------- | ------------------------------------------------------------- |
+| `Exclude<T, U>`  | This type excludes the types that can be assigned to U from T |
+| `Extract<T, U>`  | This type selects the types that can be assigned to U from T  |
+| `NonNullable<T>` | This type excludes null and undefined from T.                 |
+
+> More can be found in cheat sheet.
+
+### Using Conditional Types in Type Mappings
+
+```ts
+type changeProps<T, U, V> = {
+  [P in keyof T]: T[P] extends U ? V : T[P];
+};
+
+type modifiedProduct = changeProps<Product, number, string>;
+
+function convertProduct(p: Product): modifiedProduct {
+  return { name: p.name, price: `$${p.price.toFixed(2)}` };
+}
+
+let kayak = convertProduct(new Product("Kayak", 275));
+console.log(`Product: ${kayak.name}, ${kayak.price}`);
+```
+
+The `changeProps<T, U, V>` mapping selects the properties of type U and changes them to type V in the mapped type. This statement applies the mapping to the Product class specifying that number properties should be made into string properties.
+
+> Basically you can type a type converter this way.
+
+### Identifying Properties of a Specific Type
+
+A common requirement is to limit a type parameter so that it can be used only to specify a property that has a specific type.
+
+```ts
+type unionOfTypeNames<T, U> = {
+  [P in keyof T]: T[P] extends U ? P : never;
+};
+
+type propertiesOfType<T, U> = unionOfTypeNames<T, U>[keyof T];
+
+function total<T, P extends propertiesOfType<T, number>>(
+  data: T[],
+  propName: P
+): number {
+  return data.reduce((t, item) => (t += Number(item[propName])), 0);
+}
+
+let products = [new Product("Kayak", 275), new Product("Lifejacket", 48.95)];
+console.log(`Total: ${total(products, "price")}`);
+// Total: 323.95
+```
+
+The conditional statement checks the type of each property. If a property doesn’t have the target type, then its type is changed to never. If a property does have the expected type, then its type is changed to the literal value that is the property name.
+
+For the mapped type created by `unionOfTypeNames<Product, number>`, the indexed access operator `[keyof T]` produces the following union:
+
+```ts
+never | "price";
+```
+
+> Attention! `Never` is non-existent in union, so it's a clever way to remove something.
+
+### Inferring Additional Types in Conditions
+
+There can be a tension between the need to accept a wide range of types through a generic type parameter and the need to know the details of those types.
+
+```ts
+function getValue<T, P extends keyof T>(data: T, propName: P): T[P] {
+  if (Array.isArray(data)) {
+    return data[0][propName];
+  } else {
+    return data[propName];
+  }
+}
+
+let products = [new Product("Kayak", 275), new Product("Lifejacket", 48.95)];
+console.log(`Array Value: ${getValue(products, "price")}`);
+console.log(`Single Total: ${getValue(products[0], "price")}`);
+```
+
+> This won't compile because compiler cannot correctly capture relation between the types.
+
+**What can we do?**
+
+We can use the `infer` word to tell compiler to infer inner objects in an array.
+
+```ts
+type targetKeys<T> = T extends (infer U)[] ? keyof U : keyof T;
+
+function getValue<T, P extends targetKeys<T>>(data: T, propName: P): T[P] {
+  if (Array.isArray(data)) {
+    return data[0][propName];
+  } else {
+    return data[propName];
+  }
+}
+```
+
+> The effect is that the type of `targetKeys<Product>` and `targetKeys<Product[]>` both produce the `"name" | "price"` union.
+
