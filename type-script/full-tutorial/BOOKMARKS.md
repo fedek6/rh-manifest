@@ -151,6 +151,8 @@
 - Inferring types of functions — page 331.
 - There are built-in conditional types (with inference) [building functional object factories] — page 331.
 
+## Working with JS
+
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
 **Notice**: I use book` page numbers, not PDF ones.
