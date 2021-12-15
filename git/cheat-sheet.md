@@ -17,3 +17,4 @@
 `git commit -m [msg]` – commit
 `git push`
 `git checkout -- [.|file]` – discard changes  
+`git status --short` – a list of potential changes.
