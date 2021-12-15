@@ -17,3 +17,15 @@ lerna add react
 etc.
 
 Check [this](https://github.com/Retrolove-Games/web-ui) repo for example.
+
+## Consuming packages fron npm
+
+`.yarnrc`
+```
+"@retrolove-games:registry" "https://npm.pkg.github.com"
+```
+
+`.npmrc`
+```
+@retrolove-games:registry=https://npm.pkg.github.com
+```
