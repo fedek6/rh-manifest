@@ -3,6 +3,7 @@
 ## Branches
 
 `git branch` – list branches
+`git btanch -r` – list remote branches 
 `git branch [branch]` – create a new branch 
 `git checkout [branch]`
 `git merge [branch]`
@@ -18,3 +19,7 @@
 `git push`
 `git checkout -- [.|file]` – discard changes  
 `git status --short` – a list of potential changes.
+
+## Submodules
+
+`git submodule add git@github.com:[git path] [local path]` – add
