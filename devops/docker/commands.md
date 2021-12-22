@@ -60,6 +60,12 @@ docker images rm [IMAGE_ID]
 docker volume prune
 ```
 
+## Remove everything forcibly
+
+```bash
+docker system prune --volumes
+```
+
 ## Run command in docker image
 
 ```bash
