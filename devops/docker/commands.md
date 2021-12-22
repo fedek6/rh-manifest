@@ -60,7 +60,7 @@ docker images rm [IMAGE_ID]
 docker volume prune
 ```
 
-## Remove everything forcibly
+## Remove everything forcibly (containers, networks, volumes)
 
 ```bash
 docker system prune --volumes
