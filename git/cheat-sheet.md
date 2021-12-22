@@ -23,3 +23,14 @@
 ## Submodules
 
 `git submodule add git@github.com:[git path] [local path]` – add
+
+`git submodule update --remote` - update to the newest commit.
+
+**Note**: you can use specific branch for submodules this way:
+
+```
+[submodule "app/dist/wp-content/plugins/headless-cms-plugin"]
+	path = app/dist/wp-content/plugins/headless-cms-plugin
+	url = git@github.com:Memocracy/headless-cms-plugin.git
+  branch = develop
+```
