@@ -32,5 +32,5 @@
 [submodule "app/dist/wp-content/plugins/headless-cms-plugin"]
 	path = app/dist/wp-content/plugins/headless-cms-plugin
 	url = git@github.com:Memocracy/headless-cms-plugin.git
-  branch = develop
+  	branch = develop
 ```
