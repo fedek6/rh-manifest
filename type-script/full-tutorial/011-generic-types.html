@@ -1,0 +1,3378 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>011 Generic Types · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.23">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="012-advanced-generic-types.html" />
+    
+    
+    <link rel="prev" href="010-working-with-classes.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../architecture/">
+            
+                <a href="../../architecture/">
+            
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../architecture/dbml.html">
+            
+                <a href="../../architecture/dbml.html">
+            
+                    
+                    Dbml
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Aws
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../aws/cheat-sheet.html">
+            
+                <a href="../../aws/cheat-sheet.html">
+            
+                    
+                    Cheat Sheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Coding Practices
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../coding-practices/color-naming-conventions.html">
+            
+                <a href="../../coding-practices/color-naming-conventions.html">
+            
+                    
+                    Color Naming Conventions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../coding-practices/css-abem.html">
+            
+                <a href="../../coding-practices/css-abem.html">
+            
+                    
+                    Css Abem
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../coding-practices/css-bem.html">
+            
+                <a href="../../coding-practices/css-bem.html">
+            
+                    
+                    Css Bem
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../coding-practices/css.html">
+            
+                <a href="../../coding-practices/css.html">
+            
+                    
+                    Css
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../coding-practices/google-style-guide.html">
+            
+                <a href="../../coding-practices/google-style-guide.html">
+            
+                    
+                    Google Style Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../coding-practices/jsdoc.html">
+            
+                <a href="../../coding-practices/jsdoc.html">
+            
+                    
+                    Jsdoc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../../coding-practices/php.html">
+            
+                <a href="../../coding-practices/php.html">
+            
+                    
+                    Php
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../../coding-practices/prop-naming-conventions.html">
+            
+                <a href="../../coding-practices/prop-naming-conventions.html">
+            
+                    
+                    Prop Naming Conventions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../../coding-practices/react-styleguidist.html">
+            
+                <a href="../../coding-practices/react-styleguidist.html">
+            
+                    
+                    React Styleguidist
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../../coding-practices/sassdoc-examples.html">
+            
+                <a href="../../coding-practices/sassdoc-examples.html">
+            
+                    
+                    Sassdoc Examples
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../continous-integration/">
+            
+                <a href="../../continous-integration/">
+            
+                    
+                    Continous Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Css
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../css/tailwindcss/">
+            
+                <a href="../../css/tailwindcss/">
+            
+                    
+                    Tailwindcss
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../css/notes-on-grids.html">
+            
+                <a href="../../css/notes-on-grids.html">
+            
+                    
+                    Notes On Grids
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Design Rules
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../design-rules/typography/typography.html">
+            
+                <a href="../../design-rules/typography/typography.html">
+            
+                    
+                    Typography
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="../../design-rules/typography/font-weight-number-name.html">
+            
+                <a href="../../design-rules/typography/font-weight-number-name.html">
+            
+                    
+                    Font Weight Number Name
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" >
+            
+                <span>
+            
+                    
+                    Ui Design Bootcamp
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="../../design-rules/ui-design-bootcamp/composition/composition.html">
+            
+                <a href="../../design-rules/ui-design-bootcamp/composition/composition.html">
+            
+                    
+                    Composition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.2" >
+            
+                <span>
+            
+                    
+                    Typography
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.2.1" data-path="../../design-rules/ui-design-bootcamp/typography/typographic-classifications.html">
+            
+                <a href="../../design-rules/ui-design-bootcamp/typography/typographic-classifications.html">
+            
+                    
+                    Typographic Classifications
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" >
+            
+                <span>
+            
+                    
+                    Ux
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.3.1" data-path="../../design-rules/ux/jacobs-law.html">
+            
+                <a href="../../design-rules/ux/jacobs-law.html">
+            
+                    
+                    Jacobs Law
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3.2" data-path="../../design-rules/ux/usability.html">
+            
+                <a href="../../design-rules/ux/usability.html">
+            
+                    
+                    Usability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3.3" data-path="../../design-rules/ux/ux-basics.html">
+            
+                <a href="../../design-rules/ux/ux-basics.html">
+            
+                    
+                    Ux Basics
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../design-rules/famous-rules.html">
+            
+                <a href="../../design-rules/famous-rules.html">
+            
+                    
+                    Famous Rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Devops
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../devops/claudia/">
+            
+                <a href="../../devops/claudia/">
+            
+                    
+                    Claudia
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../devops/docker/">
+            
+                <a href="../../devops/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.2.1" >
+            
+                <span>
+            
+                    
+                    Compose Examples
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.2.1.1" data-path="../../devops/docker/compose-examples/node-tsc-app.html">
+            
+                <a href="../../devops/docker/compose-examples/node-tsc-app.html">
+            
+                    
+                    Node Tsc App
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.1.2" data-path="../../devops/docker/compose-examples/php-mysql.html">
+            
+                <a href="../../devops/docker/compose-examples/php-mysql.html">
+            
+                    
+                    Php Mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.1.3" data-path="../../devops/docker/compose-examples/wordpress.html">
+            
+                <a href="../../devops/docker/compose-examples/wordpress.html">
+            
+                    
+                    Wordpress
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.2" data-path="../../devops/docker/commands.html">
+            
+                <a href="../../devops/docker/commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.3" data-path="../../devops/docker/docker-compose.html">
+            
+                <a href="../../devops/docker/docker-compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.4" data-path="../../devops/docker/docker-on-elementary.html">
+            
+                <a href="../../devops/docker/docker-on-elementary.html">
+            
+                    
+                    Docker On Elementary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.5" data-path="../../devops/docker/dockerize-node-app.html">
+            
+                <a href="../../devops/docker/dockerize-node-app.html">
+            
+                    
+                    Dockerize Node App
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" >
+            
+                <span>
+            
+                    
+                    Travis
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.3.1" data-path="../../devops/travis/node-to-aws.html">
+            
+                <a href="../../devops/travis/node-to-aws.html">
+            
+                    
+                    Node To Aws
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../directory-structures/">
+            
+                <a href="../../directory-structures/">
+            
+                    
+                    Directory Structures
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    Gamedev
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <span>
+            
+                    
+                    Graphics
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1.1" data-path="../../gamedev/graphics/aseprite.html">
+            
+                <a href="../../gamedev/graphics/aseprite.html">
+            
+                    
+                    Aseprite
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.2" data-path="../../gamedev/graphics/pallettes.html">
+            
+                <a href="../../gamedev/graphics/pallettes.html">
+            
+                    
+                    Pallettes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.3" data-path="../../gamedev/graphics/picocad.html">
+            
+                <a href="../../gamedev/graphics/picocad.html">
+            
+                    
+                    Picocad
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.4" data-path="../../gamedev/graphics/pixatool.html">
+            
+                <a href="../../gamedev/graphics/pixatool.html">
+            
+                    
+                    Pixatool
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.5" data-path="../../gamedev/graphics/pixel-art-resolution.html">
+            
+                <a href="../../gamedev/graphics/pixel-art-resolution.html">
+            
+                    
+                    Pixel Art Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../../gamedev/itch.io/">
+            
+                <a href="../../gamedev/itch.io/">
+            
+                    
+                    itch.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Git
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../git/atomic-commits.html">
+            
+                <a href="../../git/atomic-commits.html">
+            
+                    
+                    Atomic Commits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../../git/cheat-sheet.html">
+            
+                <a href="../../git/cheat-sheet.html">
+            
+                    
+                    Cheat Sheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../../git/clone-without-git.html">
+            
+                <a href="../../git/clone-without-git.html">
+            
+                    
+                    Clone Without Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../../git/existing-directory.html">
+            
+                <a href="../../git/existing-directory.html">
+            
+                    
+                    Existing Directory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../../git/git-flow.html">
+            
+                <a href="../../git/git-flow.html">
+            
+                    
+                    Git Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../../git/github-npm-registry.html">
+            
+                <a href="../../git/github-npm-registry.html">
+            
+                    
+                    Github Npm Registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="../../git/good-commit-messages.html">
+            
+                <a href="../../git/good-commit-messages.html">
+            
+                    
+                    Good Commit Messages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../../git/mirror-repository.html">
+            
+                <a href="../../git/mirror-repository.html">
+            
+                    
+                    Mirror Repository
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="../../git/open-source-workflow.html">
+            
+                <a href="../../git/open-source-workflow.html">
+            
+                    
+                    Open Source Workflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.10" data-path="../../git/workflows.html">
+            
+                <a href="../../git/workflows.html">
+            
+                    
+                    Workflows
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    Html
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../../html/responsive-images.html">
+            
+                <a href="../../html/responsive-images.html">
+            
+                    
+                    Responsive Images
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../js/">
+            
+                <a href="../../js/">
+            
+                    
+                    Js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../../js/Gatsby/">
+            
+                <a href="../../js/Gatsby/">
+            
+                    
+                    Gatsby
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../../js/Next.js/">
+            
+                <a href="../../js/Next.js/">
+            
+                    
+                    Next.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.2.1" data-path="../../js/Next.js/Next.js%20conf 2021/README.md">
+            
+                <span>
+            
+                    
+                    Next.js conf 2021
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.2" data-path="../../js/Next.js/api-routes.html">
+            
+                <a href="../../js/Next.js/api-routes.html">
+            
+                    
+                    Api Routes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.3" data-path="../../js/Next.js/custom-404.html">
+            
+                <a href="../../js/Next.js/custom-404.html">
+            
+                    
+                    Custom 404
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.4" data-path="../../js/Next.js/deploying-app.html">
+            
+                <a href="../../js/Next.js/deploying-app.html">
+            
+                    
+                    Deploying App
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.5" data-path="../../js/Next.js/dynamic-routes.html">
+            
+                <a href="../../js/Next.js/dynamic-routes.html">
+            
+                    
+                    Dynamic Routes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.6" data-path="../../js/Next.js/eslint-and-prettier.html">
+            
+                <a href="../../js/Next.js/eslint-and-prettier.html">
+            
+                    
+                    Eslint And Prettier
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.7" data-path="../../js/Next.js/external-sources-for-static-props.html">
+            
+                <a href="../../js/Next.js/external-sources-for-static-props.html">
+            
+                    
+                    External Sources For Static Props
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.8" data-path="../../js/Next.js/fetching-data-at-request-time.html">
+            
+                <a href="../../js/Next.js/fetching-data-at-request-time.html">
+            
+                    
+                    Fetching Data At Request Time
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.9" data-path="../../js/Next.js/l18n.html">
+            
+                <a href="../../js/Next.js/l18n.html">
+            
+                    
+                    L 18 N
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.10" data-path="../../js/Next.js/next-in-typescript.html">
+            
+                <a href="../../js/Next.js/next-in-typescript.html">
+            
+                    
+                    Next In Typescript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2.11" data-path="../../js/Next.js/pre-rendering-and-fetching.html">
+            
+                <a href="../../js/Next.js/pre-rendering-and-fetching.html">
+            
+                    
+                    Pre Rendering And Fetching
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../../js/Node.js/">
+            
+                <a href="../../js/Node.js/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.3.1" data-path="../../js/Node.js/architecture.html">
+            
+                <a href="../../js/Node.js/architecture.html">
+            
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" >
+            
+                <span>
+            
+                    
+                    Phaser
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.4.1" data-path="../../js/Phaser/phaser-ts.html">
+            
+                <a href="../../js/Phaser/phaser-ts.html">
+            
+                    
+                    Phaser Ts
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5" data-path="../../js/React/">
+            
+                <a href="../../js/React/">
+            
+                    
+                    React
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.5.1" data-path="../../js/React/Linaria/">
+            
+                <a href="../../js/React/Linaria/">
+            
+                    
+                    Linaria
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.2" >
+            
+                <span>
+            
+                    
+                    Patterns Practices
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.5.2.1" data-path="../../js/React/patterns-practices/component-organization.html">
+            
+                <a href="../../js/React/patterns-practices/component-organization.html">
+            
+                    
+                    Component Organization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.2.2" data-path="../../js/React/patterns-practices/resilient-components.html">
+            
+                <a href="../../js/React/patterns-practices/resilient-components.html">
+            
+                    
+                    Resilient Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.2.3" data-path="../../js/React/patterns-practices/responsive-react.html">
+            
+                <a href="../../js/React/patterns-practices/responsive-react.html">
+            
+                    
+                    Responsive React
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.3" data-path="../../js/React/Redux/">
+            
+                <a href="../../js/React/Redux/">
+            
+                    
+                    Redux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.5.3.1" data-path="../../js/React/Redux/app-structure.html">
+            
+                <a href="../../js/React/Redux/app-structure.html">
+            
+                    
+                    App Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.3.2" data-path="../../js/React/Redux/data-flow.html">
+            
+                <a href="../../js/React/Redux/data-flow.html">
+            
+                    
+                    Data Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.3.3" data-path="../../js/React/Redux/essentials.html">
+            
+                <a href="../../js/React/Redux/essentials.html">
+            
+                    
+                    Essentials
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.4" data-path="../../js/React/css-variables-for-react.html">
+            
+                <a href="../../js/React/css-variables-for-react.html">
+            
+                    
+                    Css Variables For React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.5" data-path="../../js/React/hooks-quick.html">
+            
+                <a href="../../js/React/hooks-quick.html">
+            
+                    
+                    Hooks Quick
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.6" data-path="../../js/React/hooks.html">
+            
+                <a href="../../js/React/hooks.html">
+            
+                    
+                    Hooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.7" data-path="../../js/React/react-context-api.html">
+            
+                <a href="../../js/React/react-context-api.html">
+            
+                    
+                    React Context Api
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.8" data-path="../../js/React/react-in-ts.html">
+            
+                <a href="../../js/React/react-in-ts.html">
+            
+                    
+                    React In Ts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.9" data-path="../../js/React/thinking-in-react.html">
+            
+                <a href="../../js/React/thinking-in-react.html">
+            
+                    
+                    Thinking In React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5.10" data-path="../../js/React/useful-resources.html">
+            
+                <a href="../../js/React/useful-resources.html">
+            
+                    
+                    Useful Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6" >
+            
+                <span>
+            
+                    
+                    Snippets
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.6.1" data-path="../../js/snippets/array.html">
+            
+                <a href="../../js/snippets/array.html">
+            
+                    
+                    Array
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6.2" data-path="../../js/snippets/chrome.html">
+            
+                <a href="../../js/snippets/chrome.html">
+            
+                    
+                    Chrome
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6.3" data-path="../../js/snippets/numbers.html">
+            
+                <a href="../../js/snippets/numbers.html">
+            
+                    
+                    Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6.4" data-path="../../js/snippets/object.html">
+            
+                <a href="../../js/snippets/object.html">
+            
+                    
+                    Object
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6.5" data-path="../../js/snippets/operators.html">
+            
+                <a href="../../js/snippets/operators.html">
+            
+                    
+                    Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6.6" data-path="../../js/snippets/regex.html">
+            
+                <a href="../../js/snippets/regex.html">
+            
+                    
+                    Regex
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.7" data-path="../../js/Strapi/">
+            
+                <a href="../../js/Strapi/">
+            
+                    
+                    Strapi
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.7.1" data-path="../../js/Strapi/strapi-faker.html">
+            
+                <a href="../../js/Strapi/strapi-faker.html">
+            
+                    
+                    Strapi Faker
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.8" data-path="../../js/styled-components/">
+            
+                <a href="../../js/styled-components/">
+            
+                    
+                    Styled Components
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.8.1" data-path="../../js/styled-components/good-practices.html">
+            
+                <a href="../../js/styled-components/good-practices.html">
+            
+                    
+                    Good Practices
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.9" data-path="../../js/asynchonous-js.html">
+            
+                <a href="../../js/asynchonous-js.html">
+            
+                    
+                    Asynchonous Js
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" >
+            
+                <span>
+            
+                    
+                    Lifestyle
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="../../lifestyle/procrastination/">
+            
+                <a href="../../lifestyle/procrastination/">
+            
+                    
+                    Procrastination
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1.1" data-path="../../lifestyle/procrastination/practical-knowledge.html">
+            
+                <a href="../../lifestyle/procrastination/practical-knowledge.html">
+            
+                    
+                    Practical Knowledge
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.1.2" data-path="../../lifestyle/procrastination/project-template.html">
+            
+                <a href="../../lifestyle/procrastination/project-template.html">
+            
+                    
+                    Project Template
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" >
+            
+                <span>
+            
+                    
+                    Node
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="../../node/lerna.html">
+            
+                <a href="../../node/lerna.html">
+            
+                    
+                    Lerna
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="../../october-cms/">
+            
+                <a href="../../october-cms/">
+            
+                    
+                    October Cms
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.16.1" data-path="../../october-cms/commands.html">
+            
+                <a href="../../october-cms/commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.2" data-path="../../october-cms/l18n.html">
+            
+                <a href="../../october-cms/l18n.html">
+            
+                    
+                    L 18 N
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.3" data-path="../../october-cms/snippets.html">
+            
+                <a href="../../october-cms/snippets.html">
+            
+                    
+                    Snippets
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" >
+            
+                <span>
+            
+                    
+                    Optimization
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.17.1" data-path="../../optimization/google-fonts.html">
+            
+                <a href="../../optimization/google-fonts.html">
+            
+                    
+                    Google Fonts
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="../../php/">
+            
+                <a href="../../php/">
+            
+                    
+                    Php
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.18.1" data-path="../../php/laravel/">
+            
+                <a href="../../php/laravel/">
+            
+                    
+                    Laravel
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.18.1.1" data-path="../../php/laravel/artisan.html">
+            
+                <a href="../../php/laravel/artisan.html">
+            
+                    
+                    Artisan
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.1.2" data-path="../../php/laravel/eloquent.html">
+            
+                <a href="../../php/laravel/eloquent.html">
+            
+                    
+                    Eloquent
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.2" >
+            
+                <span>
+            
+                    
+                    Optimization
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.18.2.1" data-path="../../php/optimization/opcache-preloading.html">
+            
+                <a href="../../php/optimization/opcache-preloading.html">
+            
+                    
+                    Opcache Preloading
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.3" data-path="../../php/PHPDoc.html">
+            
+                <a href="../../php/PHPDoc.html">
+            
+                    
+                    PHP Doc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.4" data-path="../../php/PSR.html">
+            
+                <a href="../../php/PSR.html">
+            
+                    
+                    PSR
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.5" data-path="../../php/Strict-types.html">
+            
+                <a href="../../php/Strict-types.html">
+            
+                    
+                    Strict Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" >
+            
+                <span>
+            
+                    
+                    Receptures
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.19.1" >
+            
+                <span>
+            
+                    
+                    Aws
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.19.1.1" data-path="../../receptures/aws/adding-external-domains.html">
+            
+                <a href="../../receptures/aws/adding-external-domains.html">
+            
+                    
+                    Adding External Domains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.1.2" data-path="../../receptures/aws/cloudflare-to-s3.html">
+            
+                <a href="../../receptures/aws/cloudflare-to-s3.html">
+            
+                    
+                    Cloudflare To S 3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.1.3" data-path="../../receptures/aws/s3-hosting.html">
+            
+                <a href="../../receptures/aws/s3-hosting.html">
+            
+                    
+                    S 3 Hosting
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.2" >
+            
+                <span>
+            
+                    
+                    Gatsby
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.19.2.1" data-path="../../receptures/Gatsby/gatsby-on-github-pages.html">
+            
+                <a href="../../receptures/Gatsby/gatsby-on-github-pages.html">
+            
+                    
+                    Gatsby On Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.2.2" data-path="../../receptures/Gatsby/gatsby-without-cli.html">
+            
+                <a href="../../receptures/Gatsby/gatsby-without-cli.html">
+            
+                    
+                    Gatsby Without Cli
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.2.3" data-path="../../receptures/Gatsby/mdx-in-gatsby.html">
+            
+                <a href="../../receptures/Gatsby/mdx-in-gatsby.html">
+            
+                    
+                    Mdx In Gatsby
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.3" >
+            
+                <span>
+            
+                    
+                    Jamstack
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.19.3.1" data-path="../../receptures/jamstack/fav-setup.html">
+            
+                <a href="../../receptures/jamstack/fav-setup.html">
+            
+                    
+                    Fav Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.4" >
+            
+                <span>
+            
+                    
+                    Monorepos
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.19.4.1" data-path="../../receptures/monorepos/rollup-lerna.html">
+            
+                <a href="../../receptures/monorepos/rollup-lerna.html">
+            
+                    
+                    Rollup Lerna
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="../../resources/">
+            
+                <a href="../../resources/">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" >
+            
+                <span>
+            
+                    
+                    Seo
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.21.1" data-path="../../seo/structured-data.html">
+            
+                <a href="../../seo/structured-data.html">
+            
+                    
+                    Structured Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" >
+            
+                <span>
+            
+                    
+                    Stacks
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.22.1" data-path="../../stacks/laravel-twill.html">
+            
+                <a href="../../stacks/laravel-twill.html">
+            
+                    
+                    Laravel Twill
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22.2" data-path="../../stacks/laravel-voyager-lighthouse.html">
+            
+                <a href="../../stacks/laravel-voyager-lighthouse.html">
+            
+                    
+                    Laravel Voyager Lighthouse
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22.3" data-path="../../stacks/nextjs-react-strapi.html">
+            
+                <a href="../../stacks/nextjs-react-strapi.html">
+            
+                    
+                    Nextjs React Strapi
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22.4" data-path="../../stacks/nextjs-wp.html">
+            
+                <a href="../../stacks/nextjs-wp.html">
+            
+                    
+                    Nextjs Wp
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" >
+            
+                <span>
+            
+                    
+                    Tdd
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.23.1" data-path="../../tdd/selenium/">
+            
+                <a href="../../tdd/selenium/">
+            
+                    
+                    Selenium
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24" >
+            
+                <span>
+            
+                    
+                    Tools
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.24.1" data-path="../../tools/adobe-xd-tips.html">
+            
+                <a href="../../tools/adobe-xd-tips.html">
+            
+                    
+                    Adobe Xd Tips
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24.2" data-path="../../tools/figma.html">
+            
+                <a href="../../tools/figma.html">
+            
+                    
+                    Figma
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24.3" data-path="../../tools/sassdoc.html">
+            
+                <a href="../../tools/sassdoc.html">
+            
+                    
+                    Sassdoc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24.4" data-path="../../tools/visual-studio-tips.html">
+            
+                <a href="../../tools/visual-studio-tips.html">
+            
+                    
+                    Visual Studio Tips
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Type Script
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.25.1" >
+            
+                <span>
+            
+                    
+                    Full Tutorial
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.25.1.1" data-path="001-first-class.html">
+            
+                <a href="001-first-class.html">
+            
+                    
+                    001 First Class
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.2" data-path="002-js-primer.html">
+            
+                <a href="002-js-primer.html">
+            
+                    
+                    002 Js Primer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.3" data-path="003-js-primer-2.html">
+            
+                <a href="003-js-primer-2.html">
+            
+                    
+                    003 Js Primer 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.4" data-path="004-typescript-compiler.html">
+            
+                <a href="004-typescript-compiler.html">
+            
+                    
+                    004 Typescript Compiler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.5" data-path="005-testing-and-debugging.html">
+            
+                <a href="005-testing-and-debugging.html">
+            
+                    
+                    005 Testing And Debugging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.6" data-path="006-working-with-ts.html">
+            
+                <a href="006-working-with-ts.html">
+            
+                    
+                    006 Working With Ts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.7" data-path="007-using-functions.html">
+            
+                <a href="007-using-functions.html">
+            
+                    
+                    007 Using Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.8" data-path="008-data-types.html">
+            
+                <a href="008-data-types.html">
+            
+                    
+                    008 Data Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.9" data-path="009-working-with-objects.html">
+            
+                <a href="009-working-with-objects.html">
+            
+                    
+                    009 Working With Objects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.10" data-path="010-working-with-classes.html">
+            
+                <a href="010-working-with-classes.html">
+            
+                    
+                    010 Working With Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.25.1.11" data-path="011-generic-types.html">
+            
+                <a href="011-generic-types.html">
+            
+                    
+                    011 Generic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.12" data-path="012-advanced-generic-types.html">
+            
+                <a href="012-advanced-generic-types.html">
+            
+                    
+                    012 Advanced Generic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.13" data-path="013-working-with-js.html">
+            
+                <a href="013-working-with-js.html">
+            
+                    
+                    013 Working With Js
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.14" data-path="BOOKMARKS.html">
+            
+                <a href="BOOKMARKS.html">
+            
+                    
+                    BOOKMARKS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.15" data-path="cheat-sheet.html">
+            
+                <a href="cheat-sheet.html">
+            
+                    
+                    Cheat Sheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.16" data-path="notes.md">
+            
+                <span>
+            
+                    
+                    Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.1.17" data-path="polish-dictionary.html">
+            
+                <a href="polish-dictionary.html">
+            
+                    
+                    Polish Dictionary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.2" data-path="../classes.html">
+            
+                <a href="../classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.3" data-path="../declaration-files.html">
+            
+                <a href="../declaration-files.html">
+            
+                    
+                    Declaration Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.4" data-path="../functions.html">
+            
+                <a href="../functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.5" data-path="../interfaces.html">
+            
+                <a href="../interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.6" data-path="../variable-declaration.html">
+            
+                <a href="../variable-declaration.html">
+            
+                    
+                    Variable Declaration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.7" data-path="../variable-types.html">
+            
+                <a href="../variable-types.html">
+            
+                    
+                    Variable Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >011 Generic Types</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="generic-types">Generic types</h1>
+<p>Generic types are placeholders for types that are resolved when a class or function is used, allowing type-safe code to be written that can deal with a range of different types, such as collection classes.</p>
+<h2 id="understating-the-problem">Understating the problem</h2>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> dataType = Person | Product;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span> </span>{
+  <span class="hljs-keyword">private</span> items: dataType[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: dataType[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+}
+
+<span class="hljs-keyword">let</span> peopleData = <span class="hljs-keyword">new</span> DataCollection(people);
+</code></pre>
+<p>This class will accept both <code>Person</code> and <code>Product</code>. What if we want to create <code>DataCollection</code> accepting only one or other?</p>
+<h2 id="creating-generic-classes">Creating generic classes</h2>
+<p>It&apos;s as easy as that:</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-keyword">private</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  <span class="hljs-function"><span class="hljs-title">add</span>(<span class="hljs-params">newItem: T</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(newItem);
+  }
+  <span class="hljs-comment">// getNames(): string[] {</span>
+  <span class="hljs-comment">// return this.items.map(item =&gt; item.name);</span>
+  <span class="hljs-comment">// }</span>
+  getItem(index: <span class="hljs-built_in">number</span>): T {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items[index];
+  }
+}
+
+<span class="hljs-keyword">let</span> peopleData = <span class="hljs-keyword">new</span> DataCollection&lt;Person&gt;(people);
+</code></pre>
+<p>Implementation:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// T is a generic type parameter</span>
+<span class="hljs-comment">// this creates generic class</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+}
+</code></pre>
+<h2 id="constraining-generic-type-values">Constraining generic type values</h2>
+<p>You won&apos;t be able to access specific properties using generic types. You&apos;ll need some kind of type narrowing.</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+
+  <span class="hljs-comment">// This will give you error</span>
+  getNames(): <span class="hljs-built_in">string</span>[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.map(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name);
+  }
+}
+</code></pre>
+<p>You can do type narrowing:</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Person</span> | <span class="hljs-title">Product</span>&gt; </span>{
+  <span class="hljs-keyword">private</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  <span class="hljs-function"><span class="hljs-title">add</span>(<span class="hljs-params">newItem: T</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(newItem);
+  }
+  getNames(): <span class="hljs-built_in">string</span>[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.map(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name);
+  }
+}
+</code></pre>
+<p>This will allow you using specific properties from the types.</p>
+<blockquote>
+<p>The first restriction constrains the types that can be used as the generic type argument to create a new <code>DataCollection&lt;Product | Person&gt;</code> object so that only types that can be assigned to Product | Person can be used as the type parameter value.</p>
+</blockquote>
+<h2 id="constraining-generic-types-using-shapes">Constraining generic types using shapes</h2>
+<p>You can use simple inline shape like this one:</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> </span>{ name: <span class="hljs-built_in">string</span> }&gt; {
+  <span class="hljs-keyword">private</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  getNames(): <span class="hljs-built_in">string</span>[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.map(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name);
+  }
+}
+</code></pre>
+<p>The shape specified in Listing 12-10 tells the compiler that the <code>DataCollection&lt;T&gt;</code> class can be instantiated using any type that has a name property that returns a string.</p>
+<h2 id="multiple-type-parameters">Multiple type parameters</h2>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> </span>{ name: <span class="hljs-built_in">string</span> }, U&gt; {
+  <span class="hljs-keyword">private</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  collate(targetData: U[], <span class="hljs-attr">itemProp</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">targetProp</span>: <span class="hljs-built_in">string</span>): (T &amp; U)[] {
+    <span class="hljs-keyword">let</span> results = [];
+    <span class="hljs-built_in">this</span>.items.forEach(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> {
+      <span class="hljs-keyword">let</span> match = targetData.find(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d[targetProp] === item[itemProp]);
+      <span class="hljs-keyword">if</span> (match !== <span class="hljs-literal">undefined</span>) {
+        results.push({ ...match, ...item });
+      }
+    });
+    <span class="hljs-keyword">return</span> results;
+  }
+}
+
+<span class="hljs-keyword">let</span> peopleData = <span class="hljs-keyword">new</span> DataCollection&lt;Person, City&gt;(people);
+</code></pre>
+<blockquote>
+<p>This can be used to create collation of two objects that are intersected by some property.</p>
+</blockquote>
+<h2 id="applying-a-type-parameter-to-a-method">Applying a type parameter to a method</h2>
+<pre><code class="lang-ts">collate&lt;U&gt;(targetData: U[], <span class="hljs-attr">itemProp</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">targetProp</span>: <span class="hljs-built_in">string</span>): (T &amp; U)[] {
+  <span class="hljs-keyword">let</span> results = [];
+  <span class="hljs-built_in">this</span>.items.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
+    <span class="hljs-keyword">let</span> match = targetData.find(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d[targetProp] === item[itemProp]);
+    <span class="hljs-keyword">if</span> (match !== <span class="hljs-literal">undefined</span>) {
+      results.push({ ...match, ...item });
+    }
+  });
+  <span class="hljs-keyword">return</span> results;
+}
+</code></pre>
+<p>Type parameter is applied directly to the collate method, allowing a type to be provided when the method is invoked:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> collatedData = peopleData.collate&lt;City&gt;(cities, <span class="hljs-string">&quot;city&quot;</span>, <span class="hljs-string">&quot;name&quot;</span>);
+</code></pre>
+<h2 id="let-the-compiler-infer-type-arguments">Let the compiler infer type arguments</h2>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> peopleData = <span class="hljs-keyword">new</span> DataCollection(people);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> collatedData = peopleData.collate(cities, <span class="hljs-string">&quot;city&quot;</span>, <span class="hljs-string">&quot;name&quot;</span>);
+collatedData.forEach(<span class="hljs-function">(<span class="hljs-params">c</span>) =&gt;</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${c.name}</span>, <span class="hljs-subst">${c.city}</span>, <span class="hljs-subst">${c.population}</span>`</span>)
+);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> empData = peopleData.collate(employees, <span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;name&quot;</span>);
+empData.forEach(<span class="hljs-function">(<span class="hljs-params">c</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${c.name}</span>, <span class="hljs-subst">${c.city}</span>, <span class="hljs-subst">${c.role}</span>`</span>));
+</code></pre>
+<p>The compiler is able to infer type arguments based on the argument passed to the <code>DataCollection&lt;T&gt;</code> constructor. You can check inferred types by looking into <code>index.d.ts</code> file.</p>
+<blockquote>
+<p>Attention: In a project that uses modules, declaration files contain only exported values.</p>
+</blockquote>
+<p>Types inferred by compile should look like these:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> peopleData: DataCollection&lt;Person&gt;;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> collatedData: (Person &amp; City)[];
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> empData: (Person &amp; Employee)[];
+</code></pre>
+<h2 id="adding-extra-features-to-the-existing-type-parameters">Adding extra features to the existing type parameters</h2>
+<h3 id="first-approach">First approach</h3>
+<p>The first approach is to simply add features to those defined by the <code>superclass</code> using the same generic types.</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> </span>{ name: <span class="hljs-built_in">string</span> }&gt; {
+  <span class="hljs-keyword">protected</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  collate&lt;U&gt;(targetData: U[], <span class="hljs-attr">itemProp</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">targetProp</span>: <span class="hljs-built_in">string</span>): (T &amp; U)[] {
+    <span class="hljs-keyword">let</span> results = [];
+    <span class="hljs-built_in">this</span>.items.forEach(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> {
+      <span class="hljs-keyword">let</span> match = targetData.find(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d[targetProp] === item[itemProp]);
+      <span class="hljs-keyword">if</span> (match !== <span class="hljs-literal">undefined</span>) {
+        results.push({ ...match, ...item });
+      }
+    });
+    <span class="hljs-keyword">return</span> results;
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SearchableCollection</span>&lt;
+  <span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> </span>{ name: <span class="hljs-built_in">string</span> }
+&gt; <span class="hljs-keyword">extends</span> DataCollection&lt;T&gt; {
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">super</span>(initialItems);
+  }
+  find(name: <span class="hljs-built_in">string</span>): T | <span class="hljs-literal">undefined</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name === name);
+  }
+}
+
+<span class="hljs-keyword">let</span> peopleData = <span class="hljs-keyword">new</span> SearchableCollection&lt;Person&gt;(people);
+<span class="hljs-keyword">let</span> foundPerson = peopleData.find(<span class="hljs-string">&quot;Bob Smith&quot;</span>);
+<span class="hljs-keyword">if</span> (foundPerson !== <span class="hljs-literal">undefined</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Person <span class="hljs-subst">${foundPerson.name}</span>, <span class="hljs-subst">${foundPerson.city}</span>`</span>);
+}
+</code></pre>
+<h2 id="fixing-generic-type-parameter">Fixing generic type parameter</h2>
+<p>Some classes need to define functionality that is only available using a subset of the types that are supported by the <code>superclass</code>. In these situations, a subclass can use a fixed type for the <code>superclass’s</code> type parameter, such that the subclass is not a generic class.</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SearchableCollection</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">Employee</span>&gt; </span>{
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: Employee[]</span>)</span> {
+    <span class="hljs-built_in">super</span>(initialItems);
+  }
+  find(searchTerm: <span class="hljs-built_in">string</span>): Employee[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.filter(
+      <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name === searchTerm || item.role === searchTerm
+    );
+  }
+}
+<span class="hljs-keyword">let</span> employeeData = <span class="hljs-keyword">new</span> SearchableCollection(employees);
+employeeData
+  .find(<span class="hljs-string">&quot;Sales&quot;</span>)
+  .forEach(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Employee <span class="hljs-subst">${e.name}</span>, <span class="hljs-subst">${e.role}</span>`</span>));
+</code></pre>
+<p>The <code>SearchableCollection</code> class extends <code>DataCollection&lt;Employee&gt;</code>, which fixes the generic type parameter so that the <code>SearchableCollection</code> can deal only with Employee objects.</p>
+<h2 id="restricting-the-generic-type-parameter">Restricting the Generic Type Parameter</h2>
+<p>The third approach strikes a balance between the previous two examples, providing a generic type variable but restricting it to specific types.</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SearchableCollection</span>&lt;
+  <span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span> | <span class="hljs-title">Person</span>
+&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">super</span>(initialItems);
+  }
+  find(searchTerm: <span class="hljs-built_in">string</span>): T[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> {
+      <span class="hljs-keyword">if</span> (item <span class="hljs-keyword">instanceof</span> Employee) {
+        <span class="hljs-keyword">return</span> item.name === searchTerm || item.role === searchTerm;
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (item <span class="hljs-keyword">instanceof</span> Person) {
+        <span class="hljs-keyword">return</span> item.name === searchTerm || item.city === searchTerm;
+      }
+    });
+  }
+}
+<span class="hljs-keyword">let</span> employeeData = <span class="hljs-keyword">new</span> SearchableCollection&lt;Employee&gt;(employees);
+</code></pre>
+<blockquote>
+<p>Bear in mind that when a union is used to constrain a generic type parameter, the union itself is an acceptable argument for that parameter. This means that the <code>SearchableCollection</code> class can be instantiated with a type parameter of Employee, Product, and Employee | Product.</p>
+<p>This code uses <code>instanceof</code> operator.</p>
+</blockquote>
+<h2 id="type-guarding-generic-types">Type guarding generic types</h2>
+<p>For classes with type parameters that are not restricted, narrowing to a specific type can be difficult.</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-keyword">protected</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  filter&lt;V <span class="hljs-keyword">extends</span> T&gt;(): V[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item <span class="hljs-keyword">instanceof</span> V) <span class="hljs-keyword">as</span> V[];
+  }
+}
+
+<span class="hljs-keyword">let</span> mixedData = <span class="hljs-keyword">new</span> DataCollection&lt;Person | Product&gt;([...people, ...products]);
+<span class="hljs-keyword">let</span> filteredProducts = mixedData.filter&lt;Product&gt;();
+filteredProducts.forEach(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Product: <span class="hljs-subst">${p.name}</span>, <span class="hljs-subst">${p.price}</span>`</span>));
+</code></pre>
+<blockquote>
+<p>Attention! The filter method’s generic type parameter, named V, is defined with the <code>extend</code> keyword, telling the compiler that it can only accept types that can be assigned to the class generic type T, which prevents the compiler from treating V as any.</p>
+</blockquote>
+<p>Above example will output error:</p>
+<pre><code>error TS2693: &apos;V&apos; only refers to a type, but is being used as a value here.
+</code></pre><blockquote>
+<p><code>instanceof</code> operator does not know anything about generic types! That&apos;s why you&apos;ll get an error.</p>
+</blockquote>
+<p>In such situations you&apos;ll need to use type predicate function:</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-keyword">protected</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  filter&lt;V <span class="hljs-keyword">extends</span> T&gt;(predicate: <span class="hljs-function">(<span class="hljs-params">target</span>) =&gt;</span> target is V): V[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> predicate(item)) <span class="hljs-keyword">as</span> V[];
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isProduct</span>(<span class="hljs-params">target</span>): <span class="hljs-title">target</span> <span class="hljs-title">is</span> <span class="hljs-title">Product</span> </span>{
+  <span class="hljs-keyword">return</span> target <span class="hljs-keyword">instanceof</span> Product;
+}
+<span class="hljs-keyword">let</span> filteredProducts = mixedData.filter&lt;Product&gt;(isProduct);
+filteredProducts.forEach(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Product: <span class="hljs-subst">${p.name}</span>, <span class="hljs-subst">${p.price}</span>`</span>));
+</code></pre>
+<p>The predicate function for the required type is provided as an argument to the filter method using JavaScript features that are available when the code is executed; this provides the method with the means to select the required objects.</p>
+<h2 id="static-methods-in-a-generic-classes">Static methods in a generic classes</h2>
+<p>Static methods cannot use generic class type parameters.</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-keyword">protected</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  filter&lt;V <span class="hljs-keyword">extends</span> T&gt;(predicate: <span class="hljs-function">(<span class="hljs-params">target</span>) =&gt;</span> target is V): V[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> predicate(item)) <span class="hljs-keyword">as</span> V[];
+  }
+  <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">reverse</span>(<span class="hljs-params">items: <span class="hljs-built_in">any</span>[]</span>)</span> {
+    <span class="hljs-keyword">return</span> items.reverse();
+  }
+}
+
+<span class="hljs-keyword">let</span> reversedCities: City[] = DataCollection.reverse(cities);
+</code></pre>
+<p>As you can see, you must type a variable when using such methods.</p>
+<p>Static methods can define their own generic type parameters:</p>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataCollection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-keyword">protected</span> items: T[] = [];
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">initialItems: T[]</span>)</span> {
+    <span class="hljs-built_in">this</span>.items.push(...initialItems);
+  }
+  filter&lt;V <span class="hljs-keyword">extends</span> T&gt;(predicate: <span class="hljs-function">(<span class="hljs-params">target</span>) =&gt;</span> target is V): V[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> predicate(item)) <span class="hljs-keyword">as</span> V[];
+  }
+  <span class="hljs-keyword">static</span> reverse&lt;ArrayType&gt;(items: ArrayType[]): ArrayType[] {
+    <span class="hljs-keyword">return</span> items.reverse();
+  }
+}
+
+<span class="hljs-keyword">let</span> reversedCities = DataCollection.reverse&lt;City&gt;(cities);
+</code></pre>
+<h1 id="generic-interfaces">Generic interfaces</h1>
+<p>This is quite simple:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> shapeType = { <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span> };
+<span class="hljs-keyword">interface</span> Collection&lt;T <span class="hljs-keyword">extends</span> shapeType&gt; {
+  add(...newItems: T[]): <span class="hljs-built_in">void</span>;
+  get(name: <span class="hljs-built_in">string</span>): T;
+  count: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<h2 id="extending-generic-type-interfaces">Extending generic type interfaces</h2>
+<p>Generic interfaces can be extended just like regular interfaces, and the options for dealing with its type parameters are the same as when extending a generic class.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> shapeType = { <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span> };
+
+<span class="hljs-keyword">interface</span> Collection&lt;T <span class="hljs-keyword">extends</span> shapeType&gt; {
+  add(...newItems: T[]): <span class="hljs-built_in">void</span>;
+  get(name: <span class="hljs-built_in">string</span>): T;
+  count: <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-keyword">interface</span> SearchableCollection&lt;T <span class="hljs-keyword">extends</span> shapeType&gt; <span class="hljs-keyword">extends</span> Collection&lt;T&gt; {
+  find(name: <span class="hljs-built_in">string</span>): T | <span class="hljs-literal">undefined</span>;
+}
+<span class="hljs-keyword">interface</span> ProductCollection <span class="hljs-keyword">extends</span> Collection&lt;Product&gt; {
+  sumPrices(): <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-keyword">interface</span> PeopleCollection&lt;T <span class="hljs-keyword">extends</span> Product | Employee&gt; <span class="hljs-keyword">extends</span> Collection&lt;T&gt; {
+  getNames(): <span class="hljs-built_in">string</span>[];
+}
+</code></pre>
+<h1 id="implementing-a-generic-interface">Implementing a Generic Interface</h1>
+<p>When a class implements interface, it must implement all of its properties and methods. It has some choices over how to deal with type parameters.</p>
+<h2 id="passing-on-the-generic-type-parameter">Passing on the generic type parameter</h2>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> shapeType = { <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span> };
+<span class="hljs-keyword">interface</span> Collection&lt;T <span class="hljs-keyword">extends</span> shapeType&gt; {
+  add(...newItems: T[]): <span class="hljs-built_in">void</span>;
+  get(name: <span class="hljs-built_in">string</span>): T;
+  count: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayCollection</span>&lt;<span class="hljs-title">DataType</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">shapeType</span>&gt;
+  <span class="hljs-title">implements</span> <span class="hljs-title">Collection</span>&lt;<span class="hljs-title">DataType</span>&gt;
+</span>{
+  <span class="hljs-keyword">private</span> items: DataType[] = [];
+  add(...newItems): <span class="hljs-built_in">void</span> {
+    <span class="hljs-built_in">this</span>.items.push(...newItems);
+  }
+  get(name: <span class="hljs-built_in">string</span>): DataType {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name === name);
+  }
+  <span class="hljs-keyword">get</span> <span class="hljs-title">count</span>(): <span class="hljs-title">number</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.length;
+  }
+}
+<span class="hljs-keyword">let</span> peopleCollection: Collection&lt;Person&gt; = <span class="hljs-keyword">new</span> ArrayCollection&lt;Person&gt;();
+
+peopleCollection.add(
+  <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;Bob Smith&quot;</span>, <span class="hljs-string">&quot;London&quot;</span>),
+  <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;Dora Peters&quot;</span>, <span class="hljs-string">&quot;New York&quot;</span>)
+);
+</code></pre>
+<p>Class <code>ArrayCollection</code> conforms <code>Collection</code> interface.</p>
+<p>You need to type such collection:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> peopleCollection: Collection&lt;Person&gt; = <span class="hljs-keyword">new</span> ArrayCollection&lt;Person&gt;();
+</code></pre>
+<h2 id="restricting--fixing-generic-type-parameter">Restricting / fixing generic type parameter</h2>
+<pre><code class="lang-ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonCollection</span> <span class="hljs-title">implements</span> <span class="hljs-title">Collection</span>&lt;<span class="hljs-title">Person</span>&gt; </span>{
+  <span class="hljs-keyword">private</span> items: Person[] = [];
+  add(...newItems: Person[]): <span class="hljs-built_in">void</span> {
+    <span class="hljs-built_in">this</span>.items.push(...newItems);
+  }
+  get(name: <span class="hljs-built_in">string</span>): Person {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name === name);
+  }
+  <span class="hljs-keyword">get</span> <span class="hljs-title">count</span>(): <span class="hljs-title">number</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.length;
+  }
+}
+<span class="hljs-keyword">let</span> peopleCollection: Collection&lt;Person&gt; = <span class="hljs-keyword">new</span> PersonCollection();
+</code></pre>
+<h2 id="creating-abstract-interface-implementations">Creating abstract interface implementations</h2>
+<p>The abstract class has the same set of options for dealing with type parameters as regular classes: pass it on to subclasses unchanged, apply further restrictions, or fix for specific types.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayCollection</span>&lt;<span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">shapeType</span>&gt; <span class="hljs-title">implements</span> <span class="hljs-title">Collection</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+  <span class="hljs-keyword">protected</span> items: T[] = [];
+  add(...newItems: T[]): <span class="hljs-built_in">void</span> {
+    <span class="hljs-built_in">this</span>.items.push(...newItems);
+  }
+  <span class="hljs-keyword">abstract</span> get(searchTerm: <span class="hljs-built_in">string</span>): T;
+  <span class="hljs-keyword">get</span> <span class="hljs-title">count</span>(): <span class="hljs-title">number</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.length;
+  }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductCollection</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ArrayCollection</span>&lt;<span class="hljs-title">Product</span>&gt; </span>{
+  get(searchTerm: <span class="hljs-built_in">string</span>): Product {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name === name);
+  }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonCollection</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ArrayCollection</span>&lt;<span class="hljs-title">Person</span>&gt; </span>{
+  get(searchTerm: <span class="hljs-built_in">string</span>): Person {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.find(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.name === name || item.city === name);
+  }
+}
+
+<span class="hljs-keyword">let</span> peopleCollection: Collection&lt;Person&gt; = <span class="hljs-keyword">new</span> PersonCollection();
+</code></pre>
+<p>The <code>ArrayCollection&lt;T&gt;</code> class is abstract and provides a partial implementation of the <code>Collection&lt;T&gt;</code> interface, leaving subclasses to provide the get method. The <code>ProductCollection</code> and <code>PersonCollection</code> classes extend <code>ArrayCollection&lt;T&gt;</code>, narrowing the generic type parameter to specific types and implementing the get method to use the properties of the type they operate on.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="010-working-with-classes.html" class="navigation navigation-prev " aria-label="Previous page: 010 Working With Classes">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="012-advanced-generic-types.html" class="navigation navigation-next " aria-label="Next page: 012 Advanced Generic Types">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"011 Generic Types","level":"1.25.1.11","depth":3,"next":{"title":"012 Advanced Generic Types","level":"1.25.1.12","depth":3,"path":"type-script/full-tutorial/012-advanced-generic-types.md","ref":"type-script/full-tutorial/012-advanced-generic-types.md","articles":[]},"previous":{"title":"010 Working With Classes","level":"1.25.1.10","depth":3,"path":"type-script/full-tutorial/010-working-with-classes.md","ref":"type-script/full-tutorial/010-working-with-classes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"type-script/full-tutorial/011-generic-types.md","mtime":"2021-11-16T08:37:51.448Z","type":"markdown"},"gitbook":{"version":"3.6.23","time":"2022-01-07T13:58:23.020Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

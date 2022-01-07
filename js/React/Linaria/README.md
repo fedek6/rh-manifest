@@ -1,3 +1,0 @@
-# Linaria
-
-## Linaria in Webpack

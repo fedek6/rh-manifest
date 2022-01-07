@@ -1,4 +1,0 @@
-# Bring in the generated files (having them in .gitignore would otherwise leave them out)
-!*.svg
-!*.png
-!*.jpg
