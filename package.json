@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "book sm && honkit build",
+    "publish": "gitpub",
     "serve": "honkit serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,5 +23,8 @@
   "devDependencies": {
     "gitbook-summary": "^1.2.4",
     "honkit": "^3.6.23"
+  },
+  "dependencies": {
+    "gitbook-publish": "^1.0.3"
   }
 }
