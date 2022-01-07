@@ -4,6 +4,8 @@
   "description": "![logo](https://realhe.ro/img/logo.svg \"Realhe.ro\")",
   "main": "index.js",
   "scripts": {
+    "build": "book sm && honkit build",
+    "serve": "honkit serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
