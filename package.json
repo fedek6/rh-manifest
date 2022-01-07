@@ -1,0 +1,23 @@
+{
+  "name": "rh-manifest",
+  "version": "1.0.0",
+  "description": "![logo](https://realhe.ro/img/logo.svg \"Realhe.ro\")",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fedek6/rh-manifest.git"
+  },
+  "keywords": [],
+  "author": "Konrad Fedorczyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fedek6/rh-manifest/issues"
+  },
+  "homepage": "https://github.com/fedek6/rh-manifest#readme",
+  "devDependencies": {
+    "honkit": "^3.6.23"
+  }
+}
