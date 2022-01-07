@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/fedek6/rh-manifest#readme",
   "devDependencies": {
+    "gitbook-summary": "^1.2.4",
     "honkit": "^3.6.23"
   }
 }
