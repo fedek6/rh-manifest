@@ -2694,20 +2694,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.25.1.16" data-path="notes.md">
-            
-                <span>
-            
-                    
-                    Notes
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.25.1.17" data-path="polish-dictionary.html">
+        <li class="chapter " data-level="1.25.1.16" data-path="polish-dictionary.html">
             
                 <a href="polish-dictionary.html">
             
@@ -2854,6 +2841,115 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="working-with-js">Working with JS</h1>
+<p>Some useful compiler options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allowJs</code></td>
+<td>Allow JS in compilation process</td>
+</tr>
+<tr>
+<td><code>baseUrl</code></td>
+<td>Root location used to resolve modules</td>
+</tr>
+<tr>
+<td><code>checkJs</code></td>
+<td>Check JS files for common errors</td>
+</tr>
+<tr>
+<td><code>declaration</code></td>
+<td>Produce type declarations</td>
+</tr>
+<tr>
+<td><code>outDir</code></td>
+<td>Output directory</td>
+</tr>
+<tr>
+<td><code>paths</code></td>
+<td>Locations used to resolve module deps</td>
+</tr>
+<tr>
+<td><code>rootDir</code></td>
+<td>Root directory to locate TS files</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td>Targeted version of JS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="using-js-with-ts">Using JS with TS</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sizeFormatter</span>(<span class="hljs-params">thing, count</span>) </span>{
+  writeMessage(<span class="hljs-string">`The <span class="hljs-subst">${thing}</span> has <span class="hljs-subst">${count}</span> items`</span>);
+}
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">costFormatter</span>(<span class="hljs-params">thing, cost</span>) </span>{
+  writeMessage(<span class="hljs-string">`The <span class="hljs-subst">${thing}</span> costs $<span class="hljs-subst">${cost.toFixed(<span class="hljs-number">2</span>)}</span>`</span>, <span class="hljs-literal">true</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">writeMessage</span>(<span class="hljs-params">message</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(message);
+}
+</code></pre>
+<p>And import:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { sizeFormatter, costFormatter } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./formatters&quot;</span>;
+
+sizeFormatter(<span class="hljs-string">&quot;Cart&quot;</span>, cart.itemCount);
+costFormatter(<span class="hljs-string">&quot;Cart&quot;</span>, cart.totalPrice);
+</code></pre>
+<p>This will throw an error:</p>
+<pre><code>internal/modules/cjs/loader.js:613
+throw err;
+^
+Error: Cannot find module &apos;dist\index.js&apos;
+</code></pre><p>So, you need to enable <code>allowJs</code> in your <code>tsconfig.json</code>.</p>
+<h3 id="checkjs-enabled"><code>checkJs</code> enabled</h3>
+<p>It will find error:</p>
+<pre><code>src/formatters.js(6,60): error TS2554: Expected 0-1 arguments, but got 2.
+</code></pre><blockquote>
+<p>This feature is useful only if you are able to modify the JavaScript files to address the problems the compiler reports.</p>
+</blockquote>
+<p>You can enable or disable this feature per file using:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// @ts-nocheck</span>
+<span class="hljs-comment">// @ts-check</span>
+</code></pre>
+<h2 id="describing-types-used-in-js-code">Describing types used in JS code</h2>
+<p>Compiler will try to infer types from JS but in most cases it will use <code>any</code>.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">costFormatter</span>(<span class="hljs-params">thing: <span class="hljs-built_in">any</span>, cost: <span class="hljs-built_in">any</span></span>): <span class="hljs-title">any</span> </span>{
+</code></pre>
+<p>This might also bring an error:</p>
+<pre><code class="lang-ts">costFormatter(<span class="hljs-string">&quot;Cart&quot;</span>, <span class="hljs-string">`<span class="hljs-subst">${cart.totalPrice}</span>`</span>);
+</code></pre>
+<pre><code>formatters.js:9: writeMessage(`The ${thing} costs $${cost.toFixed(2)}`, true);
+TypeError: cost.toFixed is not a function
+</code></pre><h3 id="using-comments">Using comments</h3>
+<p>TypeScript can obtain types through JSDoc.</p>
+<pre><code class="lang-js"><span class="hljs-comment">/**
+* Format something that has a money value
+* <span class="hljs-doctag">@param <span class="hljs-type">{ string }</span> <span class="hljs-variable">thing</span></span> - the name of the item
+* <span class="hljs-doctag">@param <span class="hljs-type">{ number}</span> <span class="hljs-variable">cost</span></span> - the value associated with the item
+*/</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">costFormatter</span>(<span class="hljs-params">thing, cost</span>) </span>{
+writeMessage(<span class="hljs-string">`The <span class="hljs-subst">${thing}</span> costs $<span class="hljs-subst">${cost.toFixed(<span class="hljs-number">2</span>)}</span>`</span>, <span class="hljs-literal">true</span>);
+}
+</code></pre>
+<p>You can check how TS works with JSDoc <a href="https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html" target="_blank">here</a>.</p>
+<h3 id="using-type-declaration-files">Using type declaration files</h3>
+<p>To describe types for <code>formatters.js</code> you must create a file <code>formatters.d.ts</code>.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sizeFormatter</span>(<span class="hljs-params">thing: <span class="hljs-built_in">string</span>, count: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">void</span></span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">costFormatter</span>(<span class="hljs-params">thing: <span class="hljs-built_in">string</span>, cost: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span> </span>): <span class="hljs-title">void</span></span>;
+</code></pre>
+<blockquote>
+<p>Declaration files are more important than JSDoc comments.</p>
+</blockquote>
+<p><strong>Attention!</strong> If <code>d.ts</code> file is used it must describe all features of a module. That&apos;s because it&apos;s only source of type information. TypeScript will see only described features of a module.</p>
+<pre><code>src/index.ts(3,40): error TS2305: Module &apos;&quot;/usingjs/src/formatters&quot;&apos; has no exported
+member &apos;writeMessage&apos;.
+</code></pre><h3 id="describing-third-party-js-code">Describing third-party JS code</h3>
 
                                 
                                 </section>
@@ -2897,7 +2993,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"013 Working With Js","level":"1.25.1.13","depth":3,"next":{"title":"BOOKMARKS","level":"1.25.1.14","depth":3,"path":"type-script/full-tutorial/BOOKMARKS.md","ref":"type-script/full-tutorial/BOOKMARKS.md","articles":[]},"previous":{"title":"012 Advanced Generic Types","level":"1.25.1.12","depth":3,"path":"type-script/full-tutorial/012-advanced-generic-types.md","ref":"type-script/full-tutorial/012-advanced-generic-types.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"type-script/full-tutorial/013-working-with-js.md","mtime":"2021-11-24T10:50:11.563Z","type":"markdown"},"gitbook":{"version":"3.6.23","time":"2022-01-07T13:58:23.020Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"013 Working With Js","level":"1.25.1.13","depth":3,"next":{"title":"BOOKMARKS","level":"1.25.1.14","depth":3,"path":"type-script/full-tutorial/BOOKMARKS.md","ref":"type-script/full-tutorial/BOOKMARKS.md","articles":[]},"previous":{"title":"012 Advanced Generic Types","level":"1.25.1.12","depth":3,"path":"type-script/full-tutorial/012-advanced-generic-types.md","ref":"type-script/full-tutorial/012-advanced-generic-types.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"type-script/full-tutorial/013-working-with-js.md","mtime":"2022-01-08T10:06:49.390Z","type":"markdown"},"gitbook":{"version":"3.6.23","time":"2022-01-08T10:13:19.547Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
