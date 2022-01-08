@@ -6,6 +6,7 @@
   "scripts": {
     "build": "book sm && honkit build",
     "publish": "gitpub",
+    "deploy": "npm-run-all build publish",
     "serve": "honkit serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,7 +23,8 @@
   "homepage": "https://github.com/fedek6/rh-manifest#readme",
   "devDependencies": {
     "gitbook-summary": "^1.2.4",
-    "honkit": "^3.6.23"
+    "honkit": "^3.6.23",
+    "npm-run-all": "^4.1.5"
   },
   "dependencies": {
     "gitbook-publish": "^1.0.3"

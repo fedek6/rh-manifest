@@ -179,7 +179,6 @@
     * [013 Working With Js](type-script/full-tutorial/013-working-with-js.md)
     * [BOOKMARKS](type-script/full-tutorial/BOOKMARKS.md)
     * [Cheat Sheet](type-script/full-tutorial/cheat-sheet.md)
-    * [Notes](type-script/full-tutorial/notes.md)
     * [Polish Dictionary](type-script/full-tutorial/polish-dictionary.md)
   * [Classes](type-script/classes.md)
   * [Declaration Files](type-script/declaration-files.md)
