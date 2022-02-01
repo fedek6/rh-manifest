@@ -66,4 +66,4 @@ const buttonStyles: React.CSSProperties = {
 
 You can use external styling libraries like `StyledComponents`.
 
-page. 40
+page. 49 (books)

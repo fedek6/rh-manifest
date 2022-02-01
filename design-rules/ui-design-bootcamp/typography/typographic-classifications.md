@@ -78,3 +78,49 @@ We trust emotional communication more.
 `Swash` - letter decoration that isn't important for recognition. 
 
 ![All](all.png)
+
+> **Black letter** is a type of typeface that has been used in medieval times. It's not very space efficient. It was also used in Nazi Germany.
+
+![Black Letter](black-letter.png)
+
+> **Nicolas Jenson** is an inventor of modern looking typeface that can be read even at a small size. There's still Adobe Jenson Pro font available! (old style serif, Garamond belongs to this group).
+
+## Serif categories
+
+### Old-style Serifs
+
+* Jenson 
+* Garamond
+
+### Transitional Serifs
+
+* Baskerville
+
+### Modern Serifs
+
+* Didot
+* Bodoni
+
+![Serif types](serif-types.png)
+
+`Humanistic (handwritten) < higher contrast`
+
+### Slab Serifs
+
+Final stage of serifs evolution.
+
+![Slab serif](slab-serif.png)
+
+## Sans-Serif
+
+> Futura is 1927 pioneer type without serifs. Nazi party banned this type of lettering. 
+
+> Helvetica was second ultra popular sans-serif type (most popular now, most used in the world).
+
+> Gill Sans returned to humanistic approach in type design.
+
+> Verdana / Arial was created to be the Helvetica of the electronic screens. Now they look old school.
+
+> Gotham typeface was popularized by Obama's campaign.
+
+## Selecting typefaces
