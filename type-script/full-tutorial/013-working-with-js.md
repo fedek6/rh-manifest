@@ -89,12 +89,12 @@ TypeScript can obtain types through JSDoc.
 
 ```js
 /**
-* Format something that has a money value
-* @param { string } thing - the name of the item
-* @param { number} cost - the value associated with the item
-*/
+ * Format something that has a money value
+ * @param { string } thing - the name of the item
+ * @param { number} cost - the value associated with the item
+ */
 export function costFormatter(thing, cost) {
-writeMessage(`The ${thing} costs $${cost.toFixed(2)}`, true);
+  writeMessage(`The ${thing} costs $${cost.toFixed(2)}`, true);
 }
 ```
 
@@ -106,7 +106,10 @@ To describe types for `formatters.js` you must create a file `formatters.d.ts`.
 
 ```ts
 export declare function sizeFormatter(thing: string, count: number): void;
-export declare function costFormatter(thing: string, cost: number | string ): void;
+export declare function costFormatter(
+  thing: string,
+  cost: number | string
+): void;
 ```
 
 > Declaration files are more important than JSDoc comments.
@@ -119,3 +122,66 @@ member 'writeMessage'.
 ```
 
 ### Describing third-party JS code
+
+Declaration files can also be used to describe JavaScript code added to the project in third-party packages that have been added to the project using NPM.
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["types/*"]
+    }
+  }
+}
+```
+
+The paths property is used to specify locations that the TypeScript compiler will use as it tries to resolve import statements for modules. The configuration used in the listing tells the compiler to look for all packages in a folder called types.
+
+**Important!** To provide the compiler with custom declaration files, the location specified by the `paths` folder must contain a folder that corresponds to the name of the module or package and must contain a type declaration file that corresponds to the package’s entry point, which is usually index.js, meaning that the declaration file is named index.d.ts. In the case of the debug package, this means the types used by the package will be described by the types/debug/index.d.ts file.
+
+Example of handwritten delcaration:
+
+```ts
+declare interface Debug {
+  (namespace: string): Debugger;
+}
+declare interface Debugger {
+  (...args: string[]): void;
+  enabled: boolean;
+}
+declare var debug: { default: Debug };
+export = debug;
+```
+
+> Describing JS code this way is very complicated and should be avoided.
+
+You can use `tsc --traceResolution` to know which files where used for typing compiled code.
+
+There's official guide by Microsoft on how to write such declarations [here](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html). But once again, don't do this!
+
+### Definitely typed delcarations
+
+```bash
+npm install --save-dev @types/debug
+```
+
+**Notice!** NPM will automatically select correct version of typings.
+
+You need to disable `paths` option in `tsconfig.json` to enable definitely typed declarations.
+
+> Compiler will search in `node_modules/@types` by default. 
+
+### Packages with bundled types
+
+It's easy to recognize. Simply check if there is a `index.d.ts` file in a package directory.
+
+### Generating declaration files
+
+You must disable `allowJs` to use this option. Simply set `declaration` to `true`.

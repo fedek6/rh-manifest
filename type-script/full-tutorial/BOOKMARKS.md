@@ -157,7 +157,9 @@
 - Using `@ts-check` and `@ts-nocheck` — page 341.  
 - Using comments to provide types (JSDoc) — page 343.  
 - Using type declaration files — page 344.
-- Describing NPM JS modules — page 347.  
+- Describing NPM JS modules (or how to create local typings folder structure) — page 347.
+- Definitely typed delcarations — page 350.
+- Generating declaration files — page 354.
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
