@@ -6,6 +6,12 @@
 docker stop 4640b9bd9621
 ```
 
+## Stop all containers
+
+```
+docker kill $(docker ps -q)
+```
+
 ## Run with exposed port
 
 ```
@@ -46,6 +52,12 @@ docker system prune -a
 
 ```bash
 docker rm [CONTAINER_ID]
+```
+
+## Remove all containers
+
+```bash
+docker rm $(docker ps -a -q)
 ```
 
 ## Remove image
