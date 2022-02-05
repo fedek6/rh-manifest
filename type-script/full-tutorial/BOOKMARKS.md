@@ -161,6 +161,10 @@
 - Definitely typed delcarations — page 350.
 - Generating declaration files — page 354.
 
+## Building web app
+- Configuring Webpack for TS — page 364.
+- Creating the data model for an app (creating abstract data classes and local test storage) — page 369.
+- Rendering HTML using DOM API — page 373.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
