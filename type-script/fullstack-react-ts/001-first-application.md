@@ -190,4 +190,31 @@ If type cannot be inferred use generic ability of `useState`:
 const [showForm, setShowForm] = useState<boolean>(false);
 ```
 
-page. 61 "Adding new lists"
+## How to differentiate component output (smart way)
+
+```ts
+export const AddNewItem = (props: AddNewItemProps) => {
+  const [showForm, setShowForm] = useState(false);
+  const { onAdd, toggleButtonText, dark } = props;
+
+  // Magic here!
+  if (showForm) {
+    return (
+      <NewItemForm
+        onAdd={(text) => {
+          onAdd(text);
+          setShowForm(false);
+        }}
+      />
+    );
+  }
+
+  return (
+    <AddItemButton dark={dark} onClick={() => setShowForm(true)}>
+      {toggleButtonText}
+    </AddItemButton>
+  );
+};
+```
+
+page. 65 "Automatically focus on input"
