@@ -283,3 +283,230 @@ async function displayData(): Promise<string> {
 
 displayData().then((res) => console.log(res));
 ```
+
+### Rendering data using the DOM API
+
+```ts
+import { Product, Order } from "./data/entities";
+export class DomDisplay {
+  props: {
+    products: Product[];
+    order: Order;
+  };
+  getContent(): HTMLElement {
+    let elem = document.createElement("h3");
+    elem.innerText = this.getElementText();
+    elem.classList.add("bg-primary", "text-center", "text-white", "p-2");
+    return elem;
+  }
+  getElementText() {
+    return (
+      `${this.props.products.length} Products, ` +
+      `Order total: $${this.props.order.total}`
+    );
+  }
+}
+```
+
+- `getContent` returns `HTMLElement` object which is the type used by the DOM API.
+- The data values used in the template string are provided by a property called props.
+
+### Adding Bootstrap to Webpack
+
+```bash
+npm install bootstrap@4.3.1
+npm install --save-dev css-loader@2.1.1
+npm install --save-dev style-loader@0.23.1
+```
+
+And to load CSS files:
+
+```js
+module.exports = {
+  mode: "development",
+  entry: "./src/index.ts",
+  output: { filename: "bundle.js" },
+  resolve: { extensions: [".ts", ".js", ".css"] },
+  module: {
+    rules: [
+      { test: /\.ts/, use: "ts-loader", exclude: /node_modules/ },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+    ],
+  },
+  devServer: {
+    contentBase: "./assets",
+    port: 4500,
+  },
+};
+```
+
+### Render
+
+```ts
+import { LocalDataSource } from "./data/localDataSource";
+import { DomDisplay } from "./domDisplay";
+import "bootstrap/dist/css/bootstrap.css";
+
+let ds = new LocalDataSource();
+
+async function displayData(): Promise<HTMLElement> {
+  let display = new DomDisplay();
+  display.props = {
+    products: await ds.getProducts("name"),
+    order: ds.order,
+  };
+  return display.getContent();
+}
+
+document.onreadystatechange = () => {
+  if (document.readyState === "complete") {
+    displayData().then((elem) => {
+      let rootElement = document.getElementById("app");
+      rootElement.innerHTML = "";
+      rootElement.appendChild(elem);
+    });
+  }
+};
+```
+
+> Notice: the default settings for the TypeScript compiler include type declaration files for the DOM API, which allows type-safe use of the browser features.
+
+## Using JSX
+
+> JSX stands for JavaScript XML. TypeScript compiler provides features that allow it to be used in any project.
+
+> Files with JSX syntax should have `.tsx` extension.
+
+First example:
+
+```tsx
+import { Product, Order } from "./data/entities";
+export class HtmlDisplay {
+  props: {
+    products: Product[];
+    order: Order;
+  };
+  getContent(): HTMLElement {
+    return (
+      <h3 className="bg-secondary text-center text-white p-2">
+        {this.getElementText()}
+      </h3>
+    );
+  }
+  getElementText() {
+    return (
+      `${this.props.products.length} Products, ` +
+      `Order total: $${this.props.order.total}`
+    );
+  }
+}
+```
+
+### JSX workflow
+
+- Each element is parsed and separated into the tag that defines the element type.
+- Compiler replaces each HTML element with a call to a factory function.
+
+So:
+
+```tsx
+  getContent(): HTMLElement {
+    return (
+      <h3 className="bg-secondary text-center text-white p-2">
+        {this.getElementText()}
+      </h3>
+    );
+  }
+```
+
+Means:
+
+```js
+getContent() {
+  return createElement("h3", { className: "bg-secondary text-center text-white p-2" }, this.getElementText());
+}
+```
+
+### Configuring JSX with TS and Webpack
+
+There are two `tsconfig` options needed:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "jsx": "react",
+    "jsxFactory": "createElement"
+  }
+}
+```
+
+And `wbepack.config.js`:
+
+```js
+module.exports = {
+  mode: "development",
+  entry: "./src/index.ts",
+  output: { filename: "bundle.js" },
+  resolve: { extensions: [".ts", ".tsx", ".js", ".css"] },
+  module: {
+    rules: [
+      { test: /\.tsx?$/, use: "ts-loader", exclude: /node_modules/ },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+    ],
+  },
+  devServer: {
+    contentBase: "./assets",
+    port: 4500,
+  },
+};
+```
+
+### Factory Function (needed to support TSX)
+
+`React` has its own elegant `createElement` function, but this custom one is needed for basic development:
+
+`jsxFactory.ts`
+
+```ts
+export function createElement(
+  tag: any,
+  props: Object,
+  ...children: Object[]
+): HTMLElement {
+  function addChild(elem: HTMLElement, child: any) {
+    elem.appendChild(
+      child instanceof Node ? child : document.createTextNode(child.toString())
+    );
+  }
+  
+  if (typeof tag === "function") {
+    return Object.assign(new tag(), { props: props || {} }).getContent();
+  }
+  
+  const elem = Object.assign(document.createElement(tag), props || {});
+
+  children.forEach((child) =>
+    Array.isArray(child)
+      ? child.forEach((c) => addChild(elem, c))
+      : addChild(elem, child)
+  );
+  return elem;
+}
+
+declare global {
+  namespace JSX {
+    interface ElementAttributesProperty {
+      props;
+    }
+  }
+}
+```
+
+> Notice: this is minimal version of `createElement`. Reacts one is far more complicated. 
+
+> Notice: `declare global` syntax is superseded by the introduction of standard JS modules and is no longer recommended for use.
+
+### Using the JSX Classes
