@@ -102,3 +102,9 @@ docker inspect {volume name}
 ```bash
 docker update --restart=no [CONTAINER_ID]
 ```
+
+## SSH to container
+
+```bash
+docker exec -it [CONTAINER_ID] /bin/bash
+```
