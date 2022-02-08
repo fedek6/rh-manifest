@@ -170,16 +170,16 @@ type ColumnProps = {
   text: string;
 } & {
   children?: React.ReactNode;
-}
+};
 ```
 
 ### Define children prop manually
 
 ```ts
 type ColumnProps = {
-  text: string
+  text: string;
   children?: React.ReactNode;
-}
+};
 ```
 
 ## How to type `useState`
@@ -217,4 +217,66 @@ export const AddNewItem = (props: AddNewItemProps) => {
 };
 ```
 
-page. 65 "Automatically focus on input"
+## Writing custom focus hook
+
+```ts
+import { useRef, useEffect } from "react";
+
+export const useFocus = () => {
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
+  return ref;
+};
+```
+
+> **Notice:** You must type referenced element. If you don't know what type you should choose, you can always check [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/global.d.ts).
+
+- `useEffect` with empty array is used to run once when component is mounted.
+
+- `null` is passed to `useRef` because:
+
+```ts
+interface RefObject<T> {
+  readonly current: T | null;
+}
+```
+
+You can make ref mutable:
+
+```tsx
+const mutableRef = useRef<HTMLInputElement | null>(null);
+const mutableRef = useRef<HTMLInputElement>();
+```
+
+## Handling enter `keypress`
+
+```ts
+export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
+  const [text, setText] = useState("");
+  const inputRef = useFocus();
+
+  const handleAddText = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onAdd(text);
+    }
+  };
+
+  return (
+    <NewItemFormContainer>
+      <NewItemInput
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyPress={handleAddText}
+        ref={inputRef}
+      />
+      <NewItemButton onClick={() => onAdd(text)}>Create</NewItemButton>
+    </NewItemFormContainer>
+  );
+};
+```
+
+Add global state... 71
