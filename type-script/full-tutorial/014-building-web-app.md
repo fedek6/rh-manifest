@@ -481,11 +481,11 @@ export function createElement(
       child instanceof Node ? child : document.createTextNode(child.toString())
     );
   }
-  
+
   if (typeof tag === "function") {
     return Object.assign(new tag(), { props: props || {} }).getContent();
   }
-  
+
   const elem = Object.assign(document.createElement(tag), props || {});
 
   children.forEach((child) =>
@@ -505,8 +505,255 @@ declare global {
 }
 ```
 
-> Notice: this is minimal version of `createElement`. Reacts one is far more complicated. 
+> Notice: this is minimal version of `createElement`. Reacts one is far more complicated.
 
 > Notice: `declare global` syntax is superseded by the introduction of standard JS modules and is no longer recommended for use.
 
 ### Using the JSX Classes
+
+JSX classes can be used as any normal classes.
+
+```ts
+import { LocalDataSource } from "./data/localDataSource";
+import { HtmlDisplay } from "./htmlDisplay";
+import "bootstrap/dist/css/bootstrap.css";
+let ds = new LocalDataSource();
+async function displayData(): Promise<HTMLElement> {
+  let display = new HtmlDisplay();
+  display.props = {
+    products: await ds.getProducts("name"),
+    order: ds.order,
+  };
+  return display.getContent();
+}
+```
+
+**Attention!** Factory function must be imported into every JSX class module. Even if it's not used by class methods:
+
+```ts
+import { createElement } from "./tools/jsxFactory";
+export class HtmlDisplay {
+  props: {
+    products: Product[];
+    order: Order;
+  };
+  getContent(): HTMLElement {
+    return (
+      <h3 className="bg-secondary text-center text-white p-2">
+        {this.getElementText()}
+      </h3>
+    );
+  }
+  getElementText() {
+    return (
+      `${this.props.products.length} Products, ` +
+      `Order total: $${this.props.order.total}`
+    );
+  }
+}
+```
+
+## Adding more advanced features to the application
+
+### Displaying a filtered list of products
+
+```tsx
+import { createElement } from "./tools/jsxFactory";
+import { Product } from "./data/entities";
+
+export class ProductItem {
+  private quantity: number = 1;
+
+  props: {
+    product: Product;
+    callback: (product: Product, quantity: number) => void;
+  };
+
+  getContent(): HTMLElement {
+    return (
+      <div className="card m-1 p-1 bg-light">
+        <h4>
+          {this.props.product.name}
+          <span className="badge badge-pill badge-primary float-right">
+            ${this.props.product.price.toFixed(2)}
+          </span>
+        </h4>
+        <div className="card-text bg-white p-1">
+          {this.props.product.description}
+          <button
+            className="btn btn-success btn-sm float-right"
+            onclick={this.handleAddToCart}
+          >
+            Add To Cart
+          </button>
+          <select
+            className="form-control-inline float-right m-1"
+            onchange={this.handleQuantityChange}
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+      </div>
+    );
+  }
+
+  handleQuantityChange = (ev: Event): void => {
+    this.quantity = Number((ev.target as HTMLSelectElement).value);
+  };
+
+  handleAddToCart = (): void => {
+    this.props.callback(this.props.product, this.quantity);
+  };
+}
+```
+
+> **Notice:** Event handlers are using fat arrow functions because that ensures `this=ProductItem` (this way props can be used). In other case `this` refers to object refers to the object that describes event.
+
+> **Notice:** Event target typing is awkward because it required assertion (`ev.target` as `HTMLSelectElement`).
+
+> Element interfaces docs can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement).
+
+Class responsible for displaying category buttons:
+
+```tsx
+import { createElement } from "./tools/jsxFactory";
+export class CategoryList {
+  props: {
+    categories: string[];
+    selectedCategory: string;
+    callback: (selected: string) => void;
+  };
+
+  getContent(): HTMLElement {
+    return (
+      <div>
+        {["All", ...this.props.categories].map((c) =>
+          this.getCategoryButton(c)
+        )}
+      </div>
+    );
+  }
+
+  getCategoryButton(cat?: string): HTMLElement {
+    let selected =
+      this.props.selectedCategory === undefined
+        ? "All"
+        : this.props.selectedCategory;
+    let btnClass = selected === cat ? "btn-primary" : "btn-secondary";
+    return (
+      <button
+        className={`btn btn-block ${btnClass}`}
+        onclick={() => this.props.callback(cat)}
+      >
+        {cat}
+      </button>
+    );
+  }
+}
+```
+
+> Take a look at `onclick={ () => this.props.callback(cat) }>` - this pattern is common in JSX apps.
+
+The class responsible for displaying contents:
+
+```tsx
+import { createElement } from "./tools/jsxFactory";
+import { Product } from "./data/entities";
+import { ProductItem } from "./productItem";
+import { CategoryList } from "./categoryList";
+
+export class ProductList {
+  props: {
+    products: Product[];
+    categories: string[];
+    selectedCategory: string;
+    addToOrderCallback?: (product: Product, quantity: number) => void;
+    filterCallback?: (category: string) => void;
+  };
+  getContent(): HTMLElement {
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-3 p-2">
+            <CategoryList
+              categories={this.props.categories}
+              selectedCategory={this.props.selectedCategory}
+              callback={this.props.filterCallback}
+            />
+          </div>
+          <div className="col-9 p-2">
+            {this.props.products.map((p) => (
+              <ProductItem
+                product={p}
+                callback={this.props.addToOrderCallback}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+```
+
+### Displaying content and handling updates
+
+Displaying content using the simplest HTML destroying and replacement:
+
+```tsx
+import { createElement } from "./tools/jsxFactory";
+import { Product, Order } from "./data/entities";
+import { AbstractDataSource } from "./data/abstractDataSource";
+import { ProductList } from "./productList";
+
+export class HtmlDisplay {
+  private containerElem: HTMLElement;
+  private selectedCategory: string;
+
+  constructor() {
+    this.containerElem = document.createElement("div");
+  }
+
+  props: {
+    dataSource: AbstractDataSource;
+  };
+
+  async getContent(): Promise<HTMLElement> {
+    await this.updateContent();
+    return this.containerElem;
+  }
+
+  async updateContent() {
+    let products = await this.props.dataSource.getProducts(
+      "id",
+      this.selectedCategory
+    );
+    let categories = await this.props.dataSource.getCategories();
+    this.containerElem.innerHTML = "";
+    let content = (
+      <div>
+        <ProductList
+          products={products}
+          categories={categories}
+          selectedCategory={this.selectedCategory}
+          addToOrderCallback={this.addToOrder}
+          filterCallback={this.selectCategory}
+        />
+      </div>
+    );
+    this.containerElem.appendChild(content);
+  }
+
+  addToOrder = (product: Product, quantity: number) => {
+    this.props.dataSource.order.addProduct(product, quantity);
+    this.updateContent();
+  };
+  
+  selectCategory = (selected: string) => {
+    this.selectedCategory = selected === "All" ? undefined : selected;
+    this.updateContent();
+  };
+}
+```

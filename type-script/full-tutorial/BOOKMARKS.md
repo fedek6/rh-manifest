@@ -161,7 +161,7 @@
 - Definitely typed delcarations — page 350.
 - Generating declaration files — page 354.
 
-## Building web app
+## Building web app (without framework, using JSX)
 - Configuring Webpack for TS — page 364.
 - Creating the data model for an app (creating abstract data classes and local test storage) — page 369.
 - Rendering HTML using DOM API — page 373.
@@ -169,7 +169,7 @@
 - Understanding the JSX Workflow — page 377.
 - Configuring JSX with TS and Webpack — page 379.
 - Factory Function (needed to support TSX) — page 380.
-- Using the JSX Classes — page 381.
+- Using the JSX Classes (factory function must be imported into every JSX file) — page 381.
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
