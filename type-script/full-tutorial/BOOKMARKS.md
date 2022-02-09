@@ -172,6 +172,9 @@
 - Using the JSX Classes (factory function must be imported into every JSX file) — page 381.
 
 ## Building web app II (decorators etc.)
+- Writing `Axios` typed data sources — page 395.
+- Using Decorators — page 397.
+- Using Decorator Metadata (adding `getMetadata` to Reflect) — page 398. 
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
