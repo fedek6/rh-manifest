@@ -122,5 +122,3 @@ Final stage of serifs evolution.
 > Verdana / Arial was created to be the Helvetica of the electronic screens. Now they look old school.
 
 > Gotham typeface was popularized by Obama's campaign.
-
-## Selecting typefaces
