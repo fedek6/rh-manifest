@@ -19,3 +19,13 @@ It's easier to create a design that communicates brand personality. It will be e
 > Variable fonts have variable font-weight (you can adjust that from 1 to 999).
 
 > Adobe has great font library.
+
+## Body text
+
+> Select your body typography first! Because it's the biggest part of your website.
+
+> Search a font with a big x-height (readability). 
+
+> Search a font with a lower contrast (Baskerville is bad, Playfair Display also).
+
+> Body cannot have too much personality!
