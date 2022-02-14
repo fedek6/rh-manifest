@@ -10,3 +10,4 @@
 * `F6` - run the scene.
 * `F8` - quit the running window.
 * `Ctrl + D` - duplicate a node.
+* `Ctrl + F1` - go to 2D view.

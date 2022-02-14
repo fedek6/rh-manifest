@@ -107,4 +107,132 @@ This code will rotate object with different pivot.
 
 To make the node move forward, we start from the Vector2 class's constant `Vector2.UP`, a vector pointing up, and rotate it by calling the `Vector2.rotated()` method. This expression, `Vector2.UP.rotated(rotation)`, is a vector pointing forward relative to our icon. Multiplied by our speed property, it gives us a velocity we can use to move the node forward.
 
-https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_player_input.html
+## Player input
+
+There are two main ways to listen for inputs:
+
+1. `_unhandled_input()` virtual function for listening for key presses. For things that don't happen every frame (like jump).
+2. `Input` singleton for every frame inputs.
+
+This code allows you to rotate sprite by arrow key press:
+
+### Rotation
+
+```gdscript
+func _process(delta):
+    var direction = 0
+    if Input.is_action_pressed("ui_left"):
+        direction = -1
+    if Input.is_action_pressed("ui_right"):
+        direction = 1
+
+    rotation += angular_speed * direction * delta
+```
+
+> `ui_left` & `ui_right` are predefined project' inputs. You can edit inputs by going to `Project -> Project Settings` and editing settings in the `Input Map` tab.
+
+Example of custom input:
+
+```gdscript
+	if Input.is_action_pressed("ui_cholibka"):
+		print("CHOOOOLIBKA!")
+```
+
+### Forward
+
+```gdscript
+var velocity = Vector2.ZERO
+if Input.is_action_pressed("ui_up"):
+    velocity = Vector2.UP.rotated(rotation) * speed
+
+position += velocity * delta
+```
+
+> `Vector2.ZERO` is a special type of vector with length of 0.
+
+### Summary
+
+* Every script in Godot is a class
+* You have access to properties like `rotation` and `position`
+* Variables on top of a file are class properties
+* Functions are class methods
+* Godot provides "virtual functions" to connect your class with the engine. 
+* `Input` singleton allows you to receive input events like key and button presses (mainly in `_process` function)
+
+https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html
+
+
+## Using signals
+
+Signals are messages that node emits on events.
+
+For example, you might have a life bar on the screen that represents the player’s health. When the player takes damage or uses a healing potion, you want the bar to reflect the change. To do so, in Godot, you would use signals.
+
+> This is observer pattern known from other game engines.
+
+* To test it add child node, specifically a button. 
+* Go to `Node` tab to list available signals
+* Click `pressed` to connect with other node
+* Godot will generate a receiver function in other node (`_on_Button_pressed`).
+
+You can pause processing when button is pressed (only for receiver class):
+
+```gdscript
+func _on_Button_pressed():
+    set_process(not is_processing())
+```
+
+> There's an advanced signal window for more advanced signals.
+
+### Connecting a signal through code
+
+Add a timer node as child node to sprite and set it to autostart.
+
+To connect with timer we'll need:
+1. Get a ref. to the timer.
+2. Call the Timer's `connect()` method.
+
+To get a reference we'll use virtual method:
+
+```gdscript
+func _ready():
+    var timer = get_node("Timer")
+	timer.connect("timeout", self, "_on_Timer_timeout")
+```
+
+Third argument to `connect` is a function in current class:
+
+```gdscript
+func _on_Timer_timeout():
+    visible = not visible
+```
+
+This toggles Sprite` visibility.
+
+### Custom signals
+
+> As signals represent events that just occurred, we generally use an action verb in the past tense in their names (health_depleted).
+
+To emit a signal you'll need to declare it first:
+
+```gdscript
+extends Sprite
+
+signal turbo_on(last_speed, current_speed)
+```
+
+And emit whenever you need it:
+
+```gdscript
+func _process(delta):
+	if Input.is_action_pressed("ui_cholibka"):
+		emit_signal("turbo_on", 100, 500)
+```
+
+### Summary
+
+* Any node emits signals on events.
+* Signals can be used for multiple things like collisions, interfaces etc.
+* `Area2D` emits `body_entered` whenever player body enters.
+
+https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html
