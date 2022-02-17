@@ -279,4 +279,112 @@ export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
 };
 ```
 
-Add global state... 71
+## State menagement
+
+`useReducer` is a React hook that allows us to manage complex state-like objects with
+multiple fields. Instead of mutating the object we create a new instance.
+
+Reducer is a function that calculates a new state by combining an old state with an action object.
+
+> Reducer is a pure function. It must not create any side effects.
+
+Simplest reducer looks like that:
+
+```js
+function exampleReducer(state, action) {
+  switch (action.type) {
+    case "SOME_ACTION": {
+      return { ...state, updatedField: action.payload };
+    }
+    default:
+      return state;
+  }
+}
+```
+
+And usage:
+
+```js
+const [state, dispatch] = useReducer(reducer, initialState);
+dispatch({ type: "SET_NAME", name: "George" });
+
+// Or by using action creator:
+const setName = (name) => ({ type: "SET_NAME", name });
+dispatch(setName("George"));
+```
+
+Action contains:
+
+- `type` - type of action (mandatory)
+- `payload`
+
+## Counter example
+
+```ts
+// Union type, it's better this way!
+type Action =
+  | {
+      type: "increment";
+    }
+  | {
+      type: "decrement";
+    };
+
+interface State {
+  count: number;
+}
+
+const counterReducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+};
+```
+
+> Action type looks strange because union operator in a first line allows to spread a union across multiple lines. Prettier likes that... `type Action = { type: "increment" } | { type: "decrement" }` would be better!
+
+Component using this reducer:
+
+```jsx
+const App = () => {
+  const [state, dispatch] = useReducer(counterReducer, { count: 0 })
+  return (
+    <>
+    <p>Count: {state.count}</p>
+    <button onClick={() => dispatch({ type: "decrement" })}>
+      -
+    </button>
+    <button onClick={() => dispatch({ type: "increment" })}>
+        +
+      </button>
+    </>
+  )
+}
+```
+
+Or even nicer with action creators:
+
+```jsx
+// Outside of a component, look at the returned type
+const increment = (): Action => ({ type: "increment" })
+const decrement = (): Action => ({ type: "decrement" })
+
+const App = () => {
+  const [state, dispatch] = useReducer(counterReducer, { count: 0 })
+  
+  return (
+    <>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch(decrement())}>-</button>
+      <button onClick={() => dispatch(increment())}>+</button>
+    </>
+  )
+}
+```
+
+Implement global state... p. 78
