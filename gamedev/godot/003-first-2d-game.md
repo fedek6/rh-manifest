@@ -115,4 +115,169 @@ func _ready():
 	hide()
 ```
 
-https://docs.godotengine.org/en/stable/getting_started/first_2d_game/03.coding_the_player.html#preparing-for-collisions
+## Preparing for collisions
+
+Base on [this](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/03.coding_the_player.html#preparing-for-collisions).
+
+Let's define custom `signal` on top of the player script:
+
+```gdscript
+extends Area2D
+signal hit
+```
+
+Now in a `Node` editor click `body_entered(body: Node)`. This will generate function for collision event:
+
+```gdscript
+func _on_Player_body_entered(body):
+	pass # Replace with function body.
+```
+
+Let's arm this function:
+
+```gdscript
+func _on_Player_body_entered(body):
+    hide() # Player disappears after being hit.
+    emit_signal("hit")
+    # Must be deferred as we can't change physics properties on a physics callback.
+    $CollisionShape2D.set_deferred("disabled", true)
+```
+
+> Disabling the area's collision shape can cause an error if it happens in the middle of the engine's collision processing. Using set_deferred() tells Godot to wait to disable the shape until it's safe to do so.
+
+Now let's add a custom function to reset player:
+
+```gdscript
+func start(pos):
+    position = pos
+    show()
+    $CollisionShape2D.disabled = false
+```
+
+## Let's create an enemy scene
+
+Create a `RigidBody2D` scene and add:
+
+- `AnimatedSprite`
+- `CollisionShape2D`
+- `VisibilityNotifier2D`
+
+> Disable selection of child nodes!
+
+Set `Gravity Scale` of rigid body to 0 (this way it won't fall down).
+
+* Create frames for sprite (three types). 
+* Set `Playing` to On. 
+* Set scale to 0.75.
+* Add capsule collision (you can rotate in transform tab!).
+* Add a script to Enemy
+
+Let's randomize enemy animation:
+
+```gdscript
+func _ready():
+    $AnimatedSprite.playing = true
+    var mob_types = $AnimatedSprite.frames.get_animation_names() // Array
+    $AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
+```
+
+> `randi() % n` select random integer between 0 and `n-1`.
+
+Now let's connect event `VisibilityNotifier2D_screen_exited`:
+
+```gdscript
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+```
+
+## Main game scene
+
+Add scene with a type `Node`.
+
+As child nodes add:
+
+* Timer (named MobTimer)
+* Timer (named ScoreTimer
+* Timer (named StartTimer)
+
+Set `One Shot` to on in `StartTimer` (this means - do not restart).
+
+Set `StartPosition` transformation to 240 and 450.
+
+## Spawning enemies
+
+Add a node called `MobPath` (`Path2D`). Create a path around game level (remember to click close curve at the end).
+
+Add `MobSpawnLocation` (`PathFollow2D`) as child of `MobPath` (this will be spawn location for new enemies).
+
+## Main scene scripting
+
+```gscript
+extends Node
+
+export(PackedScene) var mob_scene
+var score
+```
+
+* Export will allow us to choose the mob scene we want to instance.
+* `randomize()` will generate random numbers each time game is run.
+
+In the inspector you can assign `Mob.tscn` to the exported variable.
+
+Connect signal `hit()` to a method called `game_over` in a player scene. 
+
+Add a code:
+
+```gdscript
+func game_over():
+    $ScoreTimer.stop()
+    $MobTimer.stop()
+```
+
+> Player must be a child node of main scene!
+
+Connect timeout of `startTimer` and add a code:
+
+```gdscript
+func _on_StartTimer_timeout():
+    $MobTimer.start()
+    $ScoreTimer.start()
+```
+
+Connect timeout of `scoreTimer` and add a code:
+
+```gdscript
+func _on_ScoreTimer_timeout():
+    score += 1
+```
+
+And finally mob timer:
+
+```gdscript
+func _on_MobTimer_timeout():
+	# Choose a random location on Path2D.
+	var mob_spawn_location = get_node("MobPath/MobSpawnLocation");
+	mob_spawn_location.offset = randi()
+
+	# Create a Mob instance and add it to the scene.
+	var mob = mob_scene.instance()
+	add_child(mob)
+
+	# Set the mob's direction perpendicular to the path direction.
+	var direction = mob_spawn_location.rotation + PI / 2
+
+	# Set the mob's position to a random location.
+	mob.position = mob_spawn_location.position
+
+	# Add some randomness to the direction.
+	direction += rand_range(-PI / 4, PI / 4)
+	mob.rotation = direction
+
+	# Choose the velocity.
+	var velocity = Vector2(rand_range(150.0, 250.0), 0.0)
+	mob.linear_velocity = velocity.rotated(direction)
+```
+
+> Why PI? In functions requiring angles, Godot uses radians, not degrees. Pi represents a half turn in radians, about 3.1415 (there is also TAU which is equal to 2 * PI). If you're more comfortable working with degrees, you'll need to use the deg2rad() and rad2deg() functions to convert between the two.
+
+https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
