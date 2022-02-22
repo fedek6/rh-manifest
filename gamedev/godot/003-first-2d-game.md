@@ -280,4 +280,77 @@ func _on_MobTimer_timeout():
 
 > Why PI? In functions requiring angles, Godot uses radians, not degrees. Pi represents a half turn in radians, about 3.1415 (there is also TAU which is equal to 2 * PI). If you're more comfortable working with degrees, you'll need to use the deg2rad() and rad2deg() functions to convert between the two.
 
-https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
+## HUD 
+
+To add a HUD create a `CanvasLayer` (this type of scene floats over game).
+
+You can set fonts of labels by using inspector's `Control -> Theme Overrides`.
+
+> You can use `Layout` button on top to set elements places.
+
+
+Add a signal to HUD script:
+
+```gdscript
+extends CanvasLayer
+
+signal start_game
+```
+
+And a helper function for displaying temp messages:
+
+```gdscript
+func show_message(text):
+    $Message.text = text
+    $Message.show()
+    $MessageTimer.start()
+```
+
+Also add a game over function:
+
+```gdscript
+func show_game_over():
+    show_message("Game Over")
+    # Wait until the MessageTimer has counted down.
+    yield($MessageTimer, "timeout")
+
+    $Message.text = "Dodge the\nCreeps!"
+    $Message.show()
+    # Make a one-shot timer and wait for it to finish.
+    yield(get_tree().create_timer(1), "timeout")
+    $StartButton.show()
+```
+
+> `create_timer` is a programmatic way to add a timer.
+
+Update score function:
+
+```gdscript
+func update_score(score):
+    $ScoreLabel.text = str(score)
+```
+
+Connect events from the scene with the code:
+
+```gdscript
+func _on_StartButton_pressed():
+	$StartButton.hide()
+	emit_signal("start_game")
+
+func _on_MessageTimer_timeout():
+	$Message.hide()
+```
+
+> To instance a scene in other scene click `link` icon in `Scene` explorer!!!
+
+> Remember to connect a scene to exported vars in inspector `export(PackedScene) var mob_scene`.
+
+> You can use `Groups` next to `Signals` to group scenes belonging to one type. And then use it like that:
+
+```gdscript
+get_tree().call_group("mobs", "queue_free")
+```
+
+> At this point game is in a working state. It's really hard to remember all this features. Return to [tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/07.finishing-up.html) if needded.
+
+https://docs.godotengine.org/en/stable/getting_started/first_2d_game/07.finishing-up.html
