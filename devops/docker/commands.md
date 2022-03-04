@@ -90,6 +90,12 @@ docker exec -it [CONTAINER_ID] bash
 2. If you have multiple bridge drivers, make sure that you're starting your containers, which will be talking with each other, using same bridge network docker `run -d -t --network networkname  --name containername`
 3. Run `docker network inspect networkname`. You will see details of network with list of containers. Each container will have IPv4Address associated with it. Use value of these address to communicate instead of localhost or 127.0.0.1
 
+## Find an IP of a container
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [container_id]
+```
+
 ## How to check where volumes are stored?
 
 ```bash
