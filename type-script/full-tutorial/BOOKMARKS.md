@@ -176,6 +176,12 @@
 - Using Decorators — page 397.
 - Using Decorator Metadata (adding `getMetadata` to Reflect) — page 398. 
 
+## React app
+- Defining the Entity Types (data types for application) — page 466.
+- Using class components — page 468.
+- Using functional components — page 468.
+- Creating data store (Redux) — page 482.
+
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
