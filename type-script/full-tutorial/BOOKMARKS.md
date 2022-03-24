@@ -180,7 +180,13 @@
 - Defining the Entity Types (data types for application) — page 466.
 - Using class components — page 468.
 - Using functional components — page 468.
-- Creating data store (Redux) — page 482.
+- Creating data store (Redux) — page 476.
+- Creating action types and functions (Redux) — page 477.
+- Creating reducer (Redux) — page 477.
+- Data store (Redux) — page 478.
+- Creating HTTP request class — page 478.
+- Connecting data store to components — page 479.
+- Finished App component with data store — page 481.
 
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).

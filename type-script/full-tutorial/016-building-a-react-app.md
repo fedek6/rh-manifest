@@ -429,4 +429,186 @@ export type StoreAction =
   | ResetOrderAction;
 ```
 
-page. 476
+- `StoreData` interface describes data that store will manage
+- `ACTIONS` each `enum` value is used as a type argument to the Action type
+- The `Action` interface is extended to describe the characteristics of the object for each action type, some of which have a payload property that provides the data that will be required to apply the action.
+- `StoreAction` is an intersection of action interfaces
+
+`src/data/actionCreators.ts`
+
+```ts
+import {
+  ACTIONS,
+  AddProductsAction,
+  ModifyOrderAction,
+  ResetOrderAction,
+} from "./types";
+import { Product } from "./entities";
+
+export const addProduct = (...products: Product[]): AddProductsAction => ({
+  type: ACTIONS.ADD_PRODUCTS,
+  payload: products,
+});
+
+export const modifyOrder = (
+  product: Product,
+  quantity: number
+): ModifyOrderAction => ({
+  type: ACTIONS.MODIFY_ORDER,
+  payload: { product, quantity },
+});
+
+export const resetOrder = (): ResetOrderAction => ({
+  type: ACTIONS.RESET_ORDER,
+});
+```
+
+These functions act as a bridge between components and data store. Actions are processed by functions called `reducers`.
+
+`src/data/reducers.ts`
+
+```ts
+import { ACTIONS, StoreData, StoreAction } from "./types";
+import { Order } from "./entities";
+import { Reducer } from "redux";
+
+export const StoreReducer: Reducer<StoreData, StoreAction> = (
+  data: StoreData | undefined,
+  action
+) => {
+  data = data || { products: [], order: new Order() };
+
+  switch (action.type) {
+    case ACTIONS.ADD_PRODUCTS:
+      return {
+        ...data,
+        products: [...data.products, ...action.payload],
+      };
+
+    case ACTIONS.MODIFY_ORDER:
+      data.order.addProduct(action.payload.product, action.payload.quantity);
+      return { ...data };
+
+    case ACTIONS.RESET_ORDER:
+      return {
+        ...data,
+        order: new Order(),
+      };
+
+    default:
+      return data;
+  }
+};
+```
+
+> Enums are nice for switching!
+
+`src/data/dataStore.ts`
+
+```ts
+import { createStore, Store } from "redux";
+import { StoreReducer } from "./reducer";
+import { StoreData, StoreAction } from "./types";
+export const dataStore: Store<StoreData, StoreAction> =
+  createStore(StoreReducer);
+```
+
+## HTTP request class
+
+> Redux can support actions that handle HTTP requests. But this is simple example using Axios.
+
+`src/data/httpHandler.ts`
+
+```ts
+import Axios from "axios";
+import { Product, Order } from "./entities";
+const protocol = "http";
+const hostname = "localhost";
+const port = 4600;
+const urls = {
+  products: `${protocol}://${hostname}:${port}/products`,
+  orders: `${protocol}://${hostname}:${port}/orders`,
+};
+
+export class HttpHandler {
+  loadProducts(callback: (products: Product[]) => void): void {
+    Axios.get(urls.products).then((response) => callback(response.data));
+  }
+  storeOrder(order: Order, callback: (id: number) => void): void {
+    let orderData = {
+      lines: [...order.orderLines.values()].map((ol) => ({
+        productId: ol.product.id,
+        productName: ol.product.name,
+        quantity: ol.quantity,
+      })),
+    };
+    Axios.post(urls.orders, orderData).then((response) =>
+      callback(response.data.id)
+    );
+  }
+}
+```
+
+## Connecting data store to components
+
+The `React-Redux` package is responsible for connecting data store with components.
+
+`src/data/productListConnector.ts`
+
+```ts
+import { StoreData } from "./types";
+import { modifyOrder } from "./actionCreators";
+import { connect } from "react-redux";
+import { ProductList } from "../productList";
+
+const mapStateToProps = (data: StoreData) => ({
+  products: data.products,
+  categories: [...new Set(data.products.map((p) => p.category))],
+  order: data.order,
+});
+
+const mapDispatchToProps = {
+  addToOrder: modifyOrder,
+};
+
+const connectFunction = connect(mapStateToProps, mapDispatchToProps);
+export const ConnectedProductList = connectFunction(ProductList);
+```
+
+Finished `App.tsx`:
+
+```tsx
+import React, { Component } from "react";
+//import { Product, Order } from './data/entities';
+//import { ProductList } from './productList';
+import { dataStore } from "./data/dataStore";
+import { Provider } from "react-redux";
+import { HttpHandler } from "./data/httpHandler";
+import { addProduct } from "./data/actionCreators";
+import { ConnectedProductList } from "./data/productListConnector";
+
+interface Props {
+  // no props required
+}
+
+export default class App extends Component<Props> {
+  private httpHandler = new HttpHandler();
+  constructor(props: Props) {
+    super(props);
+    this.httpHandler.loadProducts((data) =>
+      dataStore.dispatch(addProduct(...data))
+    );
+  }
+  render = () => (
+    <div className="App">
+      <Provider store={dataStore}>
+        <ConnectedProductList />
+      </Provider>
+    </div>
+  );
+  
+  submitCallback = () => {
+    console.log("Submit order");
+  };
+}
+```
