@@ -354,3 +354,28 @@ get_tree().call_group("mobs", "queue_free")
 > At this point game is in a working state. It's really hard to remember all this features. Return to [tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/07.finishing-up.html) if needded.
 
 https://docs.godotengine.org/en/stable/getting_started/first_2d_game/07.finishing-up.html
+
+## Adding color background
+
+Add `ColorRect` as the first node in `Main` 
+
+> First mean in the back in Godot
+
+## Sound effects
+
+Add two `AudioStreamPlayer` nodes.
+
+Code to play & stop:
+
+```gdscript
+$Music.play()
+$Music.stop()
+```
+
+Put it in a right functions and voila!
+
+## Add a keyboard shortcut to a button
+
+* Add an action and mapping in project settings
+* In button inspector add new `InputEventAction`
+* Click on item and add `Action`
