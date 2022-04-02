@@ -188,6 +188,17 @@
 - Connecting data store to components — page 479.
 - Finished App component with data store — page 481.
 
+## React app II
+- Configuring routing (React router) — page 485.
+- How to create links for router — page 487.
+- Component always connected to the store — page 489.
+- Using `match` to obtain URL variables — page 489.
+
+## Deploying react app
+
+- Creating `express` server — page 492.
+- Containerizing — page 496.
+
 
 This book can be bought [here](https://www.apress.com/gp/book/9781484270103).
 
