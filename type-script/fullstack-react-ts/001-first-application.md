@@ -387,4 +387,156 @@ const App = () => {
 }
 ```
 
-Implement global state... p. 78
+## Implement global state
+
+Let's define a data structure and make it available to all the components.
+
+`src/types.ts`
+
+```ts
+export interface State {
+  count: number;
+}
+
+export type Action = { type: "increment" } | { type: "decrement" };
+
+export type Task = {
+  id: string
+  text: string
+}
+
+export type List = {
+  id: string
+  text: string
+  tasks: Task[]
+}
+
+// Root type
+export type AppState = {
+  lists: List[]
+}
+```
+
+`src/state/AppStateContext.tsx`
+
+```tsx
+import { createContext, useContext, FC } from "react";
+import type { AppState, List, Task } from "../types";
+
+type AppStateContextProps = {
+  lists: List[]
+  getTasksByListId(id: string): Task[]
+}
+
+const appData: AppState = {
+  lists: [
+    {
+      id: "0",
+      text: "To do",
+      tasks: [
+        {
+          id: "c0",
+          text: "aaaa"
+        }
+      ]
+    },
+    {
+      id: "1",
+      text: "In progress",
+      tasks: [
+        {
+          id: "c2",
+          text: "bbb"
+        }
+      ]
+    }
+  ]
+}
+
+const AppStateContext = createContext<AppStateContextProps>(
+  {} as AppStateContextProps
+);
+
+export const AppStateProvider: FC = ({ children }) => {
+  const { lists } = appData;
+
+  const getTasksByListId = (id: string) => {
+    return lists.find((list) => list.id === id)?.tasks || []
+  }
+
+  return (
+    <AppStateContext.Provider value={{ lists, getTasksByListId }}>
+      {children}
+    </AppStateContext.Provider>
+  );
+}
+
+export const useAppState = () => {
+  return useContext(AppStateContext);
+}
+```
+
+> We're using `createContext` and `useContext` to define a helper hook to access the context easier.
+
+## Get the data from `AppStateContext`
+
+To use state in component:
+
+```tsx
+import { ColumnContainer, ColumnTitle } from "./styles";
+import { Card } from "./Card";
+import { AddNewItem } from "./AddNewItem";
+import { useAppState } from "./state/AppStateContext";
+
+type ColumnProps = {
+  text: string;
+  id: string;
+};
+
+export const Column = ({ text, id }: ColumnProps) => {
+  const { getTasksByListId } = useAppState();
+
+  const tasks = getTasksByListId(id);
+
+  return (
+    <ColumnContainer>
+      <ColumnTitle>{text}</ColumnTitle>
+      {tasks.map((task) => (
+        <Card text={task.text} key={task.id} id={task.id} />
+      ))}
+      <AddNewItem
+        toggleButtonText="+ Add another list"
+        onAdd={console.log}
+        dark
+      />
+    </ColumnContainer>
+  );
+};
+
+```
+
+And in `app`:
+
+```tsx
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
+import { Column } from "./Column";
+import { AddNewItem } from "./AddNewItem";
+import { AppContainer } from "./styles";
+import { useAppState } from "./state/AppStateContext";
+
+function App() {
+  const { lists } = useAppState();
+
+  return (
+    <AppContainer>
+      {lists.map((list) => (
+        <Column text={list.text} key={list.id} id={list.id} />
+      ))}
+      <AddNewItem toggleButtonText="+ Add another list" onAdd={console.log} />
+    </AppContainer>
+  );
+}
+
+export { App };
+```
