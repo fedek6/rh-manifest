@@ -4,6 +4,14 @@
 
 Git-flow is a merge based solution. It doesn't rebase feature branches.
 
+> Git Flow is recommended only when commit velocity is low!
+
+```
+If your organization is on a monthly or quarterly release cycle and it’s a team that works on multiple releases in parallel, Gitflow may be a good choice for you. If your team is a startup, or an internet-facing website or web application, where you may have multiple releases in a day; gitflow isn’t good for you. If your team is small (under 10 people), gitflow puts too much ceremony and overhead into your wo
+```
+
+https://georgestocker.com/2020/03/04/please-stop-recommending-git-flow/
+
 ## What is Rebase?
 
 Rebasing is the process of moving or combining a sequence of commits to a new base commit. Rebasing is most useful and easily visualized in the context of a feature branching workflow.
