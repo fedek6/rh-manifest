@@ -29,3 +29,30 @@ It's easier to create a design that communicates brand personality. It will be e
 > Search a font with a lower contrast (Baskerville is bad, Playfair Display also).
 
 > Body cannot have too much personality!
+
+## How to find typefaces?
+
+> You can create single typeface. But good headline gives you more possibilities. 
+
+
+There two main font types for your project:
+
+* Body text
+* Display text
+
+### Display text
+
+Display text must drag user into rest of the content. 
+
+> Heading must have personality! 
+
+> Lack of good, original display typeface makes content dull & boring. 
+
+> Display text is not about readibility, it's about branding and originality.
+
+## Pairing 
+
+> You can select third font for meta information (content heavy websites, more content hierarchy). For eg. Guardian website has captions under photography (smaller text, lighter color).
+
+> Third font should be readable even if very small.
+
