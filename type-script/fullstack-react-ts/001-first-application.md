@@ -540,3 +540,172 @@ function App() {
 
 export { App };
 ```
+
+## Define business logic
+
+Let's define actions and reducers.
+
+> In this book Author is using [Immer library](https://immerjs.github.io/immer/) it's used for simplification of state updates.
+
+### Let's define actions
+
+`src/state/actions.ts`
+
+```ts
+export type Action =
+ | {
+   type: "ADD_LIST",
+   payload: string
+ }
+ | {
+   type: "ADD_TASK",
+   payload: { text: string, listId: string }
+ }
+```
+
+This could also be defined as union of interfaces:
+
+```ts
+interface AddListAction {
+  type: "ADD_LIST"
+  payload: string
+}
+
+interface AddTaskAction {
+  type: "ADD_TASK"
+  payload: { text: string; listId: string }
+}
+
+type Action = AddListAction | AddTaskAction
+```
+
+> This property is discriminated union. TypeScript can determine payload based on a first property. Type property is discriminant.
+
+How does it work?
+
+```ts
+if (action.type === "ADD_LIST") {
+return typeof action.payload
+  // Will return "string"
+}
+
+if (action.type === "ADD_TASK") {
+  return typeof action.payload
+  // Will return { text: string; listId: string }
+}
+```
+
+### Action creators
+
+`src/state/actions.ts`
+```ts
+export const addTask = (text: string, listId: string): Action => ({
+  type: "ADD_TASK",
+  payload: {
+    text,
+    listId
+  }
+});
+
+export const addList = (text: string): Action => ({
+  type: "ADD_LIST",
+  payload: text
+});
+```
+
+### Add `appStateReducer`
+
+```ts
+import { Action } from "./actions";
+import type { AppState, List, Task } from "../types";
+
+export const appStateReducer = (
+  draft: AppState,
+  action: Action
+): AppState | void => {
+  switch (action.type) {
+    //
+  }
+}
+```
+
+> Notice we're calling state a draft, that's because we're using `Immer`. 
+
+
+### Adding lists to state
+
+```ts
+import { Action } from "./actions";
+import { nanoid } from "nanoid";
+import type { AppState, List, Task } from "../types";
+
+export const appStateReducer = (
+  draft: AppState,
+  action: Action
+): AppState | void => {
+  switch (action.type) {
+    case "ADD_LIST": {
+      draft.lists.push({
+        id: nanoid(),
+        text: action.payload,
+        tasks: [],
+      });
+      break;
+    }
+  }
+};
+```
+
+### Adding array helpers for adding tasks
+
+Find the array item using id:
+
+```ts
+type Item = {
+  id: string
+}
+
+export const findItemByIndexId = <TItem extends Item>(
+  items: TItem[],
+  id: string
+) => {
+  return items.findIndex((item: TItem) => item.id === id);
+}
+
+```
+
+> Notice how usage of generic forced you to add id.
+
+### Full state reducer
+
+```ts
+export const appStateReducer = (
+  draft: AppState,
+  action: Action
+): AppState | void => {
+  switch (action.type) {
+    // eslint-disable-next-line no-lone-blocks
+    case "ADD_LIST": {
+      draft.lists.push({
+        id: nanoid(),
+        text: action.payload,
+        tasks: [],
+      });
+    }
+    break;
+    case "ADD_TASK": {
+      const { text, listId } = action.payload;
+      const targetListIndex = findItemByIndexId(draft.lists, listId);
+
+      draft.lists[targetListIndex].tasks.push({
+        id: nanoid(),
+        text
+      });
+    }
+  }
+};
+```
+
+### Add dispatch to the context
+
+page. 92
