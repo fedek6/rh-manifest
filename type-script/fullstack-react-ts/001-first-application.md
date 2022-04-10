@@ -674,7 +674,7 @@ export const findItemByIndexId = <TItem extends Item>(
 
 ```
 
-> Notice how usage of generic forced you to add id.
+> Notice how usage of generic type forced you to add id.
 
 ### Full state reducer
 
@@ -708,4 +708,116 @@ export const appStateReducer = (
 
 ### Add dispatch to the context
 
-page. 92
+* Add imports
+* Add `dispatch` to the context provider
+
+```tsx
+import { createContext, useContext, Dispatch, FC } from "react";
+import { appStateReducer } from "./appStateReducer";
+import { Action } from "./actions";
+import { useImmerReducer } from "use-immer";
+import type { AppState, List, Task } from "../types";
+
+type AppStateContextProps = {
+  lists: List[]
+  getTasksByListId(id: string): Task[]
+  dispatch: Dispatch<Action>
+}
+
+const appData: AppState = {
+  lists: []
+}
+
+const AppStateContext = createContext<AppStateContextProps>(
+  {} as AppStateContextProps
+);
+
+export const AppStateProvider: FC = ({ children }) => {
+  const [state, dispatch] = useImmerReducer(appStateReducer, appData);
+
+  const { lists } = state;
+
+  const getTasksByListId = (id: string) => {
+    return lists.find((list) => list.id === id)?.tasks || []
+  }
+
+  return (
+    <AppStateContext.Provider value={{ lists, getTasksByListId, dispatch }}>
+      {children}
+    </AppStateContext.Provider>
+  );
+}
+
+export const useAppState = () => {
+  return useContext(AppStateContext);
+}
+```
+
+## Dispatching actions
+
+* Destructurize `dispatch` from `useAppState` hook
+* Add dispatch action to the `onAdd` of component
+
+```tsx
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
+import { Column } from "./Column";
+import { AddNewItem } from "./AddNewItem";
+import { AppContainer } from "./styles";
+import { useAppState } from "./state/AppStateContext";
+import { addList } from "./state/actions";
+
+function App() {
+  const { lists, dispatch } = useAppState();
+
+  return (
+    <AppContainer>
+      {lists.map((list) => (
+        <Column text={list.text} key={list.id} id={list.id} />
+      ))}
+      <AddNewItem
+        toggleButtonText="+ Add another list"
+        onAdd={(text) => dispatch(addList(text))} />
+    </AppContainer>
+  );
+}
+
+export { App };
+```
+
+And the same for other component:
+
+```tsx
+import { ColumnContainer, ColumnTitle } from "./styles";
+import { Card } from "./Card";
+import { AddNewItem } from "./AddNewItem";
+import { useAppState } from "./state/AppStateContext";
+import { addTask } from "./state/actions";
+
+type ColumnProps = {
+  text: string;
+  id: string;
+};
+
+export const Column = ({ text, id }: ColumnProps) => {
+  const { getTasksByListId, dispatch } = useAppState();
+
+  const tasks = getTasksByListId(id);
+
+  return (
+    <ColumnContainer>
+      <ColumnTitle>{text}</ColumnTitle>
+      {tasks.map((task) => (
+        <Card text={task.text} key={task.id} id={task.id} />
+      ))}
+      <AddNewItem
+        toggleButtonText="+ Add another task"
+        onAdd={(text) => dispatch(addTask(text, id))}
+        dark
+      />
+    </ColumnContainer>
+  );
+};
+```
+
+p. 95

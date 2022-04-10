@@ -16,3 +16,5 @@
 - `appStateReducer` — page 88.
 - `nanoid` library for ids — page 89.
 - Adding to the state — page 90.
+- Adding dispatch to context provider — page 92.
+- Dispatching actions — page 94.
