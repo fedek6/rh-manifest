@@ -820,4 +820,164 @@ export const Column = ({ text, id }: ColumnProps) => {
 };
 ```
 
-p. 95
+## Moving items
+
+We need a utility function to remove array item at specific index:
+
+```ts
+export function removeItemAtIndex<TItem>(
+  array: TItem[],
+  index: number
+) {
+  return [...array.slice(0, index), ...array.slice(index +1)];
+}
+```
+
+> Moving means removing & adding somewhere else.
+
+Also second function to insert item at specific position:
+
+```ts
+export function insertItemAtIndex<TItem>(
+  array: TItem[],
+  item: TItem,
+  index: number
+) {
+  return [...array.slice(0, index), item, ...array.slice(index)];
+}
+```
+
+Final method is used for moving cards vertically:
+
+```ts
+export const moveItem = <TItem>(
+  array: TItem[],
+  from: number,
+  to: number
+) => {
+  const item = array[from];
+  return insertItemAtIndex(removeItemAtIndex(array, from), item, to);
+}
+```
+
+Add a new action type:
+
+```ts
+ | {
+   type: "MOVE_LIST",
+   payload: {
+     draggedId: string,
+     hoverId: string
+   }
+ }
+```
+
+Add a new action:
+
+```ts
+export const moveList = (
+  draggedId: string,
+  hoverId: string
+): Action => ({
+  type: "MOVE_LIST",
+  payload: {
+    draggedId,
+    hoverId
+  }
+})
+```
+
+Add move list to state reducer:
+
+```ts
+    case "MOVE_LIST": {
+      const { draggedId, hoverId } = action.payload;
+      const dragIndex = findItemByIndexId(draft.lists, draggedId);
+      const hoverIndex = findItemByIndexId(draft.lists, hoverId);
+      draft.lists = moveItem(draft.lists, dragIndex, hoverIndex);
+      break;
+    }
+```
+
+### Dragging library
+
+```bash
+yarn add react-dnd@14.0.1 react-dnd-html5-backend@14.0.0
+```
+
+We need to type dragged item:
+
+```ts
+export type ColumnDragItem = {
+  id: string,
+  text: string,
+  type: "COLUMN"
+}
+
+export type DragItem = ColumnDragItem;
+```
+
+We need to have dragged item in state:
+
+```ts
+export type AppState = {
+  lists: List[],
+  draggedItem: DragItem | null
+}
+```
+
+Add to state:
+
+```ts
+const appData: AppState = {
+  lists: [],
+  draggedItem: null
+}
+```
+
+And provide in context:
+
+```tsx
+<AppStateContext.Provider value={{ draggedItem, lists, getTasksByListId, dispatch }}>
+```
+
+Add to state reducer:
+
+```ts
+    case "SET_DRAGGED_ITEM": {
+      draft.draggedItem = action.payload;
+      break;
+```
+
+## Create dragging hook
+
+```ts
+import { useDrag } from "react-dnd";
+import { useAppState } from "../state/AppStateContext";
+import type { DragItem } from "../DragItem";
+import { setDraggedItem } from "../state/actions";
+
+export const useItemDrag = (item: DragItem) => {
+  const { dispatch } = useAppState();
+  const [, drag] = useDrag({
+    type: item.type,
+    item: () => {
+      dispatch(setDraggedItem(item));
+      return item;
+    },
+    end: () => dispatch(setDraggedItem(null))
+  });
+
+  return { drag };
+}
+
+```
+
+### Install debounce lib
+
+```
+yarn add throttle-debounce-ts
+```
+
+
+p. 107

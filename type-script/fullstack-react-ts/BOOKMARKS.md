@@ -18,3 +18,9 @@
 - Adding to the state — page 90.
 - Adding dispatch to context provider — page 92.
 - Dispatching actions — page 94.
+- Array operation utility functions (lot of spread operations) — page 96.
+- Drag library for React — page 99.
+- Typing dragged items — page 100.
+- Define dragging hook — page 103.
+- Debounce throttle lib — page 103.
+- Finished drag & drop — page 106.
