@@ -24,3 +24,4 @@
 - Define dragging hook — page 103.
 - Debounce throttle lib — page 103.
 - Finished drag & drop — page 106.
+- Styling item that is being dragged — page 109.

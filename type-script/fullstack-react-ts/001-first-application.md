@@ -979,5 +979,105 @@ export const useItemDrag = (item: DragItem) => {
 yarn add throttle-debounce-ts
 ```
 
+Full example looks little scary:
 
-p. 107
+```tsx
+import { useRef } from "react";
+import { useItemDrag } from "./utils/useItemDrag";
+import { ColumnContainer, ColumnTitle } from "./styles";
+import { Card } from "./Card";
+import { AddNewItem } from "./AddNewItem";
+import { useAppState } from "./state/AppStateContext";
+import { moveList, addTask } from "./state/actions";
+import { useDrop } from "react-dnd";
+import { throttle } from "throttle-debounce-ts";
+
+type ColumnProps = {
+  text: string;
+  id: string;
+};
+
+export const Column = ({ text, id }: ColumnProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [, drop] = useDrop({
+    accept: "COLUMN",
+    hover: throttle(222, () => {
+      if (!draggedItem) {
+        return;
+      }
+      if (draggedItem.type === "COLUMN") {
+        if (draggedItem.id === id) {
+          return;
+        }
+
+        dispatch(moveList(draggedItem.id, id));
+      }
+    })
+  });
+  const { draggedItem, getTasksByListId, dispatch } = useAppState();
+  const { drag } = useItemDrag({ type: "COLUMN", id, text });
+
+
+  const tasks = getTasksByListId(id);
+
+  drag(drop(ref));
+  return (
+    <ColumnContainer ref={ref}>
+      <ColumnTitle>{text}</ColumnTitle>
+      {tasks.map((task) => (
+        <Card text={task.text} key={task.id} id={task.id} />
+      ))}
+      <AddNewItem
+        toggleButtonText="+ Add another task"
+        onAdd={(text) => dispatch(addTask(text, id))}
+        dark
+      />
+    </ColumnContainer>
+  );
+};
+```
+
+### Hide the dragged item
+
+First, we need to create styled component props for that:
+
+```ts
+interface DragPreviewContainerProps {
+  isHidden?: boolean
+}
+export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
+  opacity: ${(props) => (props.isHidden ? 0.3 : 1)}
+`;
+export const ColumnContainer = styled(DragPreviewContainer)`
+  background-color: #ebecf0;
+  width: 300px;
+  min-height: 40px;
+  margin-right: 20px;
+  border-radius: 3px;
+  padding: 8px 8px;
+  flex-grow: 0;
+`;
+```
+
+Add helper utility:
+
+```ts
+import type { DragItem } from "../DragItem";
+
+export const isHidden = (
+  draggedItem: DragItem | null,
+  itemType: string,
+  id: string
+): boolean => {
+  return Boolean(
+    draggedItem &&
+      draggedItem.type === itemType &&
+      draggedItem.id === id
+  );
+}
+
+```
+
+> Check this `Boolean` function!
+
+page. 110
