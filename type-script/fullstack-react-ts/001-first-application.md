@@ -1080,4 +1080,20 @@ export const isHidden = (
 
 > Check this `Boolean` function!
 
-page. 110
+### Custom dragging preview
+
+By using `attrs` function of styled components:
+
+```ts
+export const DragPreviewWrapper = styled.div.attrs<DragPreviewWrapperProps>(
+  ({ position: { x, y } }) => ({
+    style: {
+      transform: `translate(${x}px, ${y}px)`
+    }
+  })
+)<DragPreviewWrapperProps>``;
+```
+
+You can update component style without generating class names.
+
+p. 119 Drag cards
