@@ -6,6 +6,7 @@
 * `TextureRect` — texture rectangle
 * `Button` 
 * `sprite` — basic sprite
+* `label` — text label
 
 ## Sound
 
