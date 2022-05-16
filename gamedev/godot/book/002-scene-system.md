@@ -44,4 +44,12 @@ It's important to have a design idea before making the scenes of the game. Each 
 
 ## Managing subscenes
 
-p. 50
+It's easier to deal with multiple small scenes. However, you need to manage scenes that consists of smaller ones.
+
+1. When you need to edit original scene, use `Open subscene` icon (movie clip).
+2. By default, only root scene is visible. You can change that by right clicking and selecting `editable children`.
+3. You can unlink inherited scene by right click (`Discard Instancing` or `Make local`).
+4. By using right click you can create a new scene from a part of a bigger one (`Save branch as scene`).
+
+> Godot will automatically prevent cycling dependencies!
+
