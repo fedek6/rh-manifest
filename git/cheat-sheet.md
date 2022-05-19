@@ -34,3 +34,11 @@
 	url = git@github.com:Memocracy/headless-cms-plugin.git
   	branch = develop
 ```
+
+Example:
+
+```bash
+git submodule add git@github.com:fedek6/wp-headless-theme.git app/dist/wp-content/themes/wp-headless-theme/
+```
+
+> `wp-headless-theme` must not exist when running this command! 
