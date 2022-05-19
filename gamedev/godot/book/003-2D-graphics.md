@@ -45,4 +45,47 @@ vector.normalized();
 
 ## Transforms
 
-p. 58
+Matrices are used for object transformation. Each node resides in its local space, and it's affected by the transforms of its ancestor to determine position in the global space.
+
+Transform is a mix of:
+* position aka translation
+* rotation
+* scale
+
+So a 3x2 matrix:
+
+```
+transform = [Xx Xy, Yx Yy, Ox Oy]
+```
+
+Translates to:
+* First two rows X and Y is transformation in local space
+* Last one is the translation
+
+```
+var transform = Transform2D()
+var x = transform.x
+var y = transform.y
+var o = transform.o // Origin translation vector
+```
+
+### The power of transforms
+
+The main use of matrices is to store transform operations. If you multiply two matrices, the result is a matrix that combines both operations. 
+
+> Order matters, mathematically the last transform is applied first, Godot works in a reverse order. 
+
+
+By default, a transform is defined with the identity matrix `[1 0, 0 1, 0 0]`. This means that no transform is made, and the object keeps its default position, rotation and scale.
+
+For example, you combine rotation and scale transform:
+
+```
+var rotate_matrix = Transform2D().rotated(deg2rad(90));
+var scale_matrix = Transform2D().scaled(Vector2(2, 2)); # Scale twice in each axis
+var translate_matrix = Transform2D().translated(Vector2(0,0)) # This line in book was bugged
+var combined_matrix = translated_matrix * rotate_matrix * scale_matrix # combine
+$my_node.transform *= combined # Apply
+```
+
+p. 59
