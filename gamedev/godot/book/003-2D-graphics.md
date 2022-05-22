@@ -138,4 +138,20 @@ Godot has `TileMap` node specifically for this.
 
 ## Using `TileMaps`
 
-p/ 61
+To use `TileSet` you must add a `TileMap` node to your scene and configure it properly.
+
+> There's special menu in a main view where you can find tile tools (like paint bucket etc.).
+
+> You can flip and rotate tiles using menu over the tile selector.
+
+### Third party `TileSet` and `TileMap` tools
+
+To use third party tools like Tiled you must install special plugins using Asset library.
+
+### Other projections
+
+You can use isometric and hexagonal maps in Godot. You need to change `TileMap` mode to change this. To use hexagonal maps you need to set offset settings.
+
+## `ParallaxBackground` Node
+
+p. 61 end
