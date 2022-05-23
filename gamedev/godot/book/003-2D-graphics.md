@@ -152,6 +152,46 @@ To use third party tools like Tiled you must install special plugins using Asset
 
 You can use isometric and hexagonal maps in Godot. You need to change `TileMap` mode to change this. To use hexagonal maps you need to set offset settings.
 
-## `ParallaxBackground` Node
+## `ParallaxBackground` node
 
-p. 61 end
+This is just a helper. It works together with `ParallaxLayer` node. 
+
+* `Offset` how much background is offset. 
+* `Base offset` base property for the children.
+* `Base scale` this is the base scale value for children.
+* `Limit begin/end` scroll will end when background will reach those limits.
+* `Ignore camera zoom` background will ignore camera zoom.
+
+### `ParallaxLayer` node
+
+`ParallaxBackground` needs multiple `PatallaxLayer` nodes as children.
+
+You can set some things:
+
+* `scale` how much layer moves relative to bg offset (lower makes it slower).
+* `offset` starting offset of the layer.
+* `mirroring` layer will mirror automatically & repeat when overscroll.
+
+> It's quite tricky to setup mirroring on parallax :(
+
+Simple sprite movement used for testing:
+
+```
+extends Sprite
+export var speed = 500
+func _process(delta):
+var direction = Vector2()
+if Input.is_action_pressed("ui_left"):
+direction.x = -1.0
+elif Input.is_action_pressed("ui_right"):
+direction.x = 1.0
+if Input.is_action_pressed("ui_up"):
+direction.y = -1.0
+elif Input.is_action_pressed("ui_down"):
+direction.y = 1.0
+var velocity = directi
+```
+
+## Scripting
+
+p. 65
