@@ -191,7 +191,3 @@ elif Input.is_action_pressed("ui_down"):
 direction.y = 1.0
 var velocity = directi
 ```
-
-## Scripting
-
-p. 65
