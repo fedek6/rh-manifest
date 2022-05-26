@@ -65,7 +65,7 @@ export const PageTitles = () => {
 };
 ```
 
-### Caching query results 
+### Caching query results
 
 Apollo Client caches results locally. You can check that by using plugin with multiple parametrized queries:
 
@@ -88,8 +88,8 @@ import { GET_PAGE } from "../apollo/queries";
 export const Page = ({ id }: { id: string }) => {
   const { loading, error, data } = useQuery(GET_PAGE, {
     variables: {
-      id
-    }
+      id,
+    },
   });
 
   if (loading) return <p>Loading...</p>;
@@ -100,10 +100,109 @@ export const Page = ({ id }: { id: string }) => {
       <h1>{data.page.title}</h1>
       <p>{data.page.slug}</p>
     </>
-  )
+  );
 };
 ```
 
 ### Updating cached query results
 
-https://www.apollographql.com/docs/react/data/queries#updating-cached-query-results
+#### Polling
+
+This way you can fetch data any `n` seconds.
+
+Working example:
+
+```tsx
+import React, { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_NEWEST_POST } from "../apollo/queries";
+
+export const PollingQuery = () => {
+  const { loading, error, data, startPolling } = useQuery(GET_NEWEST_POST);
+
+  useEffect(() => {
+    startPolling(1000);
+  }, []);
+
+  if (loading) return null;
+  if (error) return <>`Error! ${error}`</>;
+
+  return (
+    <>
+      <p>The newest post is (polling every second):</p>
+      <p>
+        {data.posts.nodes[0].slug}: {data.posts.nodes[0].title}
+      </p>
+    </>
+  );
+};
+```
+
+#### Refetching
+
+Ability to update data on user action.
+
+You can import `refetch` from `useQuery` hook:
+
+```tsx
+<button
+  onClick={() => {
+    refetch({ order: orderState });
+  }}
+>
+  Refetch!
+</button>
+```
+
+> You can pass different values when refetching.
+
+
+#### Inspecting loading states
+
+You can inspect loading states:
+
+```tsx
+export const RefetchingState = () => {
+  const { loading, error, data, refetch, networkStatus } = useQuery(
+    GET_NEWEST_POST_ORDERED,
+    {
+      notifyOnNetworkStatusChange: true,
+    }
+  );
+
+  if (networkStatus === NetworkStatus.refetch) return <>'Refetching!'</>;
+  if (loading) return null;
+  if (error) return <>`Error! ${error}`</>;
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          refetch();
+        }}
+      >
+        Refetch!
+      </button>
+
+      <p>Post data:</p>
+      <p>
+        {data.posts.nodes[0].slug}: {data.posts.nodes[0].title}
+      </p>
+    </>
+  );
+};
+```
+
+`NetworkStatus` is an `enum` with all statuses:
+
+```
+    loading = 1,
+    setVariables = 2,
+    fetchMore = 3,
+    refetch = 4,
+    poll = 6,
+    ready = 7,
+    error = 8
+```
+
+https://www.apollographql.com/docs/react/data/queries/#inspecting-error-states
