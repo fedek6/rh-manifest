@@ -205,4 +205,65 @@ export const RefetchingState = () => {
     error = 8
 ```
 
-https://www.apollographql.com/docs/react/data/queries/#inspecting-error-states
+#### Handling errors
+
+You can handle errors with detailed client info:
+
+```jsx
+export const BadQueryHandling = () => {
+  const { loading, error, data } = useQuery(GET_NEWEST_POST_BAD, {
+    errorPolicy: "all",
+  });
+
+  if (loading) return null;
+
+  return (
+    <>
+      <div>
+        <h2>Good: {data?.page.title}</h2>
+        <pre>
+          Bad:{" "}
+          {error?.graphQLErrors.map(({ message }, i) => (
+            <span key={i}>{message}</span>
+          ))}
+        </pre>
+      </div>
+    </>
+  );
+};
+```
+
+#### `useLazyQuery` for on-demand fetching
+
+```tsx
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { GET_NEWEST_POST_BAD } from "../apollo/queries";
+
+export const BadQueryHandling = () => {
+  const { loading, error, data } = useQuery(GET_NEWEST_POST_BAD, {
+    errorPolicy: "all",
+  });
+
+  if (loading) return null;
+
+  return (
+    <>
+      <div>
+        <h2>Good: {data?.page.title}</h2>
+        <pre>
+          Bad:{" "}
+          {error?.graphQLErrors.map(({ message }, i) => (
+            <span key={i}>{message}</span>
+          ))}
+        </pre>
+        <pre>
+          { JSON.stringify(data, null, "") }
+        </pre>
+      </div>
+    </>
+  );
+};
+```
+
+https://www.apollographql.com/docs/react/data/queries/#setting-a-fetch-policy
