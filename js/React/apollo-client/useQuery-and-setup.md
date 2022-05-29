@@ -266,4 +266,30 @@ export const BadQueryHandling = () => {
 };
 ```
 
-https://www.apollographql.com/docs/react/data/queries/#setting-a-fetch-policy
+#### Fetch policy
+
+You can set a policy, if you want to fetch always fresh data etc.
+
+> By default, `Apollo` uses `cache-first` policy.
+
+
+Example, do not use cache:
+
+```ts
+const { loading, error, data } = useQuery(GET_DOGS, {
+  fetchPolicy: 'network-only', // Doesn't check cache before making a network request
+});
+```
+
+Or you if you want to use network at first and cache second time:
+
+```ts
+const { loading, error, data } = useQuery(GET_DOGS, {
+  fetchPolicy: 'network-only', // Used for first execution
+  nextFetchPolicy: 'cache-first', // Used for subsequent executions
+});
+```
+
+> You can configure fetch policy globally in Apollo client. There you can also use functions to fine tune your setup.
+
+Docs are [here](https://www.apollographql.com/docs/react/data/queries/#nextfetchpolicy).
