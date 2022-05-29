@@ -196,6 +196,41 @@ This will automatically destroy `bullet` when it leaves a screen.
 
 ### Emitting signals and custom ones
 
+To define a custom signal there are two ways:
+
+- Using `signal` keyword (preffered)
+- By using `Object.add_user_signal`
+
+1. First you need to declare custom signal (with possible arguments):
+
+```
+signal test(test_argument)
+```
+
+2. Then you need to emit it:
+
+```
+func _on_Button_pressed():
+	self.emit_signal("test", "Cholibka!")
+```
+
+3. Then you need to receive it (either by Gatsby UI or code):
+
+```
+func _on_Button_test(test_argument):
+	self.text = str(test_argument)
+```
 
 
-p. 79
+```
+func _ready():
+	$"../Button".connect("test", self, "_on_test")
+
+func _on_test(arg):
+	self.text = str(arg)
+	print(arg)
+```
+
+### Groups
+
+p. 81
