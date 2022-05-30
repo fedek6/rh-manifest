@@ -233,4 +233,74 @@ func _on_test(arg):
 
 ### Groups
 
-p. 81
+An object can be checked for membership in a group, which makes groups useful to distinguish types of objects (for e.g. "Bullet hits enemy").
+
+To add element to a group, you can use `Node` tabs and there you'll find `Groups`.
+
+You can also use a code:
+
+```
+func _ready():
+	self.add_to_group("nodes")
+```
+
+#### Usage
+
+Classic example is to detect if a hero got hit by a bullet.
+
+There's also a method that allows you to call a method in every group member.
+
+```
+get_tree().call_group("group_name", "method_name").
+```
+
+Working example:
+
+```
+func _on_Button2_pressed():
+	print("group button pressed");
+	get_tree().call_group("nodes", "change_text")
+```
+
+And in a grouped node:
+
+```
+func change_text():
+	self.text = "changed by a group"
+```
+
+Working example from the book:
+
+```
+extends KinematicBody2D # Player
+signal shot(damage)
+signal shot_by_friendly(ally)
+signal died()
+var health = 250.0
+
+func _on_Area_entered(object):
+	if object.is_in_group("bullet"):
+		# we got hit by a bullet
+		# note: all objects of type bullet have a damage property
+		emit_signal("shot", object.damage)
+		if object.owner.is_in_group("ally"):
+			# we got shot by one of our allies
+			emit_signal("shot_by_friendly", object.owner)
+			health -= object.damage
+			if health < 0:
+				emit_signal("died")# destroy the bullet
+				object.queue_free()
+func _ready():
+	$Area2D.connect("area_entered", self, "_on_Area_entered")
+	self.connect("died", self, "on_death")
+	self.connect("shot", self, "on_shot")
+	
+func on_died():
+	# implement dying here
+	self.queue_free()
+
+func on_shot(damage):
+	$SamplePlayer2D.play("hit_sound")
+```
+
+p.86
