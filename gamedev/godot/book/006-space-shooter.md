@@ -30,3 +30,7 @@ Add timer node. Set it to 0.2. Set it to `one shot` for custom refiring on deman
 
 
 Adding other scenes p. 94
+
+> Duplicate logic of other scenes but without any timers.
+
+p. 95
