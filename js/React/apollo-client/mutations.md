@@ -65,4 +65,75 @@ export const LogInToWp = () => {
 
 > `onCompleted` callback idea from [here](https://www.howtographql.com/react-apollo/5-authentication/).
 
-https://www.apollographql.com/docs/react/data/mutations#resetting-mutation-status
+## Reset
+
+There's a reset function exported from `useMutation` hook. You can reset `data` by using it (this is only state reset, not cache cleanup).
+
+```tsx
+  const [logIn, { data, loading, error, reset }] = useMutation(LOG_IN, {
+    errorPolicy: "all",
+    onCompleted: ({login}) => {
+      console.log("<LogInToWp />", "setting session token");
+      if (login) {
+        sessionStorage.setItem("token", login.authToken)
+      }
+    }
+  });
+```
+
+## Updating data
+
+There are two ways to update local data after mutation:
+
+* Update directly from the mutation data.
+* Refetch queries.
+
+
+### Refetch queries
+
+This is very simple:
+
+```ts
+// Refetches two queries after mutation completes
+const [addTodo, { data, loading, error }] = useMutation(ADD_TODO, {
+  refetchQueries: [
+    GET_POST, // DocumentNode object parsed with gql
+    'GetComments' // Query name
+  ],
+});
+```
+
+### Automatic cache update
+
+If response has all the data to update local store. Apollo will automatically (?) update cache.
+
+### Update
+
+Update function is a bit more difficult:
+
+```ts
+  const [addTodo] = useMutation(ADD_TODO, {
+    update(cache, { data: { addTodo } }) {
+      cache.modify({
+        fields: {
+          todos(existingTodos = []) {
+            const newTodoRef = cache.writeFragment({
+              data: addTodo,
+              fragment: gql`
+                fragment NewTodo on Todo {
+                  id
+                  type
+                }
+              `
+            });
+            return [...existingTodos, newTodoRef];
+          }
+        }
+      });
+    }
+  });
+```
+
+> This topic is quite complicated, it's better to check docs before coding:
+
+https://www.apollographql.com/docs/react/data/mutations/#updating-local-data
