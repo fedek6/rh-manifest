@@ -34,3 +34,13 @@ Adding other scenes p. 94
 > Duplicate logic of other scenes but without any timers.
 
 p. 95
+
+> Use `queue_free()` function in root node of scene to destroy it.
+
+```
+func _on_qeue_free_timer_timeout():
+	queue_free()
+```
+
+
+p. 99
