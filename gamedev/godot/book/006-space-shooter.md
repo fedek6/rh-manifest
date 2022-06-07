@@ -176,4 +176,57 @@ func _on_javelin_area_entered(area):
 
 ```
 
-p. 106
+
+## Always Scrolling background
+
+```
+extends Sprite
+var scroll_speed = 30.0
+var stage = load("res://stage.gd")
+
+func _process(delta):
+	position += Vector2(-scroll_speed * delta, 0.0)
+	
+	if position.x <= -stage.SCREEN_WIDTH:
+		position.x += stage.SCREEN_WIDTH
+```
+
+## Enemy spawning and signals in stage
+
+```gdscript
+extends Node2D
+
+var tank = preload("res://enemy-tank.tscn")
+
+const SCREEN_WIDTH = 320
+const SCREEN_HEIGHT = 180
+
+var is_game_over = false
+var score = 0
+
+func _ready():
+	get_node("player").connect("destroyed", self, "_on_player_destroyed")
+	get_node("spawn_timer").connect("timeout", self, "_on_spawn_timer_timeout")
+	
+func _on_player_destroyed():
+	get_node("ui/retry").show()
+	is_game_over = true
+
+func _input(event):
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()
+	if is_game_over and Input.is_key_pressed(KEY_ENTER):
+		get_tree().change_scene("res://stage.tscn")
+
+func _on_spawn_timer_timeout():
+	var tank_instance = tank.instance()
+	tank_instance.position = Vector2(SCREEN_WIDTH + 16, rand_range(0, SCREEN_HEIGHT))
+	tank_instance.connect("score", self, "_on_player_score")
+	add_child(tank_instance)
+
+func _on_player_score():
+	score += 1
+	get_node("ui/score").text = "Score: " + str(score)
+```
+
+p. 107
