@@ -181,4 +181,101 @@ More info [here](https://laravel.com/docs/9.x/providers#the-boot-method).
 
 ## Facades
 
-https://laravel.com/docs/9.x/facades
+Facades provide static access to classes in a service container.
+
+All of built-in facades are available through the `Illuminate\Support\Facades` namespace.
+
+```php
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
+ 
+Route::get('/cache', function () {
+    return Cache::get('key');
+});
+```
+
+### Helper functions
+
+There are also global helper functions. Commonly used with: `view`, `response`, `url` and `config`. You can use them instead of facades.
+
+```php
+Route::get('/users', function () {
+    return response()->json([
+        // ...
+    ]);
+});
+```
+
+This is exactly the same:
+
+```php
+return Illuminate\Support\Facades\View::make('profile');
+ 
+return view('profile');
+```
+
+> All helpers can be found [here](https://laravel.com/docs/9.x/helpers).
+
+
+### When to use Facades
+
+Keep your classes narrow. If you have large constructor, and you use multiple facades, split your classes into smaller units.
+
+### Real-Time Facades
+
+You can turn any class into dynamic facade:
+
+This is dependency injection:
+
+```php
+<?php
+ 
+namespace App\Models;
+ 
+use App\Contracts\Publisher;
+use Illuminate\Database\Eloquent\Model;
+ 
+class Podcast extends Model
+{
+    /**
+     * Publish the podcast.
+     *
+     * @param  Publisher  $publisher
+     * @return void
+     */
+    public function publish(Publisher $publisher)
+    {
+        $this->update(['publishing' => now()]);
+ 
+        $publisher->publish($this);
+    }
+}
+```
+
+Turned into facade:
+
+```php
+<?php
+ 
+namespace App\Models;
+ 
+use Facades\App\Contracts\Publisher;
+use Illuminate\Database\Eloquent\Model;
+ 
+class Podcast extends Model
+{
+    /**
+     * Publish the podcast.
+     *
+     * @return void
+     */
+    public function publish()
+    {
+        $this->update(['publishing' => now()]);
+ 
+        Publisher::publish($this);
+    }
+}
+```
+
+Chceck [facade reference](https://laravel.com/docs/9.x/facades#facade-class-reference) for all facades.
