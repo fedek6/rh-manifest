@@ -58,7 +58,6 @@ But if you want to use class with interface or write shared package you'll need 
 
 > This is quite complicated, further research might be needed https://laravel.com/docs/9.x/container
 
-https://laravel.com/docs/9.x/providers
 
 ## Service providers
 
