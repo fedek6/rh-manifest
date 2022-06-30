@@ -278,4 +278,4 @@ class Podcast extends Model
 }
 ```
 
-Chceck [facade reference](https://laravel.com/docs/9.x/facades#facade-class-reference) for all facades.
+Check [facade reference](https://laravel.com/docs/9.x/facades#facade-class-reference) for all facades.
