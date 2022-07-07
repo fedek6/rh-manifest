@@ -478,4 +478,38 @@ Route::fallback(function () {
 
 ## Rate limiting
 
-https://laravel.com/docs/9.x/routing#rate-limiting
+Rate limiting should be configured in `App\Providers\RouteServiceProvider`.
+
+```php
+    /**
+     * Configure the rate limiters for the application.
+     *
+     * @return void
+     */
+    protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
+
+        RateLimiter::for('resrticted', function (Request $request) {
+            return Limit::perMinute(1)->by($request->ip());
+        });
+    }
+```
+
+And in routes:
+
+```php
+Route::middleware(['throttle:restricted'])->group(function () {
+    Route::get('/restricted', function () {
+        return "Restricted to 1 req. per minute.";
+    });
+
+    Route::get('/also-restricted', function () {
+        return "Restricted to 1 req. per minute.";
+    });
+});
+```
+
+https://laravel.com/docs/9.x/routing#throttling-with-redis
