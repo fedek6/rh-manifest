@@ -1096,4 +1096,4 @@ export const DragPreviewWrapper = styled.div.attrs<DragPreviewWrapperProps>(
 
 You can update component style without generating class names.
 
-p. 119 Drag cards
+p. 125
