@@ -37,4 +37,9 @@ You can tell React what you want to happen and library will determine what to do
 
 ## First app
 
-https://nextjs.org/learn/basics/create-nextjs-app/setup
+### Assets
+
+* To load external JS use `next/script`
+* Images are served better with `next/image`
+
+https://nextjs.org/learn/basics/assets-metadata-css/third-party-javascript
