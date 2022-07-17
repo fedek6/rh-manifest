@@ -269,6 +269,39 @@ function Profile() {
 > SWR is a hook that is similar to Apollo client but for REST api's. 
 
 
-## Dynamic routes
+## Dynamic routes (static paths)
 
-> https://nextjs.org/learn/basics/dynamic-routes
+If you want to create dynamic routes, you'll need to create special kind of pages. For e.g. `pages/posts/[id].js`.
+
+This page will need following architecture:
+
+```tsx
+import Layout from '../../components/layout';
+
+export default function Post() {
+  return <Layout>...</Layout>;
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      {
+        id: "foo"
+      }
+    ],
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  // Fetch necessary data for the blog post using params.id
+  // params = {"id":"foo"}
+}
+```
+
+This is quite simple:
+
+* `getStaticPaths` must return all valid `[id]`, if it does not, you'll get 404. 
+* Using `getStaticProps` you'll need to get your "meat" (website content).
+
+> https://nextjs.org/learn/basics/dynamic-routes/render-markdown
